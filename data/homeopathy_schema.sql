@@ -239,7 +239,6 @@ CREATE TABLE `hme_users` (
   `ur_role_id` mediumint(9) NOT NULL COMMENT 'User role id, refers hme_user_role table PK',
   `ur_username` varchar(100) NOT NULL,
   `ur_password` varchar(100) NOT NULL,
-  `ur_hash` varchar(100) DEFAULT NULL,
   `ur_activation_key` varchar(100) DEFAULT NULL,
   `ur_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ur_modified_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -260,6 +259,7 @@ CREATE TABLE `hme_users` (
 DROP TABLE IF EXISTS `hme_vendors`;
 
 CREATE TABLE `hme_vendors` (
+  `tenant` mediumint(9) NOT NULL,
   `ven_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `ven_name` varchar(255) NOT NULL,
   `ven_address` text,
