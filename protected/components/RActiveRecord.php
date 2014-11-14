@@ -52,6 +52,6 @@ class RActiveRecord extends CActiveRecord {
     //to get the unique UNIQUE identifier
     public function getTenant()
     {
-     return Yii::app()->user->tenant;
+     return Yii::app()->user->getState('tenant');
     }
 }

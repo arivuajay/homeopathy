@@ -17,14 +17,14 @@ class UserIdentity extends CUserIdentity {
      */
     public function authenticate() {
         $tenant = 1;
-        $user = Users::model()->find('ur_username = :U', array(':U' => $this->username));
+        $user = Users::model()->find('ur_username = :U', array(':U' => $this->username,':tenant'=>$tenant));
 
         if ($user === null):
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        elseif ($user->user_status == 0):
+        elseif ($user->ur_status == 0):
             $this->errorCode = self::ERROR_ACCOUNT_BLOCKED;
         else:
-            $is_correct_password = ($user->password !== Myclass::encrypt($this->password)) ? false : true;
+            $is_correct_password = ($user->ur_password !== Myclass::encrypt($this->password)) ? false : true;
 
             if ($is_correct_password):
                 $this->errorCode = self::ERROR_NONE;

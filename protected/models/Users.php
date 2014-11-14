@@ -45,7 +45,7 @@ class Users extends RActiveRecord
 			array('ur_username, ur_password, ur_hash, ur_activation_key', 'length', 'max'=>100),
 			array('ur_last_ip', 'length', 'max'=>50),
 			array('ur_status', 'length', 'max'=>1),
-			array('ur_modified_at, ur_last_login', 'safe'),
+			array('tenant,ur_modified_at, ur_last_login', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('tenant, ur_id, ur_role_id, ur_username, ur_password, ur_hash, ur_activation_key, ur_created_at, ur_modified_at, ur_last_login, ur_last_ip, ur_status', 'safe', 'on'=>'search'),
@@ -62,7 +62,7 @@ class Users extends RActiveRecord
 		return array(
 			'purchaseOrders' => array(self::HAS_MANY, 'PurchaseOrder', 'po_created_by'),
 			'urRole' => array(self::BELONGS_TO, 'UserRole', 'ur_role_id'),
-			'tenant0' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
+			'tenant' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
 		);
 	}
 

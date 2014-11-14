@@ -11,17 +11,21 @@ class DefaultController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'login', 'forgotpassword', 'contactus', 'activate'),
+                'actions' => array('login', 'forgotpassword', 'contactus', 'activate'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('cleancache', 'logout', 'myaccount', 'autocomplete'),
+                'actions' => array('index', 'cleancache', 'logout', 'myaccount', 'autocomplete'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
+    }
+
+    public function actionIndex() {
+        echo "Congrats !!!. Successfully loggedin";
     }
 
     public function actionLogin() {
@@ -32,7 +36,7 @@ class DefaultController extends Controller {
             $model->attributes = $_POST['LoginForm'];
 
             if ($model->validate() && $model->login()):
-                $this->redirect(array('/portal/default/myprofile'));
+                $this->redirect(array('/portal/default/index'));
             endif;
         }
         $this->render('login', array('model' => $model));
