@@ -59,7 +59,7 @@ return array(
     ),
     //setting the basic language value
     'language' => 'en',
-    'defaultController' => 'site/default/index',
+    'defaultController' => 'portal/default/login',
     'params' => require(dirname(__FILE__) . '/params.php'),
     'timeZone' => 'Asia/Calcutta',
 );

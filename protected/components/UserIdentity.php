@@ -6,7 +6,6 @@
  * data can identity the user.
  */
 class UserIdentity extends CUserIdentity {
-
     const ERROR_ACCOUNT_BLOCKED = 3;
     const ERROR_ACCOUNT_DELETED = 4;
 
@@ -17,12 +16,11 @@ class UserIdentity extends CUserIdentity {
      * @return boolean whether authentication succeeds.
      */
     public function authenticate() {
-
-        $user = User::model()->find('useremail = :U', array(':U' => $this->username));
+        $tenant = 1;
+        $user = Users::model()->find('ur_username = :U', array(':U' => $this->username));
 
         if ($user === null):
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-
         elseif ($user->user_status == 0):
             $this->errorCode = self::ERROR_ACCOUNT_BLOCKED;
         else:
@@ -36,24 +34,14 @@ class UserIdentity extends CUserIdentity {
         endif;
 
         if ($this->errorCode == self::ERROR_NONE):
-            $lastLogin = date('Y-m-d H:i:s');
-            $user->user_last_login = $lastLogin;
-            $user->user_ip_addr = Yii::app()->request->userHostAddress;
+            $user->ur_last_login = date('Y-m-d H:i:s');
+            $user->ur_last_ip = Yii::app()->request->userHostAddress;
             $user->save(false);
-            $this->_id = $user->user_id;
-            $this->setState('user_type', $user->user_type);
-            $this->setState('expired_user', (date('Y-m-d') >= date('Y-m-d', strtotime($user->expiry_date))) ? true : false);
-            $docModel = DoctorProfile::model()->find("user_id={$this->_id}");
-           
-            $patientModel = PatientProfile::model()->find("user_id={$this->_id}");
-            $diagnosticModel = DiagnosticProfile::model()->find("user_id={$this->_id}");
-            $this->setState('doctor_name', $docModel->doctor_name);
-            $this->setState('patient_name', $patientModel->first_name.$patientModel->last_name);
-            $this->setState('diagnostic_name', $diagnosticModel->full_name);
-            
-            $this->setState('tenant', "abraham.com");
-            
+            $this->_id = $user->ur_id;
+            $this->setState('ur_role_id', $user->ur_role_id);
+            $this->setState('tenant', $tenant);
         endif;
+        
         return !$this->errorCode;
     }
 
