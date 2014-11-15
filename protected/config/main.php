@@ -62,4 +62,5 @@ return array(
     'defaultController' => 'portal/default/login',
     'params' => require(dirname(__FILE__) . '/params.php'),
     'timeZone' => 'Asia/Calcutta',
+    'theme' => 'portal'
 );

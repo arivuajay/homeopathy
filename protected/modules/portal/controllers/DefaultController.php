@@ -25,10 +25,11 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
-        echo "Congrats !!!. Successfully loggedin";
+        $this->render('index', array('model' => $model));        
     }
 
     public function actionLogin() {
+        $this->layout = 'login';
         $model = new LoginForm();
 
         // collect user input data
@@ -59,8 +60,9 @@ class DefaultController extends Controller {
      */
     public function actionLogout() {
         Yii::app()->user->logout(false);
-        $this->redirect(Yii::app()->getModule('site')->user->loginUrl);
-        $this->redirect(array('index'));
+        $this->redirect(Yii::app()->getModule('portal')->user->loginUrl);
+        $this->redirect(array('/portal/default/login'));
+//        $this->redirect(array('index'));
     }
 
     public function actionForgotpassword() {
