@@ -210,9 +210,11 @@ CREATE TABLE `hme_tenants` (
   `tn_created_by` mediumint(9) DEFAULT NULL,
   `tn_status` enum('0','1','2') NOT NULL DEFAULT '0',
   PRIMARY KEY (`tn_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_tenants` */
+
+insert  into `hme_tenants`(`tn_id`,`tn_hospital_name`,`tn_address_one`,`tn_address_two`,`tn_address_three`,`tn_city`,`tn_state`,`tn_country`,`tn_website`,`tn_email`,`tn_created_at`,`tn_created_by`,`tn_status`) values (1,'Abraham Homeo Clinic','Sample Address','Sample Address','Sample Address',0,0,0,'Website','Email','2014-11-14 19:50:18',0,'1');
 
 /*Table structure for table `hme_user_role` */
 
@@ -238,7 +240,7 @@ CREATE TABLE `hme_users` (
   `ur_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `ur_role_id` mediumint(9) NOT NULL COMMENT 'User role id, refers hme_user_role table PK',
   `ur_username` varchar(100) NOT NULL,
-  `ur_password` varchar(100) NOT NULL,
+  `ur_password` varchar(255) NOT NULL,
   `ur_activation_key` varchar(100) DEFAULT NULL,
   `ur_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ur_modified_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -248,11 +250,13 @@ CREATE TABLE `hme_users` (
   PRIMARY KEY (`ur_id`),
   KEY `FK_hme_users_role` (`ur_role_id`),
   KEY `FK_hme_users_tenant` (`tenant`),
-  CONSTRAINT `FK_hme_users_role` FOREIGN KEY (`ur_role_id`) REFERENCES `hme_user_role` (`urole_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_hme_users_tenant` FOREIGN KEY (`tenant`) REFERENCES `hme_tenants` (`tn_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_hme_users_tenant` FOREIGN KEY (`tenant`) REFERENCES `hme_tenants` (`tn_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_hme_users_role` FOREIGN KEY (`ur_role_id`) REFERENCES `hme_user_role` (`urole_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_users` */
+
+insert  into `hme_users`(`tenant`,`ur_id`,`ur_role_id`,`ur_username`,`ur_password`,`ur_activation_key`,`ur_created_at`,`ur_modified_at`,`ur_last_login`,`ur_last_ip`,`ur_status`) values (1,1,11,'hadmin','b3122934150f9c276fedf3ade4801c0944fe54ed1b52402f664ac2f2ad6a5b087e7157bbbc30357e6f184534139e941cf8184762965f689ebee8f6e3806a48bc',NULL,'2014-11-14 20:18:48','0000-00-00 00:00:00','2014-11-14 20:21:00','::1','1');
 
 /*Table structure for table `hme_vendors` */
 
