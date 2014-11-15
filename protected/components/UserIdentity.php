@@ -17,7 +17,7 @@ class UserIdentity extends CUserIdentity {
      */
     public function authenticate() {
         $tenant = 1;
-        $user = Users::model()->find('ur_username = :U', array(':U' => $this->username,':tenant'=>$tenant));
+        $user = Users::model()->find('ur_username = :U AND tenant=:tenant', array(':U' => $this->username,':tenant'=>$tenant));
 
         if ($user === null):
             $this->errorCode = self::ERROR_USERNAME_INVALID;
@@ -34,12 +34,12 @@ class UserIdentity extends CUserIdentity {
         endif;
 
         if ($this->errorCode == self::ERROR_NONE):
-            $user->ur_last_login = date('Y-m-d H:i:s');
-            $user->ur_last_ip = Yii::app()->request->userHostAddress;
-            $user->save(false);
             $this->_id = $user->ur_id;
             $this->setState('ur_role_id', $user->ur_role_id);
             $this->setState('tenant', $tenant);
+            $user->ur_last_login = date('Y-m-d H:i:s');
+            $user->ur_last_ip = Yii::app()->request->userHostAddress;
+            $user->save(false);
         endif;
         
         return !$this->errorCode;

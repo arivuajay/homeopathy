@@ -22,7 +22,7 @@
  * @property UserRole $urRole
  * @property Tenants $tenant0
  */
-class Users extends RActiveRecord
+class Users extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
