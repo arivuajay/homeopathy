@@ -65,7 +65,7 @@ class MedcategoriesController extends Controller
 		$model=new MedCategories;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
 
 		if(isset($_POST['MedCategories']))
 		{
@@ -73,6 +73,8 @@ class MedcategoriesController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->med_cat_id));
 		}
+                
+                $model->med_cat_status = 1;
 
 		$this->render('create',array(
 			'model'=>$model,

@@ -860,5 +860,40 @@ class Myclass extends CController {
         $address_type = array('Business','Other','Personal');
         return array_combine($address_type, $address_type);
     }
+    
+     public static function getParentCategoryArray() {
+        $criteria = new CDbCriteria();
+        $criteria->addCondition("med_cat_parent IS null");
+        $criteria->select = "*";
+        $p_categories = MedCategories::model()->findAll($criteria);
+        
+        $categories = array();
+        foreach ($p_categories as $p_category):
+            $categories[$p_category->med_cat_id] = $p_category->med_cat_name;
+        endforeach;
+        
+        return $categories;
+    }
+
+    public static function getParentCategory($key=NULL) {
+        $criteria = new CDbCriteria();
+        if(isset($key) && $key != NULL){
+            $criteria->addCondition("med_cat_id = {$key}");
+        }
+        else{
+            $criteria->addCondition("med_cat_parent IS null");
+        }
+        $criteria->select = "*";
+        $p_categories = MedCategories::model()->findAll($criteria);
+        
+        return $p_categories;
+    }
+
+    public static function getMedicineUnit($key=NULL) {
+        $units = array('1' => 'ml', '2' => 'gms');
+        if(isset($key) && $key != NULL)
+            return $units[$key];
+        return $units;
+    }
 
 }

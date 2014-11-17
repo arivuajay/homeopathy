@@ -60,12 +60,11 @@ class MedCategories extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'med_cat_id' => 'Med Cat',
-			'med_cat_name' => 'Category Name',
-			'med_cat_parent' => 'Parent Category',
-			'med_cat_unit' => 'Units',
-			'med_cat_desc' => 'Description',
-			'med_cat_status' => 'Status',
+			'med_cat_name' => Myclass::t('APP51'),
+			'med_cat_parent' => Myclass::t('APP52'),
+			'med_cat_unit' => Myclass::t('APP53'),
+			'med_cat_desc' => Myclass::t('APP54'),
+			'med_cat_status' => Myclass::t('APP55'),
 		);
 	}
 
