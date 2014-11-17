@@ -9,7 +9,7 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
     $model->rememberMe = 1;
 }
 ?>    
-<h2 class="form-signin-heading">sign in now</h2>
+<h2 class="form-signin-heading"><?php echo Myclass::t('APP1'); ?></h2>
 <div class="login-wrap">
     <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'autocomplete' => 'off', 'autofocus', 'placeholder' => $model->getAttributeLabel('username'))); ?>
     <?php echo $form->passwordField($model, 'password', array('class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('password'))); ?>

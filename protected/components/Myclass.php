@@ -14,7 +14,7 @@ class Myclass extends CController {
         return base64_decode($str);
     }
 
-    public static function t($str = '', $params = array(), $dic = 'default') {
+    public static function t($str = '', $params = array(), $dic = 'app') {
         return Yii::t($dic, $str, $params);
     }
 
