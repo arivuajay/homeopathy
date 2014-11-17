@@ -31,7 +31,6 @@
     <body>
 
         <section id="container" >
-            <?php $this->widget('LangBox'); ?>
             <!--header start-->
             <?php echo $this->renderPartial('//layouts/_header'); ?>
             <!--header end-->
