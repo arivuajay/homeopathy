@@ -34,9 +34,9 @@ class LoginForm extends CFormModel {
      */
     public function attributeLabels() {
         return array(
-            'username' => Myclass::t('Username'),
-            'password' => Myclass::t('Password'),
-            'rememberMe' => Myclass::t('Remember me'),
+            'username' => Myclass::t('APP2'),
+            'password' => Myclass::t('APP3'),
+            'rememberMe' => Myclass::t('APP4'),
         );
     }
 
