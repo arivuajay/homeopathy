@@ -51,13 +51,13 @@ class LoginForm extends CFormModel {
             if (!$this->_identity->authenticate()):
                 switch ($this->_identity->errorCode):
                     case 1:
-                        $this->addError('username', Myclass::t('Incorrect Username or Password'));
+                        $this->addError('username', Myclass::t('APP11'));
                         break;
                     case 3:
-                        $this->addError('password', Yii::t('user', 'Your account has been blocked'));
+                        $this->addError('password', Myclass::t('APP12'));
                         break;
                     case 4:
-                        $this->addError('password', Yii::t('user', 'ACCOUNT_DELETED'));
+                        $this->addError('password', Myclass::t('APP13'));
                         break;
                 endswitch;
             endif;

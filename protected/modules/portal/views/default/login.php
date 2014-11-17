@@ -2,7 +2,7 @@
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'loginForm',
     'enableAjaxValidation' => false,
-    'htmlOptions' => array('class' => 'form-signin', 'role' => 'form')
+    'htmlOptions' => array('class' => 'form-signin cmxform', 'role' => 'form')
         ));
 
 if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
@@ -12,8 +12,14 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
 ?>    
 <h2 class="form-signin-heading"><?php echo Myclass::t('APP1'); ?></h2>
 <div class="login-wrap">
-    <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'autocomplete' => 'off', 'autofocus', 'placeholder' => $model->getAttributeLabel('username'))); ?>
-    <?php echo $form->passwordField($model, 'password', array('class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('password'))); ?>
+    <div class="form-group">
+        <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'autocomplete' => 'off', 'autofocus', 'placeholder' => $model->getAttributeLabel('username'))); ?>
+        <?php echo $form->error($model, 'username', array('class' => 'error')); ?>
+    </div>
+    <div class="form-group">
+        <?php echo $form->passwordField($model, 'password', array('class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('password'))); ?>
+        <?php echo $form->error($model, 'password', array('class' => 'error')); ?>
+    </div>
 
     <label class="checkbox">
         <?php echo $form->checkBox($model, 'rememberMe', array('id' => 'check')); ?><?php echo Myclass::t('APP4'); ?>
@@ -53,7 +59,7 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
                 <?php echo $form->error($model, 'username'); ?>
             </div>
             <div class="modal-footer">
-                <?php echo CHtml::htmlButton("<i class='fa fa-arrow-circle-o-left'></i>"."&nbsp;&nbsp;".  Myclass::t('APP8'), array('class' => 'btn btn-primary pull-left', "type" => "button", 'data-dismiss' => "modal")); ?>
+                <?php echo CHtml::htmlButton("<i class='fa fa-arrow-circle-o-left'></i>" . "&nbsp;&nbsp;" . Myclass::t('APP8'), array('class' => 'btn btn-primary pull-left', "type" => "button", 'data-dismiss' => "modal")); ?>
                 <?php echo CHtml::button(Myclass::t('APP10'), array('class' => 'btn btn-success', "type" => "submit")); ?>
             </div>
             <?php $this->endWidget(); ?>

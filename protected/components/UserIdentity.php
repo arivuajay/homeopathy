@@ -23,6 +23,8 @@ class UserIdentity extends CUserIdentity {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         elseif ($user->ur_status == 0):
             $this->errorCode = self::ERROR_ACCOUNT_BLOCKED;
+        elseif ($user->ur_status == 2):
+            $this->errorCode = self::ERROR_ACCOUNT_DELETED;
         else:
             $is_correct_password = ($user->ur_password !== Myclass::encrypt($this->password)) ? false : true;
 

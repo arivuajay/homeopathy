@@ -11,6 +11,8 @@ return array(
     'APP8' => 'Sign in',
     'APP9' => 'Cancel',
     'APP10' => 'Submit',
-    'APP11' => 'Back to'
+    'APP11' => 'Incorrect Username or Password',
+    'APP12' => 'Your account has been blocked',
+    'APP13' => 'Your account was deleted. Contact Administrator.',
 );
 ?>
