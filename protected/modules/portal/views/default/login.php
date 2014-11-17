@@ -13,7 +13,7 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
 <h2 class="form-signin-heading"><?php echo Myclass::t('APP1'); ?></h2>
 <div class="login-wrap">
     <div class="form-group">
-        <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'autocomplete' => 'off', 'autofocus', 'placeholder' => $model->getAttributeLabel('username'))); ?>
+        <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'autocomplete' => 'off', 'autofocus', 'placeholder' => Myclass::t('APP14'))); ?>
         <?php echo $form->error($model, 'username', array('class' => 'error')); ?>
     </div>
     <div class="form-group">
@@ -27,7 +27,7 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
             <a data-toggle="modal" href="#myModal"><?php echo Myclass::t('APP5'); ?></a>
         </span>
     </label>
-    <?php echo CHtml::button('Sign in', array("class" => "btn btn-lg btn-login btn-block", "type" => "submit")); ?>
+    <?php echo CHtml::button(Myclass::t('APP8'), array("class" => "btn btn-lg btn-login btn-block", "type" => "submit", 'name' => 'sign_in')); ?>
 
     <div class="registration">
         <?php echo Myclass::t('APP6'); ?>
@@ -45,7 +45,20 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
             <?php
             $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'forgotForm',
-                'enableAjaxValidation' => false,
+                'enableAjaxValidation' => true,
+                'clientOptions' => array(
+                    'validateOnSubmit' => true,
+                    'afterValidate' => 'js:function(form,data,hasError){
+                        if(!hasError){
+                                $.ajax({
+                                        "type":"POST",
+                                        "url":"' . CHtml::normalizeUrl(array("test/eleven")) . '",
+                                        "data":form.serialize(),
+                                        "success":function(data){$("#test").html(data);},
+                                        });
+                                }
+                        }'
+                ),
                 'htmlOptions' => array('role' => 'form')
             ));
             ?>
@@ -55,12 +68,14 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
             </div>
             <div class="modal-body">
                 <p>Enter your e-mail address below to reset your password.</p>
-                <?php echo $form->textField($model, 'username', array("placeholder" => Myclass::t('APP2'), "autocomplete" => "off", "class" => "form-control placeholder-no-fix")); ?>
-                <?php echo $form->error($model, 'username'); ?>
+                <div class="form-group">
+                <?php echo $form->textField($forget, 'username', array("placeholder" => Myclass::t('APP14'), "autocomplete" => "off", "class" => "form-control placeholder-no-fix")); ?>
+                <?php echo $form->error($forget, 'username', array('class' => 'error')); ?>
+                </div>
             </div>
             <div class="modal-footer">
                 <?php echo CHtml::htmlButton("<i class='fa fa-arrow-circle-o-left'></i>" . "&nbsp;&nbsp;" . Myclass::t('APP8'), array('class' => 'btn btn-primary pull-left', "type" => "button", 'data-dismiss' => "modal")); ?>
-                <?php echo CHtml::button(Myclass::t('APP10'), array('class' => 'btn btn-success', "type" => "submit")); ?>
+                <?php echo CHtml::button(Myclass::t('APP10'), array('class' => 'btn btn-success', "type" => "submit", 'name' => 'forget_password')); ?>
             </div>
             <?php $this->endWidget(); ?>
         </div>

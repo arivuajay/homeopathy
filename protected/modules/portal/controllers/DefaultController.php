@@ -30,17 +30,18 @@ class DefaultController extends Controller {
 
     public function actionLogin() {
         $this->layout = 'login';
-        $model = new LoginForm();
-
+        $model = new LoginForm('login');
+        $forget = new LoginForm('forgotpassword');
+        
         // collect user input data
-        if (isset($_POST['LoginForm'])) {
+        if (isset($_POST['sign_in'])) {
             $model->attributes = $_POST['LoginForm'];
 
             if ($model->validate() && $model->login()):
                 $this->redirect(array('/portal/default/index'));
             endif;
         }
-        $this->render('login', array('model' => $model));
+        $this->render('login', compact('model' ,'forget'));
     }
 
     /**
@@ -66,14 +67,22 @@ class DefaultController extends Controller {
     }
 
     public function actionForgotpassword() {
+        $forget = new Users('forgotpassword');
+        $this->performAjaxValidation($forget);  
+        
+        if (isset($_POST['forget_password'])) {
+            $model->attributes = $_POST['LoginForm'];
 
-        $model = new User('forgotpassword');
+            if ($model->validate() && $model->checkexists()):
+                $this->redirect(array('/portal/default/index'));
+            endif;
+        }        
         if (isset($_POST['User'])):
-            $model->attributes = $_POST['User'];
-            $valid = $model->validate();
+            $forget->attributes = $_POST['User'];
+            $valid = $forget->validate();
 
             if ($valid):
-                $user = User::model()->find('mobile_number ="' . $model->mobile_number . '"');
+                $user = User::model()->find('mobile_number ="' . $forget->mobile_number . '"');
                 $bef_encrypt = Myclass::getRandomString('8');
                 $user->password = Myclass::encrypt($bef_encrypt);
 
@@ -83,7 +92,7 @@ class DefaultController extends Controller {
                     Myclass::sendSms($user->mobile_number, $message);
                 endif;
 
-                Yii::app()->user->setFlash('success', 'Your request for reset-password has been sent to ' . $model->mobile_number . '. Please check your inbox');
+                Yii::app()->user->setFlash('success', 'Your request for reset-password has been sent to ' . $forget->mobile_number . '. Please check your inbox');
                 $this->redirect(array('activate'));
             endif;
         endif;
@@ -136,7 +145,7 @@ class DefaultController extends Controller {
     }
 
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'cms-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'forgotForm') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

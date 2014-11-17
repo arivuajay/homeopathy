@@ -6,5 +6,6 @@ return array(
     'SMTPAUTH' => true, // Auth : true or false
     'EMAILLAYOUT' => 'file', // file(file concept) or db(db_concept)
     'EMAILTEMPLATE' => '/mailtemplate/',
+    'COPYRIGHT_INFO' => 'Developed by ARK Infotec'
 );
 

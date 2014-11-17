@@ -25,16 +25,15 @@
         
         <div class="form-group">
             <div class="col-sm-12">
-            <p class="note">Fields with <span class="required">*</span> are required.</p>
-            <?php echo $form->errorSummary($model); ?>
+            <?php echo $form->errorSummary($model,''); ?>
             </div>
         </div>
         
         <div class="form-group">
 		<?php echo $form->labelEx($model,'med_cat_parent', array('class'=>'col-sm-2 col-sm-2 control-label')); ?>
                 <div class="col-sm-6">
-                <?php $categories = Myclass::getParentCategoryArray();?>
-                <?php echo $form->dropDownList($model, 'med_cat_parent', $categories, array('empty' => '','class'=>"form-control"));?>
+                <?php $categories = CHtml::listData(MedCategories::model()->isActive()->isParent()->findAll(),'med_cat_id','med_cat_name');  ?>
+                <?php echo $form->dropDownList($model, 'med_cat_parent', $categories, array('empty' => Myclass::t('APP61'),'class'=>"form-control"));?>
 		<?php echo $form->error($model,'med_cat_parent'); ?>
                 </div>
 	</div>

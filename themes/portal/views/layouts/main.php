@@ -20,6 +20,8 @@
         $cs->registerCssFile($themeUrl . '/css/owl.carousel.css');
         $cs->registerCssFile($themeUrl . '/css/style.css');
         $cs->registerCssFile($themeUrl . '/css/style-responsive.css');
+        $cs->registerCssFile($themeUrl . '/assets/advanced-datatable/media/css/demo_table.css');
+        
         ?>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
         <!--[if lt IE 9]>
@@ -48,10 +50,13 @@
         $cs->registerScriptFile($themeUrl . '/js/jquery.sparkline.js');
 
         $cs->registerScriptFile($themeUrl . '/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js');
+        $cs->registerScriptFile($themeUrl . '/assets/advanced-datatable/media/js/jquery.dataTables.js');
+        $cs->registerScriptFile($themeUrl . '/assets/data-tables/DT_bootstrap.js');
         $cs->registerScriptFile($themeUrl . '/js/owl.carousel.js');
+        
         $cs->registerScriptFile($themeUrl . '/js/jquery.customSelect.min.js');
         $cs->registerScriptFile($themeUrl . '/js/respond.min.js');
-
+        
         $cs->registerScriptFile($themeUrl . '/js/common-scripts.js');
         $cs->registerScriptFile($themeUrl . '/js/sparkline-chart.js');
         $cs->registerScriptFile($themeUrl . '/js/easy-pie-chart.js');

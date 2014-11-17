@@ -14,6 +14,7 @@ return array(
     'APP11' => 'Incorrect Username or Password',
     'APP12' => 'Your account has been blocked',
     'APP13' => 'Your account was deleted. Contact Administrator.',
+    'APP14' => 'Username or E-Mail',
 
     //Medical Category
     'APP51' => 'Category Name',

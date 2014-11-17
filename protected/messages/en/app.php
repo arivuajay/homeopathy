@@ -23,5 +23,9 @@ return array(
     'APP55' => 'Status',
     'APP56' => 'Create Category',
     'APP57' => 'Medical Categories',
+    'APP58' => 'No Record Found !!!',
+    'APP59' => 'Create',
+    'APP60' => 'Sl.No',
+    'APP61' => '__Select__',
 );
 ?>

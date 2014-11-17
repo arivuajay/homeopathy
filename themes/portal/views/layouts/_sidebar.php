@@ -26,6 +26,7 @@ $this->widget('application.components.MyMenu', array(
             ),
         ),
     ),
+    'submenuHtmlOptions' => array('class' => 'sub'),
     'htmlOptions' => array('class' => 'sidebar-menu','id'=>'nav-accordion'),
     'encodeLabel' => false,
 ));
