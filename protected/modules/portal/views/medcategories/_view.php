@@ -5,7 +5,8 @@
 
 <tr class="gradeX">
     <td><?php echo CHtml::encode($data->med_cat_name); ?></td>
-    <td><?php $categories = Myclass::getParentCategory(CHtml::encode($data->med_cat_parent));?><?php //echo CHtml::encode($data->med_cat_parent); ?></td>
+    <?php $parent_category = CHtml::encode($data->med_cat_parent); ?>
+    <td><?php print_r(Myclass::getParentCategory(CHtml::encode($data->med_cat_parent)));?><?php //echo CHtml::encode($data->med_cat_parent); ?></td>
     <td><?php echo Myclass::getMedicineUnit(CHtml::encode($data->med_cat_unit)); ?></td>
     <td class="center hidden-phone"><?php echo CHtml::encode($data->med_cat_desc); ?></td>
     <td class="center hidden-phone">X</td>

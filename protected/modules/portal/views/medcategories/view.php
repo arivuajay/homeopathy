@@ -16,16 +16,36 @@ $this->menu=array(
 );
 ?>
 
-<h1>View MedCategories #<?php echo $model->med_cat_id; ?></h1>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading"><h3><?php echo Myclass::t('APP63')?> #<?php echo $model->med_cat_id; ?></h3></header>
+            <div class="panel-body">
+            <?php $this->widget('zii.widgets.CDetailView', array(
+                    'data'=>$model,
+                    'attributes'=>array(
+                            'med_cat_id',
+                            'med_cat_name',
+                            array(              
+                                'label'=>Myclass::t('APP52'),
+                                'value'=>CHtml::encode($model->medparcat->med_cat_name),
+                            ),
+                            array(              
+                                'label'=>Myclass::t('APP53'),
+                                'value'=>Myclass::getMedicineUnit($model->med_cat_unit),
+                            ),
+                            'med_cat_desc',
+                            array(              
+                                'label'=>Myclass::t('APP55'),
+                                'value'=>Myclass::getMedicineStatus($model->med_cat_status),
+                            ),
+                    ),
+            )); ?>
+            <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/medcategories/'),array('class'=>'btn btn-sm btn-default')); ?>    
+            </div>    
+        </section>
+    </div>
+</div>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'med_cat_id',
-		'med_cat_name',
-		'med_cat_parent',
-		'med_cat_unit',
-		'med_cat_desc',
-		'med_cat_status',
-	),
-)); ?>
+
+

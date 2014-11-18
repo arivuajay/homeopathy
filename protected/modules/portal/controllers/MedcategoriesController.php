@@ -75,7 +75,7 @@ class MedcategoriesController extends Controller {
         $model = $this->loadModel($id);
 
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['MedCategories'])) {
             $model->attributes = $_POST['MedCategories'];
@@ -105,7 +105,7 @@ class MedcategoriesController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $model = MedCategories::model()->isActive()->findAll();
+        $model = MedCategories::model()->findAll();
 
         $this->render('index', compact('model'));
     }

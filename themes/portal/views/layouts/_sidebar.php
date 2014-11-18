@@ -15,7 +15,7 @@ $this->widget('application.components.MyMenu', array(
         array('label' => '<i class="fa fa-users"></i><span>Medicne Management</span>', 'url' => '#','itemOptions' => array("class" => "sub-menu"),
             'items' => array(
                 array('label' => '<i class="fa fa-stethoscope"></i><span>Categories</span>', 'url' => array('/portal/medcategories/index')),
-                array('label' => '<i class="fa fa-user-md"></i><span>Medicines</span> ', 'url' => '#')
+                array('label' => '<i class="fa fa-user-md"></i><span>Medicines</span> ', 'url' => array('/portal/medicines/index'))
             ),
         ),
         array('label' => '<i class="fa fa-dashboard"></i><span>Stocks</span>', 'url' => '#'),        

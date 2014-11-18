@@ -16,6 +16,11 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update MedCategories <?php echo $model->med_cat_id; ?></h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading"><h3><?php echo Myclass::t('APP62')?></h3></header>
+            <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+        </section>
+    </div>
+</div>

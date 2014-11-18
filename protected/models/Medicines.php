@@ -28,6 +28,14 @@ class Medicines extends RActiveRecord
 	{
 		return '{{medicines}}';
 	}
+        
+        public function scopes() {
+            $alias = $this->getTableAlias(false, false);
+            return array(
+                'isActive' => array('condition' => $alias . '.med_status  = "1"'),
+                'thisTenant' => array('condition' => $alias . '.tenant = '.$this->getTenant()),
+            );
+        }
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -72,11 +80,11 @@ class Medicines extends RActiveRecord
 	{
 		return array(
 			'tenant' => 'Tenant',
-			'med_id' => 'Med',
-			'med_cat_id' => 'Med Cat',
-			'med_name' => 'Med Name',
-			'med_desc' => 'Med Desc',
-			'med_status' => 'Med Status',
+			'med_id' => Myclass::t('APP69'),
+			'med_cat_id' => Myclass::t('APP70'),
+			'med_name' => Myclass::t('APP71'),
+			'med_desc' => Myclass::t('APP72'),
+			'med_status' => Myclass::t('APP73'),
 		);
 	}
 

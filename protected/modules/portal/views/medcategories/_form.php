@@ -4,9 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<section class="panel">
-    <header class="panel-heading"><h3><?php echo Myclass::t('APP56')?></h3></header>
-
     <div class="panel-body">
         <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'med-categories-form',
@@ -68,15 +65,15 @@
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'med_cat_status', array('class'=>'col-sm-2 col-sm-2 control-label')); ?>
                 <div class="col-sm-10">
-                <?php echo $form->radioButtonList($model,'med_cat_status',array(1=>'Active',2=>'In-Active'), array('style' => 'display:inline'))?>
+                <?php $status = Myclass::getMedicineStatus();?>
+                <?php echo $form->radioButtonList($model,'med_cat_status',$status, array('style' => 'display:inline'))?>
 		<?php echo $form->error($model,'med_cat_status'); ?>
                 </div>
 	</div>
 
 	
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-info')); ?>
-        
+        <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/medcategories/'),array('class'=>'btn btn-sm btn-default')); ?>
         <?php $this->endWidget(); ?>
 
     </div>
-</section>

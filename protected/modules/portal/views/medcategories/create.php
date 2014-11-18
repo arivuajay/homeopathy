@@ -14,6 +14,9 @@ $this->menu=array(
 ?>
 <div class="row">
     <div class="col-lg-12">
-    <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+        <section class="panel">
+            <header class="panel-heading"><h3><?php echo Myclass::t('APP56')?></h3></header>
+            <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+        </section>
     </div>
 </div>

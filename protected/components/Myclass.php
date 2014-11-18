@@ -64,5 +64,13 @@ class Myclass extends CController {
 
         return $units;
     }
+    
+    public static function getMedicineStatus($key=NULL) {
+        $status = array('0' => 'In-active',  '1' => 'Active', '2' => 'Not defined');
+        if(isset($key) && $key != NULL)
+            return $status[$key];
+        
+        return $status;
+    }
 
 }
