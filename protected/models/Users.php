@@ -136,4 +136,14 @@ class Users extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function beforeSave(){
+		$this->tenant = Yii::app()->user->tenant;	
+		if($this->isNewRecord)
+			$this->ur_created_at = new CDbExpression('NOW()');
+		
+		$this->ur_modified_at = new CDbExpression('NOW()');	
+		
+		return parent::beforeSave();
+	}
 }

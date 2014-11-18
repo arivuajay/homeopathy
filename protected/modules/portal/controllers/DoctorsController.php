@@ -63,38 +63,25 @@ class DoctorsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Users;
-		$user_meta =new Usermeta;
-		
+		$profModel = new DoctorProfile;
 		
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Users']))
-		{  //print_r($_POST['Users']);print_r($_POST['Usermeta']);exit;
-		    $current_tenant =  Yii::app()->user->getState('tenant');
+		if(isset($_POST['Users'])){ 
 			$model->attributes=$_POST['Users'];
-			$user_meta->attributes=$_POST['Usermeta'];
+			$profModel->attributes=$_POST['DoctorProfile'];
            // validate BOTH models
               $valid=$model->validate();
-              $valid=$user_meta->validate() && $valid;
-				if($valid)
-           {
-			$model->tenant=$current_tenant;
-			$model->ur_role_id= '9';
-			$model->ur_created_at= time();
-			$model->ur_modified_at= time();
-			$model->ur_status= '0';
-			$model->save();
-			
-			
-			$curr_user =$model->ur_id;
-			foreach ( $_POST['Usermeta'] as $meta_key=>$meta_value ){ //echo  $meta_key.'-----------'.$meta_value;}exit;
-			$user_meta->user_id=1;
-			$user_meta->meta_key = $meta_key;
-			$user_meta->meta_value = $meta_value;
-			$user_meta->save();
-		   }
+              $valid=$profModel->validate() && $valid;
+				if($valid){
+					$model->ur_role_id= 9;
+					$model->ur_status= 1;
+					$model->save(false);
+
+			$profModel->user_id = $model->ur_id;
+			$profModel->save();
 			
 				$this->redirect(array('view','id'=>$model->ur_id));
 		   }
@@ -102,7 +89,7 @@ class DoctorsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-			'user_meta'=>$user_meta,
+			'profModel'=>$profModel,
 			
 		));
 	}

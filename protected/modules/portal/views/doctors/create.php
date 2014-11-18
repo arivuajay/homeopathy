@@ -1,18 +1,25 @@
 <?php
-/* @var $this DoctorsController */
-/* @var $model Users */
+/* @var $this DoctorProfileController */
+/* @var $model DoctorProfile */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
-	'Create',
+    'Doctor Profiles'=>array('index'),
+    'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Users', 'url'=>array('index')),
-	array('label'=>'Manage Users', 'url'=>array('admin')),
+    array('label'=>'List DoctorProfile', 'url'=>array('index')),
+    array('label'=>'Manage DoctorProfile', 'url'=>array('admin')),
 );
 ?>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
 
-<!--<h1>Create Users</h1>-->
+<header class="panel-heading"><?php echo Myclass::t('APP104'); ?></header>
 
-<?php $this->renderPartial('_form', array('model'=>$model,'user_meta'=>$user_meta)); ?>
+
+<?php $this->renderPartial('_form', array('model'=>$model,'profModel'=>$profModel)); ?>
+    </section>
+  </div>
+</div> 
