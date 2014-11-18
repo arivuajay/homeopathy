@@ -14,15 +14,9 @@ return array(
     'APP11' => 'Incorrect Username or Password',
     'APP12' => 'Your account has been blocked',
     'APP13' => 'Your account was deleted. Contact Administrator.',
-    'APP14' => 'Username or E-Mail',
-
-    //Medical Category
-    'APP51' => 'Category Name',
-    'APP52' => 'Category Parent',
-    'APP53' => 'Units',
-    'APP54' => 'Description',
-    'APP55' => 'Status',
-    'APP56' => 'Create Category',
-    'APP57' => 'Medical Categories',
+	'APP101' => "El médico de",
+	'APP102' => 'acción',
+	'APP103' => 'Arsti nimi',
+	'APP104' => 'Loo arsti',
 );
 ?>

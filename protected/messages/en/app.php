@@ -27,5 +27,10 @@ return array(
     'APP59' => 'Create',
     'APP60' => 'Sl.No',
     'APP61' => '__Select__',
+	
+	'APP101' =>  "Doctor's",
+	'APP102' =>  'Action',
+	'APP103' =>  'Doctor Name',
+	'APP104' =>  'Create doctor',
 );
 ?>
