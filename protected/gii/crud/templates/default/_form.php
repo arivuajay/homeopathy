@@ -10,41 +10,37 @@
 /* @var $form CActiveForm */
 ?>
 
-
-<div class="panel-body">
 <?php echo "<?php \$form=\$this->beginWidget('CActiveForm', array(
 	'id'=>'".$this->class2id($this->modelClass)."-form',
-        'htmlOptions' => array('role' => 'form'),
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+        'htmlOptions' => array('role' => 'form','class'=>'form-horizontal'),
+	'enableAjaxValidation'=>true,
 )); ?>\n"; ?>
 
-
-
-	<?php echo "<?php echo \$form->errorSummary(\$model); ?>\n"; ?>
+	<?php echo "<?php //echo \$form->errorSummary(\$model); ?>\n"; ?>
 
 <?php
 foreach($this->tableSchema->columns as $column)
 {
 	if($column->autoIncrement)
 		continue;
+        
 ?>
-	
             <div class="form-group">
 		<?php echo "<?php echo ".$this->generateActiveLabel($this->modelClass,$column)."; ?>\n"; ?>
-		<?php echo "<?php echo ".$this->generateActiveField($this->modelClass,$column, array('class'=>'form-control'))."; ?>\n"; ?>
+                <?php echo "<div class=\"col-lg-10\">\n"; ?>
+		<?php echo "<?php echo ".$this->generateActiveField($this->modelClass,$column)."; ?>\n"; ?>
 		<?php echo "<?php echo \$form->error(\$model,'{$column->name}'); ?>\n"; ?>
+                <?php echo "</div>\n"; ?>
             </div>
-	
 
 <?php
 }
 ?>
-    <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-info')); ?>\n"; ?>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+            <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-info')); ?>\n"; ?>
+            </div>
+        </div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
-</div>
 <!-- form -->

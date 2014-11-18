@@ -2,5 +2,7 @@
 
 class CrudGenerator extends CCodeGenerator
 {
-	public $codeModel='gii.generators.crud.CrudCode';
+	public $codeModel='application.gii.crud.CrudCode';
+//	public $codeModel='gii.generators.crud.CrudCode';
+        
 }
