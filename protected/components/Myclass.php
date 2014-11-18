@@ -27,6 +27,17 @@ class Myclass extends CController {
         return $final_rand;
     }
 
+    public static function rememberMeComputer($username, $check) {
+        if ($check > 0) {
+            $time = time();     // Gets the current server time                                          
+            $cookie = new CHttpCookie('altimus_app_username', $username);
+            $cookie->expire = $time + 60 * 60 * 24 * 30;               // 30 days
+            Yii::app()->request->cookies['altimus_app_username'] = $cookie;
+        } else {
+            unset(Yii::app()->request->cookies['altimus_app_username']);
+        }
+    }
+
     public static function slugify($text) {
 // replace non letter or digits by -
         $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
@@ -46,11 +57,11 @@ class Myclass extends CController {
         return $text;
     }
 
-    public static function getMedicineUnit($key=NULL) {
+    public static function getMedicineUnit($key = NULL) {
         $units = array('1' => 'ml', '2' => 'gms');
-        if(isset($key) && $key != NULL)
+        if (isset($key) && $key != NULL)
             return $units[$key];
-        
+
         return $units;
     }
 

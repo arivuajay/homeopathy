@@ -13,7 +13,7 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
 <h2 class="form-signin-heading"><?php echo Myclass::t('APP1'); ?></h2>
 <div class="login-wrap">
     <div class="form-group">
-        <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'autocomplete' => 'off', 'autofocus', 'placeholder' => Myclass::t('APP14'))); ?>
+        <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'autocomplete' => 'off', 'autofocus', 'placeholder' => Myclass::t('APP2'))); ?>
         <?php echo $form->error($model, 'username', array('class' => 'error')); ?>
     </div>
     <div class="form-group">
@@ -69,7 +69,7 @@ if (isset(Yii::app()->request->cookies['altimus_app_username']->value)) {
             <div class="modal-body">
                 <p>Enter your e-mail address below to reset your password.</p>
                 <div class="form-group">
-                <?php echo $form->textField($forget, 'username', array("placeholder" => Myclass::t('APP14'), "autocomplete" => "off", "class" => "form-control placeholder-no-fix")); ?>
+                <?php echo $form->textField($forget, 'username', array("placeholder" => Myclass::t('APP2'), "autocomplete" => "off", "class" => "form-control placeholder-no-fix")); ?>
                 <?php echo $form->error($forget, 'username', array('class' => 'error')); ?>
                 </div>
             </div>
