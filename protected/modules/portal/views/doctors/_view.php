@@ -3,11 +3,11 @@
 /* @var $data Users */
 ?>
 
-                               
+                    <?php var_dump( CHtml::listData(DoctorProfile::model()->findAll(),'docinfo_id','doc_firstname'));?>          
                                       <tbody>
                                       <tr class="gradeX">
                                           <td><?php echo ++$index;?></td>
-                                          <td><?php echo CHtml::encode($data->ur_username); ?></td>
+                                          <td><?php echo ''; ?></td>
                                           <td><?php echo CHtml::encode($data->ur_created_at); ?></td>
                                           <td ><a href="#">View</a>/<a href="#">Edit</a>/<a href="#">Delete</a></td>
                                       </tr>

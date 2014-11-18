@@ -27,12 +27,8 @@ class DoctorsController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('index','view','create','update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -69,13 +65,14 @@ class DoctorsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Users'])){ 
+		if(isset($_POST['Users'])){
 			$model->attributes=$_POST['Users'];
 			$profModel->attributes=$_POST['DoctorProfile'];
            // validate BOTH models
               $valid=$model->validate();
               $valid=$profModel->validate() && $valid;
 				if($valid){
+					echo '<script>alert("hi");</script>';
 					$model->ur_role_id= 9;
 					$model->ur_status= 1;
 					$model->save(false);

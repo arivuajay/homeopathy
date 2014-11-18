@@ -149,4 +149,5 @@ class DoctorProfile extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	    
 }
