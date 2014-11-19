@@ -31,7 +31,12 @@ class Users extends CActiveRecord
 	{
 		return '{{users}}';
 	}
-	
+	 public function scopes() {
+        $alias = $this->getTableAlias(false, false);
+        return array(
+            'isRole' => array('condition' => $alias . '.ur_role_id  = "9"'),
+        );
+    }
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -138,9 +143,11 @@ class Users extends CActiveRecord
 	}
 	
 	public function beforeSave(){
-		$this->tenant = Yii::app()->user->tenant;	
-		if($this->isNewRecord)
+		
+		if($this->isNewRecord){
+			$this->tenant = Yii::app()->user->tenant;	
 			$this->ur_created_at = new CDbExpression('NOW()');
+		}
 		
 		$this->ur_modified_at = new CDbExpression('NOW()');	
 		

@@ -38,6 +38,8 @@ class DoctorProfile extends CActiveRecord
 		return '{{doctor_profile}}';
 	}
 
+	
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -149,5 +151,6 @@ class DoctorProfile extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	    
+	   
+	   
 }

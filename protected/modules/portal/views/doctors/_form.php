@@ -17,8 +17,9 @@
             <?php echo $form->labelEx($model, 'ur_username', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
                 <?php echo $form->textField($model, 'ur_username', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
+                  <?php echo $form->error($model, 'ur_username'); ?>
             </div>
-            <?php echo $form->error($model, 'ur_username'); ?>
+          
         </div>                                
 
         <div class="form-group">
