@@ -29,7 +29,6 @@ class Controller extends CController {
     public $breadcrumbs = array();
 
     public function init() {
-        
         CHtml::$errorContainerTag = 'label';
         $app = Yii::app();
         if (isset($_POST['_lang']))

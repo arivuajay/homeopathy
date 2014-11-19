@@ -146,4 +146,5 @@ class Users extends CActiveRecord
 		
 		return parent::beforeSave();
 	}
+        
 }

@@ -6,7 +6,7 @@
 
         <?php
         $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'doctor-profile-form',
+            'id' => 'doctors-form',
             'htmlOptions' => array('role' => 'form', 'class' => 'form-horizontal'),
             'enableAjaxValidation' => true,
                 ));

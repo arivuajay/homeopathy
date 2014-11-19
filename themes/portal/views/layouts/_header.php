@@ -218,6 +218,9 @@
             <li>
                 <input type="text" class="form-control search" placeholder="Search">
             </li>
+            <li class="dropdown language">
+                    <?php $this->widget('LangBox'); ?>
+                  </li>
             <!-- user login dropdown start-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -236,9 +239,6 @@
                         ?>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <?php $this->widget('LangBox'); ?>
             </li>
             <!-- user login dropdown end -->
         </ul>
