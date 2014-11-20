@@ -71,6 +71,7 @@ class DoctorProfile extends CActiveRecord
 			'docCountry' => array(self::BELONGS_TO, 'Countries', 'doc_country'),
 			'docState' => array(self::BELONGS_TO, 'States', 'doc_state'),
 			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+
 		);
 	}
 

@@ -27,16 +27,31 @@ $this->menu=array(
                                       <tr>
                                           <th>S.no</th>
                                           <th> <?php echo Myclass::t('APP103'); ?></th>
-                                          <th><?php echo Myclass::t('Created'); ?></th>
+                                          <th><?php echo Myclass::t('Speciality'); ?></th>
+                                           <th><?php echo Myclass::t('Phone'); ?></th>
+                                            <th><?php echo Myclass::t('City'); ?></th>
                                           <th class="text-center"> <?php echo Myclass::t('APP102'); ?></th>
                                       </tr>
                                       </thead>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php  $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
+	
 )); ?>
+<tfoot>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th> <?php echo Myclass::t('APP103'); ?></th>
+                        <th><?php echo Myclass::t('Speciality'); ?></th>
+                         <th><?php echo Myclass::t('Speciality'); ?></th>
+                          <th><?php echo Myclass::t('Speciality'); ?></th>
+                        <th class="text-center"> <?php echo Myclass::t('APP102'); ?></th>
+                       
+                    </tr>
+                </tfoot>
  </table>
+ 
                                 </div>
 </div>
                       </section>

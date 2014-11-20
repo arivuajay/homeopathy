@@ -91,18 +91,32 @@ class DoctorsController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
+        //$profModel = new DoctorProfile;
+		 $profModel = DoctorProfile::model()->findByAttributes(array('user_id'=>$id));
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+         $this->performAjaxValidation($model);
 
-        if (isset($_POST['Users'])) {
-            $model->attributes = $_POST['Users'];
-            if ($model->save())
+        if (isset($_POST['Users'],$_POST['DoctorProfile'])) {
+           $model->attributes = $_POST['Users'];
+            $profModel->attributes = $_POST['DoctorProfile'];
+            // validate BOTH models
+            $valid = $model->validate();
+            $valid = $profModel->validate() && $valid;
+            if($valid) {
+             //   $model->ur_role_id = 9;
+              //  $model->ur_status = 1;
+                $model->save(false);
+
+                $profModel->user_id = $model->ur_id;
+                $profModel->save(false);
+
                 $this->redirect(array('view', 'id' => $model->ur_id));
+            }
         }
 
         $this->render('update', array(
             'model' => $model,
+			'profModel' => $profModel,
         ));
     }
 
@@ -122,10 +136,13 @@ class DoctorsController extends Controller {
     /**
      * Lists all models.
      */
+	 public $s_row = 1;
     public function actionIndex() {
+		
         //$dataProvider = new CActiveDataProvider('Users');
+		
 		 $dataProvider=new CActiveDataProvider('Users' ,array('criteria'=>array(
-        'condition' => 'ur_role_id ='. 9)));
+        'condition' => 'ur_role_id ='. 9,'order'=>'ur_id DESC',)));
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));

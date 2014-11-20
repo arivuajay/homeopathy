@@ -70,6 +70,7 @@ class Users extends CActiveRecord
 			'purchaseOrders' => array(self::HAS_MANY, 'PurchaseOrder', 'po_created_by'),
 			'urRole' => array(self::BELONGS_TO, 'UserRole', 'ur_role_id'),
 			'tenant' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
+			'doctor' => array(self::HAS_ONE, 'DoctorProfile', 'user_id'),
 		);
 	}
 

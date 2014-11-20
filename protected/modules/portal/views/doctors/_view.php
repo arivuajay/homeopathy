@@ -3,20 +3,25 @@
 /* @var $data Users */
 ?>
 
-                    <?php var_dump( CHtml::encode(DoctorProfile::model()->findAll(),'docinfo_id','doc_firstname'));?>          
+                    <?php  //$find=  DoctorProfile::model()->findAll();
+					//$doctorArr = CHtml::listData( $find, 'user_id' ,'doc_firstname');
+					//print_r($doctorArr);
+					
+					?>      
+                    
                                       <tbody>
                                       <tr class="gradeX">
-                                          <td><?php echo ++$index;?></td>
-                                          <td><?php echo ''; ?></td>
-                                          <td><?php echo CHtml::encode($data->ur_created_at); ?></td>
+                                          <td><?php echo $data->ur_id;echo $this->s_row++;?></td>
+                                          <td><?php echo $data->doctor->doc_firstname; ?></td>
+                                          <td><?php echo $data->doctor->doc_speciality;?></td>
+                                           <td><?php echo $data->doctor->doc_phone;?></td>
+                                             <td><?php echo $data->doctor->docCity->city;?></td>
                                           <td class="text-center">
-                                            <button class="btn btn-success btn-xs" title="<?php echo Myclass::t('APP67') ?>" onclick="location.href='<?php echo Yii::app()->getBaseUrl();?>/portal/medcategories/view/id/<?php //echo $data->med_cat_id;?>'"><i class="fa fa-book"></i></button>
-                                <button class="btn btn-primary btn-xs" title="<?php echo Myclass::t('APP65') ?>" onclick="location.href='<?php echo Yii::app()->getBaseUrl();?>/portal/medcategories/update/id/<?php //echo $data->med_cat_id;?>'"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-success btn-xs" title="<?php echo Myclass::t('APP67') ?>" onclick="location.href='<?php echo Yii::app()->getBaseUrl();?>/portal/doctors/view/id/<?php echo $data->ur_id;?>'"><i class="fa fa-book"></i></button>
+                                <button class="btn btn-primary btn-xs" title="<?php echo Myclass::t('APP65') ?>" onclick="location.href='<?php echo Yii::app()->getBaseUrl();?>/portal/doctors/update/id/<?php echo $data->ur_id;?>'"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-danger btn-xs" title="<?php echo Myclass::t('APP66') ?>"><i class="fa fa-trash-o "></i></button>
                                           </td>
                                       </tr>
-                                     
-                                      
                                       </tbody>
                                       
                          
