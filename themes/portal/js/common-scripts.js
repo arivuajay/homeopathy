@@ -114,7 +114,7 @@ var Script = function() {
 
 
 }();
-
-$(document).ready(function() {
-    var oTable = $('.datatable').dataTable();
-});
+//
+//$(document).ready(function() {
+//    var oTable = $('.datatable').dataTable();
+//});

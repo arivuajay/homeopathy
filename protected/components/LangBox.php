@@ -4,7 +4,9 @@ class LangBox extends CWidget
     public function run()
     {
         $currentLang = Yii::app()->language;
-        $this->render('langBox', array('currentLang' => $currentLang));
+        $languages = Yii::app()->params->languages;
+        
+        $this->render('langBox', compact('currentLang','languages'));
     }
 }
 ?>

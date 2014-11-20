@@ -65,12 +65,24 @@ class Myclass extends CController {
         return $units;
     }
     
+    public static function getStatus($key=NULL) {
+        $status = array('0' => 'In-active',  '1' => 'Active', '2' => 'Not defined');
+        if(isset($key) && $key != NULL)
+            return $status[$key];
+        
+        return $status;
+    }
+    
     public static function getMedicineStatus($key=NULL) {
         $status = array('0' => 'In-active',  '1' => 'Active', '2' => 'Not defined');
         if(isset($key) && $key != NULL)
             return $status[$key];
         
         return $status;
+    }
+    
+    public static function endsWith($str,$sub){
+        return ( substr( $str, strlen( $str ) - strlen( $sub ) ) == $sub );
     }
 
 }

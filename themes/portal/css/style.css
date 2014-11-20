@@ -434,7 +434,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     .dropdown-menu.extended  {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
     };
-    }
+}
 
 .dropdown-menu.extended li p {
     background-color: #F1F2F7;
@@ -1397,7 +1397,7 @@ h3.timeline-title {
     .panel-footer.revenue-foot {
         margin-bottom: -4px;
     };
-    }
+}
 
 
 .panel-footer.revenue-foot ul  {
@@ -4721,11 +4721,11 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 /*footer*/
 
 .site-footer {
-  background: none repeat scroll 0 0 #5b6e84;
-  bottom: 0;
-  color: #ffffff;
-  padding: 10px 0;
-  width: 100%;
+    background: none repeat scroll 0 0 #5b6e84;
+    bottom: 0;
+    color: #ffffff;
+    padding: 10px 0;
+    width: 100%;
 }
 
 .go-top {
@@ -5185,9 +5185,9 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 
 
 .chat-room .user-head i {
-   float: left;
-   font-size: 40px;
-   margin-right: 10px;
+    float: left;
+    font-size: 40px;
+    margin-right: 10px;
 }
 
 .chat-room .user-head h3 {
@@ -5498,4 +5498,51 @@ a.guest-on i {
 
 .lobby {
     padding: 0 !important;
+}
+
+.bn{
+    border: none !important;
+}
+
+table tr.paginate-row td{
+    border: none !important;
+    padding: 0 10px !important;
+}
+
+table tr.paginate-row td .paging_bootstrap,table tr.paginate-row td .dataTables_info,table tr.paginate-row td .dataTables_length  {
+    margin: 0 !important;
+    padding: 0 !important;    
+}
+table tr.paginate-row td .dataTables_info{
+    display: inline-block;
+    line-height: 30px;
+}
+
+table  .button-column{
+    text-align: center;
+}
+
+table  .grid-table{
+    margin: 0 !important;
+}
+
+table  .grid-table thead th{
+    border-bottom: none !important;
+}
+.sort-link.asc {
+    background: url("../img/sort_asc.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+}
+.sort-link.desc {
+    background: url("../img/sort_desc.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+}
+.sort-link {
+    background: url("../img/sort_both.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    display: block;
+    color: #797979;
+}
+.sort-link.desc.disabled {
+    background: url("../img/sort_asc_disabled.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+}
+.sort-link.desc.disabled {
+    background: url("../img/sort_desc_disabled.png") no-repeat scroll right center rgba(0, 0, 0, 0);
 }

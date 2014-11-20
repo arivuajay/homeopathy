@@ -20,7 +20,7 @@
         $cs->registerCssFile($themeUrl . '/css/owl.carousel.css');
         $cs->registerCssFile($themeUrl . '/css/style.css');
         $cs->registerCssFile($themeUrl . '/css/style-responsive.css');
-        $cs->registerCssFile($themeUrl . '/assets/advanced-datatable/media/css/demo_table.css');
+//        $cs->registerCssFile($themeUrl . '/assets/advanced-datatable/media/css/demo_table.css');
         
         ?>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
@@ -44,14 +44,16 @@
         <?php
         $cs->registerCoreScript('jquery');
         $cs->registerScriptFile($themeUrl . '/js/bootstrap.min.js');
+        $cs->registerScriptFile($themeUrl . '/js/bootstrap-switch.js');
+        
         $cs->registerScriptFile($themeUrl . '/js/jquery.dcjqaccordion.2.7.js');
         $cs->registerScriptFile($themeUrl . '/js/jquery.scrollTo.min.js');
         $cs->registerScriptFile($themeUrl . '/js/jquery.nicescroll.js');
         $cs->registerScriptFile($themeUrl . '/js/jquery.sparkline.js');
 
         $cs->registerScriptFile($themeUrl . '/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js');
-        $cs->registerScriptFile($themeUrl . '/assets/advanced-datatable/media/js/jquery.dataTables.js');
-        $cs->registerScriptFile($themeUrl . '/assets/data-tables/DT_bootstrap.js');
+//        $cs->registerScriptFile($themeUrl . '/assets/advanced-datatable/media/js/jquery.dataTables.js');
+//        $cs->registerScriptFile($themeUrl . '/assets/data-tables/DT_bootstrap.js');
         $cs->registerScriptFile($themeUrl . '/js/owl.carousel.js');
         
         $cs->registerScriptFile($themeUrl . '/js/jquery.customSelect.min.js');
@@ -66,6 +68,9 @@
                 'Init', ' $(".alert-notify").animate({opacity: 1.0}, 3000).fadeOut("slow");
                     $(".alert-close").click(function(){ $(this).closest(".alert-notify").hide(); });
                     $(document).ready(function() {
+                        $("#main-content").css("min-height",$(document).height()-39);
+                        var _switch;
+                        _switch = $("[data-toggle=\'switch\']").wrap(\'<div class="switch" />\').parent().bootstrapSwitch();
                         $("#owl-demo").owlCarousel({
                             navigation : true,
                             slideSpeed : 300,

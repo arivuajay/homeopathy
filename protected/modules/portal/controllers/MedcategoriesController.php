@@ -23,10 +23,6 @@ class MedcategoriesController extends Controller {
                 'actions' => array('index', 'view', 'create', 'update', 'delete'),
                 'users' => array('@'),
             ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin'),
-                'users' => array('admin'),
-            ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
@@ -43,6 +39,27 @@ class MedcategoriesController extends Controller {
         ));
     }
 
+    public function actionIndex() {
+        $model = new MedCategories('search');
+        if (isset($_GET['MedCategories']))
+            $model->attributes = $_GET['MedCategories'];
+        
+        if (isset($_GET['pageSize'])) {
+            Yii::app()->user->setState('pageSize', (int) $_GET['pageSize']);
+            unset($_GET['pageSize']);
+        }
+        
+        $params = array(
+            'model' => $model,
+            'pageSize' =>  Yii::app()->user->getState('pageSize', Yii::app()->params['DEFAULT_PAGE_SIZE'])
+        );
+
+        if (!isset($_GET['ajax']))
+            $this->render('index', $params);
+        else
+            $this->renderPartial('index', $params);
+    }
+
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -56,7 +73,7 @@ class MedcategoriesController extends Controller {
         if (isset($_POST['MedCategories'])) {
             $model->attributes = $_POST['MedCategories'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->med_cat_id));
+                $this->redirect(array('index'));
         }
 
         $model->med_cat_status = 1;
@@ -79,8 +96,9 @@ class MedcategoriesController extends Controller {
 
         if (isset($_POST['MedCategories'])) {
             $model->attributes = $_POST['MedCategories'];
+            
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->med_cat_id));
+                $this->redirect(array('index'));
         }
 
         $this->render('update', array(
@@ -101,28 +119,6 @@ class MedcategoriesController extends Controller {
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
-    /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $model = MedCategories::model()->findAll();
-
-        $this->render('index', compact('model'));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
-        $model = new MedCategories('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['MedCategories']))
-            $model->attributes = $_GET['MedCategories'];
-
-        $this->render('admin', array(
-            'model' => $model,
-        ));
-    }
 
     /**
      * Returns the data model based on the primary key given in the GET variable.

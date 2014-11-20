@@ -25,12 +25,10 @@ $this->menu=array(
     array('label'=>'Manage <?php echo $this->modelClass; ?>', 'url'=>array('admin')),
 );
 ?>
-
-<h1>Update <?php echo $this->modelClass . " <?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></h1>
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading">Update <?php echo $this->modelClass . " <?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></header>
+            <header class="panel-heading"> Update <?php echo $this->modelClass . " <?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></header>
             <div class="panel-body">
                 <?php echo "<?php \$this->renderPartial('_form', array('model'=>\$model)); ?>"; ?>
             </div>

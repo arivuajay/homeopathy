@@ -10,6 +10,13 @@ return array(
         'application.models.*',
         'application.components.*',
     ),
+    // Associates a behavior-class with the onBeginRequest event.
+    // By placing this within the primary array, it applies to the application as a whole
+    'behaviors' => array(
+        'onBeginRequest' => array(
+            'class' => 'application.components.behaviors.BeginRequest'
+        ),
+    ),
     'modules' => array(
         'superadmin', 'site', 'portal',
         // uncomment the following to enable the Gii tool
@@ -30,6 +37,10 @@ return array(
                     'js' => array('jquery-1.10.1.min.js', 'jquery-migrate-1.2.1.min.js'),
                 ),
             )
+        ),
+        'request' => array(
+            'enableCookieValidation' => true,
+            'enableCsrfValidation' => true,
         ),
         'user' => array('allowAutoLogin' => true),
         'urlManager' => array(
@@ -57,10 +68,12 @@ return array(
             ),
         ),
     ),
+    'localeDataPath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '../i18n/data',
     //setting the basic language value
-    'language' => 'en',
     'defaultController' => 'portal/default/login',
     'params' => require(dirname(__FILE__) . '/params.php'),
     'timeZone' => 'Asia/Calcutta',
-    'theme' => 'portal'
+    'theme' => 'portal',
+    'sourceLanguage' => 'en',
+    'language' => 'en_US',
 );

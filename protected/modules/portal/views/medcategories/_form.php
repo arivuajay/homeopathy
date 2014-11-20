@@ -65,8 +65,7 @@
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'med_cat_status', array('class'=>'col-sm-2 col-sm-2 control-label')); ?>
                 <div class="col-sm-10">
-                <?php $status = Myclass::getMedicineStatus();?>
-                <?php echo $form->radioButtonList($model,'med_cat_status',$status, array('style' => 'display:inline'))?>
+                <?php echo $form->checkBox($model,'med_cat_status',array('data-toggle'=>'switch'))?>
 		<?php echo $form->error($model,'med_cat_status'); ?>
                 </div>
 	</div>

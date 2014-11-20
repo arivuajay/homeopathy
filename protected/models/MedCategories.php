@@ -97,8 +97,11 @@ class MedCategories extends CActiveRecord {
         $criteria->compare('med_cat_desc', $this->med_cat_desc, true);
         $criteria->compare('med_cat_status', $this->med_cat_status, true);
 
-        return new CActiveDataProvider($this, array(
+        return new CActiveDataProvider(get_class($this), array(
             'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => Yii::app()->user->getState('pageSize', Yii::app()->params['DEFAULT_PAGE_SIZE']),
+            ),
         ));
     }
 

@@ -30,16 +30,7 @@ class Controller extends CController {
 
     public function init() {
         CHtml::$errorContainerTag = 'label';
-        $app = Yii::app();
-        if (isset($_POST['_lang']))
-        {
-            $app->language = $_POST['_lang'];
-            $app->session['_lang'] = $app->language;
-        }
-        else if (isset($app->session['_lang']))
-        {
-            $app->language = $app->session['_lang'];
-        }
+
         parent::init();
     }
 }
