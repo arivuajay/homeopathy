@@ -19,7 +19,7 @@ echo "\$this->breadcrumbs=array(
     <header class="panel-heading">
         <?php echo $label; ?>
         <?php echo "<?php"; ?>        
-        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/<?php echo strtolower($this->modelClass); ?>/create'), array('class' => 'btn btn-sm btn-success pull-right'));
+        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/<?php echo $this->UniqueControllerID;?>/create'), array('class' => 'btn btn-sm btn-success pull-right'));
         ?>
     </header>
     <div class="panel-body">
@@ -29,7 +29,7 @@ echo "\$this->breadcrumbs=array(
                 'id' => 'categories-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
-                'ajaxUrl' => Yii::app()->baseUrl . '/portal/<?php echo strtolower($this->modelClass); ?>/index',
+                'ajaxUrl' => Yii::app()->baseUrl . '/<?php echo $this->UniqueControllerID;?>/index',
                 'tagName' => 'table',
                 'htmlOptions' => array(
                     'class' => 'table',
