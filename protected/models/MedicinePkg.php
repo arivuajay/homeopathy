@@ -34,7 +34,8 @@ class MedicinePkg extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('pkg_med_id, pkg_med_unit', 'required'),
-			array('pkg_med_id, pkg_med_unit, pkg_med_power', 'numerical', 'integerOnly'=>true),
+			array('pkg_med_id', 'numerical', 'integerOnly'=>true),
+			array('pkg_med_unit, pkg_med_power', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('pkg_id, pkg_med_id, pkg_med_unit, pkg_med_power', 'safe', 'on'=>'search'),

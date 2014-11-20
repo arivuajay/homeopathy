@@ -50,5 +50,10 @@ return array(
     'APP72' => 'Description',
     'APP73' => 'Status',
     'APP74' => 'Create Medicine',
+    
+    'APP75' => 'Medicine Packages',
+    'APP76' => 'Create Packages',
+    'APP77' => 'Package',
+    'APP78' => 'Hospital',
 );
 ?>

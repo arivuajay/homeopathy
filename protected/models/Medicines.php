@@ -66,7 +66,7 @@ class Medicines extends RActiveRecord
 		return array(
 			'medStocks' => array(self::HAS_MANY, 'MedStock', 'stk_med_id'),
 			'medicinePkgs' => array(self::HAS_MANY, 'MedicinePkg', 'pkg_med_id'),
-			'tenant0' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
+			'tenant' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
 			'medCat' => array(self::BELONGS_TO, 'MedCategories', 'med_cat_id'),
 			'purchaseOrderMedicines' => array(self::HAS_MANY, 'PurchaseOrderMedicines', 'itm_med_id'),
 			'salesOrderMedicines' => array(self::HAS_MANY, 'SalesOrderMedicines', 'itm_med_id'),
@@ -79,7 +79,7 @@ class Medicines extends RActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'tenant' => 'Tenant',
+			'tenant' => Myclass::t('APP78'),
 			'med_id' => Myclass::t('APP69'),
 			'med_cat_id' => Myclass::t('APP70'),
 			'med_name' => Myclass::t('APP71'),

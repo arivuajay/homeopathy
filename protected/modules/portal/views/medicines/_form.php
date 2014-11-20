@@ -4,33 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<script type="text/javascript">
-$(document).ready(function(){
-     $("#insert-more").click(function () {
-        $("#mytable").each(function () {
-            var tds = '<tr>';
-            jQuery.each($('tr:last td', this), function () {
-                tds += '<td>' + $(this).html() + '</td>';
-            });
-            tds += '</tr>';
-            if ($('tbody', this).length > 0) {
-                $('tbody', this).append(tds);
-            } else {
-                $(this).append(tds);
-            }
-        });
-        return false;
-    });
-    
-    $('.delete_row').click(function(){
-    alert('uu');
-/*        console.log('delete');
-        var $tr = $(this).closest('tr');
-        $tr.remove();
-*/        return false;
-    });
-}); 
-</script>
 
 <div class="panel-body">
 
@@ -49,11 +22,41 @@ $(document).ready(function(){
         ),
 
 )); ?>
-        <div class="form-group">
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".addCF").click(function(){
+        $( "#hidden_insert_row .form-group" ).clone().appendTo("#package_block");
+    });
+    
+    $("#package_block").on('click','.remCF',function(){
+        $(this).parent().parent().remove();
+    });
+});
+</script>
+
+<div id="hidden_insert_row" style="display: none">
+    <div class="form-group">
+        <label class="col-sm-2 col-sm-2 control-label" style="text-align: right"><?php echo Myclass::t('APP77');?></label>
+        <div class="col-sm-3">
+            <?php echo $form->textField($package,'pkg_med_unit[]',array('class'=>"form-control",'placeholder'=>'Units'));?>
+            <?php echo $form->error($package,'pkg_med_unit');?>
+        </div>
+        <div class="col-sm-3">
+            <?php echo $form->textField($package,'pkg_med_power[]',array('class'=>"form-control",'placeholder'=>'Potency'));?>
+            <?php echo $form->error($package,'pkg_med_power');?>
+        </div>
+        <div class="col-sm-3">
+            <a href="javascript:void(0);" class="remCF btn btn-info">Remove</a>
+        </div>
+    </div>
+</div>
+
+    <!--        <div class="form-group">
             <div class="col-sm-12">
             <?php echo $form->errorSummary($model,''); ?>
             </div>
-        </div>
+        </div>-->
     
         <?php echo $form->hiddenField($model,'tenant', array('value' => $model->getTenant())); ?>
 	
@@ -90,39 +93,38 @@ $(document).ready(function(){
 		<?php echo $form->error($model,'med_status'); ?>
                 </div>
 	</div>
-    
-     <a href="#" id="insert-more"> Add New Row </a>
 
-    <br>
-<table id="mytable">
-    <thead>
-        <th>Col 1</th>
-        <th>Col 2</th>
-        <th>Col 3</th>
-        <th>Col 4</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <select name="code">
-                    <option value="1">javascript</option>
-                    <option value="2">PHP mysql</option>
-                </select>
-            </td>
-            <td>
-                <input type="text" id="fee-1" class="fee" name="js-fee">
-            </td>
-            <td>
-                <input type="text" id="fee-2" class="fee" name="php-fee">
-            </td>
-            <td><a href="#" class="delete_row">Delete</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <b><?php echo Myclass::t('APP75')?></b>
+            </div>
+	</div>
         
-	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-info')); ?>
-        <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/medicines/'),array('class'=>'btn btn-sm btn-default')); ?>
+        <div id="package_block" class="form-group">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label" style="text-align: right"><?php echo Myclass::t('APP77');?></label>
+                <div class="col-sm-3">
+                    <?php echo $form->hiddenField($package, 'pkg_med_id', array('value' => '1'));?>
+                    <?php echo $form->textField($package,'pkg_med_unit',array('class'=>"form-control",'placeholder'=>'Units')); ?>
+                    <?php echo $form->error($package,'pkg_med_unit'); ?>
+                </div>
+                <div class="col-sm-3">
+                    <?php echo $form->textField($package,'pkg_med_power',array('class'=>"form-control",'placeholder'=>'Potency')); ?>
+                    <?php echo $form->error($package,'pkg_med_power'); ?>
+                </div>
+                <div class="col-sm-3">
+                    <a href="javascript:void(0);" class="addCF btn btn-info">Add</a>
+                </div>
+
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <div class="col-sm-12 pull-left">
+                <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-info')); ?>
+                <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/medicines/'),array('class'=>'btn btn-sm btn-default')); ?>
+            </div>
+        </div>
 
 <?php $this->endWidget(); ?>
 

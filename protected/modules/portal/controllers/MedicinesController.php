@@ -57,21 +57,39 @@ class MedicinesController extends Controller
 	public function actionCreate()
 	{
 		$model=new Medicines;
+                $package=new MedicinePkg;
                 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Medicines']))
 		{
-                    print_r($_POST);
-                    exit;
+                    $insert_packages = array();
+                    
                     $model->attributes=$_POST['Medicines'];
                     if($model->save())
-                            $this->redirect(array('view','id'=>$model->med_id));
+                        //$package->pkg_med_id = $model->med_id;
+//                        foreach($_POST['MedicinePkg'] as $col => $values){
+//                            foreach ($values as $value) {
+                                $package->attributes=$_POST['MedicinePkg'];
+                    
+//                            }
+//                        }
+
+                        //$package->attributes=$insert_packages;
+                        if($package->save()){
+                            echo 'yes';
+                        }
+                        else{
+                            print_r($package->getErrors());
+                        };
+                        exit;
+                        $this->redirect(array('view','id'=>$model->med_id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+                        'package'=>$package
 		));
 	}
 
