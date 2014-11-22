@@ -1,20 +1,25 @@
+<?php
+/* @var $this MedicinepkgController */
+/* @var $dataProvider CActiveDataProvider */
+
+$this->breadcrumbs=array(
+	'Medicine Pkgs',
+);
+?>
 <section class="panel">
     <header class="panel-heading">
-        <?php
-        echo Myclass::t('APP57');
-        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/medcategories/create'), array('class' => 'btn btn-sm btn-success pull-right'));
+        Medicine Pkgs        <?php        
+        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/medicinepkg/create'), array('class' => 'btn btn-sm btn-success pull-right'));
         ?>
     </header>
     <div class="panel-body">
         <div class="adv-table">
-            <?php
-            
-                    var_dump(Myclass::endsWith('ur_status','status'));
+           <?php 
             $this->widget('zii.widgets.grid.CGridView', array(
                 'id' => 'categories-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
-                'ajaxUrl' => Yii::app()->baseUrl . '/portal/medcategories/index',
+                'ajaxUrl' => Yii::app()->baseUrl . '/portal/medicinepkg/index',
                 'tagName' => 'table',
                 'htmlOptions' => array(
                     'class' => 'table',
@@ -45,28 +50,25 @@
                     'nextPageLabel' => '>',
                 ),
                 'columns' => array(
-                    array(
-                        'name' => 'med_cat_name',
-                        'type' => 'raw',
-                        'value' => 'CHtml::encode($data->med_cat_name)',
-                        'filter' => CHtml::activeTextField($model, 'med_cat_name', array('class' => 'form-control input-sm')),
-                    ),
-                    array(
-                        'name' => 'med_cat_unit',
-                        'type' => 'raw',
-                        'value' => 'Myclass::getMedicineUnit($data->med_cat_unit)',
-                        'filter' => CHtml::activeTextField($model, 'med_cat_unit', array('class' => 'form-control input-sm')),
-                    ),
-                    array(
-                        'name' => 'active',
-                        'header' => 'Status',
-                        'type' => 'raw',
-                        'value' => function($data) {
-                            $lbl_cls = ($data->med_cat_status == 1) ? "label-success" : "label-danger" ;
-                            return '<span class="label '.$lbl_cls.' label-mini">' . Myclass::getStatus($data->med_cat_status) . '</span>';
-                        },
-                        'filter' => CHtml::activeDropDownList($model, 'med_cat_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
-                    ),
+                                            array(
+                            'name' => 'pkg_med_id',
+                            'type' => 'raw',
+                            'value' => 'CHtml::encode($data->pkg_med_id)',
+                            'filter' => CHtml::activeTextField($model, 'pkg_med_id', array('class' => 'form-control input-sm')),
+                        ),
+                                            array(
+                            'name' => 'pkg_med_unit',
+                            'type' => 'raw',
+                            'value' => 'CHtml::encode($data->pkg_med_unit)',
+                            'filter' => CHtml::activeTextField($model, 'pkg_med_unit', array('class' => 'form-control input-sm')),
+                        ),
+                                            array(
+                            'name' => 'pkg_med_power',
+                            'type' => 'raw',
+                            'value' => 'CHtml::encode($data->pkg_med_power)',
+                            'filter' => CHtml::activeTextField($model, 'pkg_med_power', array('class' => 'form-control input-sm')),
+                        ),
+                                    
                     array(
                         'class' => 'CButtonColumn',
                         'header' => 'Action',

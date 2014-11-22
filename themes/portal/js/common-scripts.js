@@ -115,6 +115,9 @@ var Script = function() {
 
 }();
 //
-//$(document).ready(function() {
+$(document).ready(function() {
 //    var oTable = $('.datatable').dataTable();
-//});
+    $('.default-date-picker').datepicker({
+            format: 'yyyy-mm-dd'
+    });
+});

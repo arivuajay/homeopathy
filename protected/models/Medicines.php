@@ -33,7 +33,6 @@ class Medicines extends RActiveRecord
             $alias = $this->getTableAlias(false, false);
             return array(
                 'isActive' => array('condition' => $alias . '.med_status  = "1"'),
-                'thisTenant' => array('condition' => $alias . '.tenant = '.$this->getTenant()),
             );
         }
 
@@ -66,7 +65,7 @@ class Medicines extends RActiveRecord
 		return array(
 			'medStocks' => array(self::HAS_MANY, 'MedStock', 'stk_med_id'),
 			'medicinePkgs' => array(self::HAS_MANY, 'MedicinePkg', 'pkg_med_id'),
-			'tenant' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
+			'tenant0' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
 			'medCat' => array(self::BELONGS_TO, 'MedCategories', 'med_cat_id'),
 			'purchaseOrderMedicines' => array(self::HAS_MANY, 'PurchaseOrderMedicines', 'itm_med_id'),
 			'salesOrderMedicines' => array(self::HAS_MANY, 'SalesOrderMedicines', 'itm_med_id'),

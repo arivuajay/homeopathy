@@ -23,36 +23,7 @@
 
 )); ?>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $(".addCF").click(function(){
-        $( "#hidden_insert_row .form-group" ).clone().appendTo("#package_block");
-    });
-    
-    $("#package_block").on('click','.remCF',function(){
-        $(this).parent().parent().remove();
-    });
-});
-</script>
-
-<div id="hidden_insert_row" style="display: none">
-    <div class="form-group">
-        <label class="col-sm-2 col-sm-2 control-label" style="text-align: right"><?php echo Myclass::t('APP77');?></label>
-        <div class="col-sm-3">
-            <?php echo $form->textField($package,'pkg_med_unit[]',array('class'=>"form-control",'placeholder'=>'Units'));?>
-            <?php echo $form->error($package,'pkg_med_unit');?>
-        </div>
-        <div class="col-sm-3">
-            <?php echo $form->textField($package,'pkg_med_power[]',array('class'=>"form-control",'placeholder'=>'Potency'));?>
-            <?php echo $form->error($package,'pkg_med_power');?>
-        </div>
-        <div class="col-sm-3">
-            <a href="javascript:void(0);" class="remCF btn btn-info">Remove</a>
-        </div>
-    </div>
-</div>
-
-    <!--        <div class="form-group">
+    <!--<div class="form-group">
             <div class="col-sm-12">
             <?php echo $form->errorSummary($model,''); ?>
             </div>
@@ -100,28 +71,25 @@ $(document).ready(function(){
             </div>
 	</div>
         
-        <div id="package_block" class="form-group">
-            <div class="form-group">
-                <label class="col-sm-2 col-sm-2 control-label" style="text-align: right"><?php echo Myclass::t('APP77');?></label>
-                <div class="col-sm-3">
-                    <?php echo $form->hiddenField($package, 'pkg_med_id', array('value' => '1'));?>
-                    <?php echo $form->textField($package,'pkg_med_unit',array('class'=>"form-control",'placeholder'=>'Units')); ?>
-                    <?php echo $form->error($package,'pkg_med_unit'); ?>
-                </div>
-                <div class="col-sm-3">
-                    <?php echo $form->textField($package,'pkg_med_power',array('class'=>"form-control",'placeholder'=>'Potency')); ?>
-                    <?php echo $form->error($package,'pkg_med_power'); ?>
-                </div>
-                <div class="col-sm-3">
-                    <a href="javascript:void(0);" class="addCF btn btn-info">Add</a>
-                </div>
-
-            </div>
-        </div>
+        <?php
+            $this->widget('ext.widgets.tabularinput.XTabularInput',array(
+                'models'=>$package,
+                'header'=> false,
+                'inputContainerCssClass' => 'col-sm-12',
+                'containerCssClass' => 'form-group', 
+                'inputView'=>'_package_form',
+                'inputUrl'=>$this->createUrl('/portal/medicines/add_package'),
+                'addTemplate'=>'<div class="col-xs-offset-1 col-sm-4">{link}</div>',
+                'addLabel'=>Yii::t('ui','Add new row'),
+                'addHtmlOptions'=>array('class'=>'btn btn-warning'),
+                'removeTemplate'=>'',
+                'removeLabel'=>'',
+            ));
+        ?>
     
-        <div class="form-group">
-            <div class="col-sm-12 pull-left">
-                <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-info')); ?>
+       <div class="form-group">
+            <div class="col-xs-offset-1 col-sm-10">
+                <?php echo CHtml::submitButton($model->isNewRecord ? Myclass::t('APP59'): Myclass::t('APP82'), array('class'=>'btn btn-info')); ?>
                 <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/medicines/'),array('class'=>'btn btn-sm btn-default')); ?>
             </div>
         </div>

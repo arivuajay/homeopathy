@@ -20,6 +20,7 @@
         $cs->registerCssFile($themeUrl . '/css/owl.carousel.css');
         $cs->registerCssFile($themeUrl . '/css/style.css');
         $cs->registerCssFile($themeUrl . '/css/style-responsive.css');
+        $cs->registerCssFile($themeUrl . '/assets/bootstrap-datepicker/css/datepicker.css');
 //        $cs->registerCssFile($themeUrl . '/assets/advanced-datatable/media/css/demo_table.css');
         
         ?>
@@ -63,6 +64,8 @@
         $cs->registerScriptFile($themeUrl . '/js/sparkline-chart.js');
         $cs->registerScriptFile($themeUrl . '/js/easy-pie-chart.js');
         $cs->registerScriptFile($themeUrl . '/js/count.js');
+
+        $cs->registerScriptFile($themeUrl . '/assets/bootstrap-datepicker/js/bootstrap-datepicker.js');
 
         $cs->registerScript(
                 'Init', ' $(".alert-notify").animate({opacity: 1.0}, 3000).fadeOut("slow");

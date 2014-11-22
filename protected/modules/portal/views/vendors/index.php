@@ -1,15 +1,15 @@
 <?php
-/* @var $this MedicinesController */
+/* @var $this VendorsController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'Medicines',
+    'Vendors',
 );
 ?>
 <section class="panel">
     <header class="panel-heading">
-        Medicines        <?php
-        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/medicines/create'), array('class' => 'btn btn-sm btn-success pull-right'));
+        Vendors        <?php
+        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/vendors/create'), array('class' => 'btn btn-sm btn-success pull-right'));
         ?>
     </header>
     <div class="panel-body">
@@ -19,7 +19,7 @@ $this->breadcrumbs = array(
                 'id' => 'categories-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
-                'ajaxUrl' => Yii::app()->baseUrl . '/portal/medicines/index',
+                'ajaxUrl' => Yii::app()->baseUrl . '/portal/vendors/index',
                 'tagName' => 'table',
                 'htmlOptions' => array(
                     'class' => 'table',
@@ -51,32 +51,39 @@ $this->breadcrumbs = array(
                 ),
                 'columns' => array(
                     array(
-                        'name' => 'med_cat_id',
+                        'name' => 'ven_name',
                         'type' => 'raw',
-                        'value' => 'CHtml::encode($data->medCat->med_cat_name)',
-                        'filter' => CHtml::activeTextField($model, 'med_cat_id', array('class' => 'form-control input-sm')),
+                        'value' => 'CHtml::encode($data->ven_name)',
+                        'filter' => CHtml::activeTextField($model, 'ven_name', array('class' => 'form-control input-sm')),
                     ),
                     array(
-                        'name' => 'med_name',
+                        'name' => 'ven_phone_no',
                         'type' => 'raw',
-                        'value' => 'CHtml::encode($data->med_name)',
-                        'filter' => CHtml::activeTextField($model, 'med_name', array('class' => 'form-control input-sm')),
+                        'value' => 'CHtml::encode($data->ven_phone_no)',
+                        'filter' => CHtml::activeTextField($model, 'ven_phone_no', array('class' => 'form-control input-sm')),
                     ),
                     array(
-                        'name' => 'med_desc',
+                        'name' => 'ven_email',
                         'type' => 'raw',
-                        'value' => 'CHtml::encode($data->med_desc)',
-                        'filter' => CHtml::activeTextField($model, 'med_desc', array('class' => 'form-control input-sm')),
+                        'value' => 'CHtml::encode($data->ven_email)',
+                        'filter' => CHtml::activeTextField($model, 'ven_email', array('class' => 'form-control input-sm')),
                     ),
                     array(
-                        'name' => 'med_status',
+                        'name' => 'ven_status',
                         'type' => 'raw',
                         'value' => function($data) {
-                            $lbl_cls = ($data->med_status == 1) ? 'label-success' : 'label-danger';
-                            return '<span class="label ' . $lbl_cls . ' label-mini">' . Myclass::getStatus($data->med_status) . '</span>';
+                            $lbl_cls = ($data->ven_status == 1) ? 'label-success' : 'label-danger';
+                            return '<span class="label ' . $lbl_cls . ' label-mini">' . Myclass::getStatus($data->ven_status) . '</span>';
                         },
-                        'filter' => CHtml::activeDropDownList($model, 'med_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeDropDownList($model, 'ven_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
                     ),
+//                    array(
+//                        'name' => 'ven_created_by',
+//                        'type' => 'raw',
+////                        'value' => 'CHtml::encode($data->ven_created_by)',
+//                        'value' => 'Users::model()->findByPk($data->ven_created_by)->ur_username',
+//                        'filter' => CHtml::activeTextField($model, 'ven_created_by', array('class' => 'form-control input-sm')),
+//                    ),
                     array(
                         'class' => 'CButtonColumn',
                         'header' => 'Action',

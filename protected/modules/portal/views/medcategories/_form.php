@@ -71,7 +71,7 @@
 	</div>
 
 	
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-info')); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? Myclass::t('APP59') : Myclass::t('APP82'), array('class'=>'btn btn-info')); ?>
         <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/medcategories/'),array('class'=>'btn btn-sm btn-default')); ?>
         <?php $this->endWidget(); ?>
 

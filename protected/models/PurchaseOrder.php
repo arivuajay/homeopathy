@@ -72,16 +72,16 @@ class PurchaseOrder extends RActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'tenant' => 'Tenant',
-			'po_id' => 'Po',
-			'po_date' => 'Po Date',
-			'po_vendor' => 'Po Vendor',
-			'po_invoice' => 'Po Invoice',
-			'po_memo' => 'Po Memo',
-			'po_total' => 'Po Total',
-			'po_paid' => 'Po Paid',
-			'po_status' => 'Po Status',
-			'po_created_by' => 'Po Created By',
+			'tenant' => Myclass::t('APP78'),
+			'po_id' => Myclass::t('APP86'),
+			'po_date' => Myclass::t('APP87'),
+			'po_vendor' => Myclass::t('APP88'),
+			'po_invoice' => Myclass::t('APP89'),
+			'po_memo' => Myclass::t('APP90'),
+			'po_total' => Myclass::t('APP91'),
+			'po_paid' => Myclass::t('APP92'),
+			'po_status' => Myclass::t('APP55'),
+			'po_created_by' => Myclass::t('APP93'),
 		);
 	}
 
