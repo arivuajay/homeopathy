@@ -101,5 +101,15 @@ return array(
     'APP203' => 'Expiry Date',
     'APP204' => '__Select Medicines__',
     'APP205' => '__Select Package__',
+    'APP206' => 'Quantity',
+    'APP207' => 'MRP',
+    'APP208' => 'VAT',
+    'APP209' => 'Discount Amount',
+    'APP210' => 'Net Rate',
+    'APP211' => 'Total Amount',
+    'APP212' => 'Item',
+    'APP213' => 'Add Medicine',
+    'APP214' => 'Medicine',
+    'APP215' => 'Medicine Details',
 );
 ?>

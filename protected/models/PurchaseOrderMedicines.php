@@ -41,7 +41,7 @@ class PurchaseOrderMedicines extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('itm_po_id, itm_med_id, itm_pkg_id, itm_batch_no, itm_qty', 'required'),
+			array('itm_med_id, itm_pkg_id, itm_batch_no, itm_qty', 'required'),
 			array('itm_po_id, itm_med_id, itm_pkg_id, itm_qty', 'numerical', 'integerOnly'=>true),
 			array('itm_batch_no', 'length', 'max'=>150),
 			array('itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_total_price', 'length', 'max'=>10),
@@ -49,6 +49,7 @@ class PurchaseOrderMedicines extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('itm_id, itm_po_id, itm_med_id, itm_pkg_id, itm_batch_no, itm_manf_date, itm_exp_date, itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_qty, itm_total_price', 'safe', 'on'=>'search'),
+			array('itm_med_id, itm_pkg_id, itm_batch_no, itm_manf_date, itm_exp_date, itm_qty', 'required', 'on'=>'medicine_add'),
 		);
 	}
 
@@ -72,19 +73,19 @@ class PurchaseOrderMedicines extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'itm_id' => 'Itm',
-			'itm_po_id' => 'Itm Po',
-			'itm_med_id' => 'Itm Med',
-			'itm_pkg_id' => 'Itm Pkg',
-			'itm_batch_no' => 'Itm Batch No',
-			'itm_manf_date' => 'Itm Manf Date',
-			'itm_exp_date' => 'Itm Exp Date',
-			'itm_vat_tax' => 'Itm Vat Tax',
-			'itm_mrp_price' => 'Itm Mrp Price',
-			'itm_discount' => 'Itm Discount',
-			'itm_net_rate' => 'Itm Net Rate',
-			'itm_qty' => 'Itm Qty',
-			'itm_total_price' => 'Itm Total Price',
+			'itm_id' => Myclass::t('APP212'),
+			'itm_po_id' => Myclass::t('APP94'),
+			'itm_med_id' => Myclass::t('APP68'),
+			'itm_pkg_id' => Myclass::t('APP75'),
+			'itm_batch_no' => Myclass::t('APP201'),
+			'itm_manf_date' => Myclass::t('APP202'),
+			'itm_exp_date' => Myclass::t('APP203'),
+			'itm_vat_tax' => Myclass::t('APP208'),
+			'itm_mrp_price' => Myclass::t('APP207'),
+			'itm_discount' => Myclass::t('APP209'),
+			'itm_net_rate' => Myclass::t('APP210'),
+			'itm_qty' => Myclass::t('APP206'),
+			'itm_total_price' => Myclass::t('APP211'),
 		);
 	}
 

@@ -23,8 +23,8 @@ class MedicinepkgController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index', 'view', 'create', 'update', 'delete'),
-				'users'=>array('*'),
+				'actions'=>array('index', 'view', 'create', 'update', 'delete','loadpackages'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -142,6 +142,14 @@ class MedicinepkgController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+        
+                
+        public function actionLoadpackages($med_id) {
+            $packages = CHtml::listData(MedicinePkg::model()->findAll('pkg_med_id = :med_id',array(':med_id'=>$med_id)), 'pkg_id', 'pkg_med_unit');
+            $model = new PurchaseOrderMedicines;
+            echo CHtml::activeDropDownList($model, 'itm_pkg_id', $packages, array('class'=>'form-control','empty'=>Myclass::t('APP205')));
+            Yii::app()->end();
+        }
 
 	/**
 	 * Performs the AJAX validation.
@@ -155,4 +163,5 @@ class MedicinepkgController extends Controller
 			Yii::app()->end();
 		}
 	}
+
 }
