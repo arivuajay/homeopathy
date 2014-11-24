@@ -8,8 +8,6 @@
     <div class="panel-body">
         <div class="adv-table">
             <?php
-            
-                    var_dump(Myclass::endsWith('ur_status','status'));
             $this->widget('zii.widgets.grid.CGridView', array(
                 'id' => 'categories-grid',
                 'dataProvider' => $model->search(),

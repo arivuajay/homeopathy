@@ -9,7 +9,6 @@
  * @property integer $ur_role_id
  * @property string $ur_username
  * @property string $ur_password
- * @property string $ur_hash
  * @property string $ur_activation_key
  * @property string $ur_created_at
  * @property string $ur_modified_at
@@ -85,7 +84,7 @@ class Users extends CActiveRecord
 			'ur_role_id' => 'User role id, refers hme_user_role table PK',
 			'ur_username' => 'Username',
 			'ur_password' => 'Password',
-			'ur_hash' => 'Ur Hash',
+
 			'ur_activation_key' => 'Ur Activation Key',
 			'ur_created_at' => 'Ur Created At',
 			'ur_modified_at' => 'Ur Modified At',
@@ -119,7 +118,7 @@ class Users extends CActiveRecord
 		$criteria->compare('ur_role_id',$this->ur_role_id);
 		$criteria->compare('ur_username',$this->ur_username,true);
 		$criteria->compare('ur_password',$this->ur_password,true);
-		$criteria->compare('ur_hash',$this->ur_hash,true);
+
 		$criteria->compare('ur_activation_key',$this->ur_activation_key,true);
 		$criteria->compare('ur_created_at',$this->ur_created_at,true);
 		$criteria->compare('ur_modified_at',$this->ur_modified_at,true);
