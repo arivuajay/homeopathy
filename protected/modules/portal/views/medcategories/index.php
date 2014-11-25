@@ -8,40 +8,11 @@
     <div class="panel-body">
         <div class="adv-table">
             <?php
-            $this->widget('zii.widgets.grid.CGridView', array(
+            $this->widget('MyGridView', array(
                 'id' => 'categories-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
-                'ajaxUrl' => Yii::app()->baseUrl . '/portal/medcategories/index',
-                'tagName' => 'table',
-                'htmlOptions' => array(
-                    'class' => 'table',
-                ),
-                'itemsCssClass' => 'table table-striped table-bordered table-hover grid-table',
-                'template' =>
-                '<tr class="paginate-row"><td>{summary}</td><td>{pager}</td></tr>' .
-                '<tr><td  class="bn" colspan="2">{items}</td></tr>' .
-                '<tr class="paginate-row"><td>{summary}</td><td>{pager}</td></tr>',
-                'pagerCssClass' => 'dataTables_paginate paging_bootstrap pagination',
-                'summaryCssClass' => 'dataTables_info',
-                'summaryText' => '<div id="DataTables_Table_0_length" class="dataTables_length"><label>' .
-                CHtml::dropDownList('pageSize', $pageSize, Yii::app()->params['PAGE_SIZE_LIST'], array(
-                    'onchange' => "$.fn.yiiGridView.update('categories-grid',{ data:{pageSize: $(this).val() }})",
-                )) .
-                '&nbsp; records per page</label></div>',
-                'pager' => array(
-                    'header' => false,
-                    'cssFile' => false,
-                    'maxButtonCount' => 5,
-                    'selectedPageCssClass' => 'active',
-                    'hiddenPageCssClass' => 'disabled',
-                    'firstPageCssClass' => 'previous',
-                    'lastPageCssClass' => 'next',
-                    'firstPageLabel' => '<<',
-                    'lastPageLabel' => '>>',
-                    'prevPageLabel' => '<',
-                    'nextPageLabel' => '>',
-                ),
+                'ajaxUrl' => $this->createUrl('/portal/medcategories/index'),
                 'columns' => array(
                     array(
                         'name' => 'med_cat_name',

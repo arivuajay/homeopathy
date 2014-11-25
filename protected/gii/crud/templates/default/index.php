@@ -26,42 +26,13 @@ echo "\$this->breadcrumbs=array(
         <div class="adv-table">
            <?php echo "<?php"; ?> 
             $this->widget('zii.widgets.grid.CGridView', array(
-                'id' => 'categories-grid',
+                'id' => '<?php echo $this->class2id($this->modelClass); ?>',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
-                'ajaxUrl' => Yii::app()->baseUrl . '/<?php echo $this->UniqueControllerID;?>/index',
-                'tagName' => 'table',
-                'htmlOptions' => array(
-                    'class' => 'table',
-                ),
-                'itemsCssClass' => 'table table-striped table-bordered table-hover grid-table',
-                'template' =>
-                '<tr class="paginate-row"><td>{summary}</td><td>{pager}</td></tr>' .
-                '<tr><td  class="bn" colspan="2">{items}</td></tr>' .
-                '<tr class="paginate-row"><td>{summary}</td><td>{pager}</td></tr>',
-                'pagerCssClass' => 'dataTables_paginate paging_bootstrap pagination',
-                'summaryCssClass' => 'dataTables_info',
-                'summaryText' => '<div id="DataTables_Table_0_length" class="dataTables_length"><label>' .
-                CHtml::dropDownList('pageSize', $pageSize, Yii::app()->params['PAGE_SIZE_LIST'], array(
-                    'onchange' => "$.fn.yiiGridView.update('categories-grid',{ data:{pageSize: $(this).val() }})",
-                )) .
-                '&nbsp; records per page</label></div>',
-                'pager' => array(
-                    'header' => false,
-                    'cssFile' => false,
-                    'maxButtonCount' => 5,
-                    'selectedPageCssClass' => 'active',
-                    'hiddenPageCssClass' => 'disabled',
-                    'firstPageCssClass' => 'previous',
-                    'lastPageCssClass' => 'next',
-                    'firstPageLabel' => '<<',
-                    'lastPageLabel' => '>>',
-                    'prevPageLabel' => '<',
-                    'nextPageLabel' => '>',
-                ),
+                'ajaxUrl' => $this->createUrl('/<?php echo $this->UniqueControllerID;?>/index'),
                 'columns' => array(
                     <?php foreach($this->tableSchema->columns as $column) {
-                        if($column->isPrimaryKey || in_array($column->dbType,array('text','logtext'))) continue;
+                        if($column->isPrimaryKey || in_array($column->dbType,array('text','longtext'))) continue;
                         
                         if(!Myclass::endsWith($column->name,'status')){
                             $value     = "'CHtml::encode(\$data->$column->name)'";

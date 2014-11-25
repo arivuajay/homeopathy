@@ -1,13 +1,6 @@
 <?php
 
 class DoctorsController extends Controller {
-
-    /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout = '//layouts/column2';
-
     /**
      * @return array action filters
      */
@@ -26,12 +19,8 @@ class DoctorsController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update'),
+                'actions' => array('index', 'view', 'create', 'update', 'delete'),
                 'users' => array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -136,16 +125,27 @@ class DoctorsController extends Controller {
     /**
      * Lists all models.
      */
-	 public $s_row = 1;
     public function actionIndex() {
 		
-        //$dataProvider = new CActiveDataProvider('Users');
-		
-		 $dataProvider=new CActiveDataProvider('Users' ,array('criteria'=>array(
-        'condition' => 'ur_role_id ='. 9,'order'=>'ur_id DESC',)));
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+       $model = new DoctorProfile('search');
+       
+        if (isset($_GET['DoctorProfile']))
+            $model->attributes = $_GET['DoctorProfile'];
+        
+        if (isset($_GET['pageSize'])) {
+            Yii::app()->user->setState('pageSize', (int) $_GET['pageSize']);
+            unset($_GET['pageSize']);
+        }
+        
+        $params = array(
+            'model' => $model,
+            'pageSize' =>  Yii::app()->user->getState('pageSize', Yii::app()->params['DEFAULT_PAGE_SIZE'])
+        );
+
+        if (!isset($_GET['ajax']))
+            $this->render('index', $params);
+        else
+            $this->renderPartial('index', $params);
     }
 
     /**
