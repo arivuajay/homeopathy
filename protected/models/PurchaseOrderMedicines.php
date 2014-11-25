@@ -52,7 +52,9 @@ class PurchaseOrderMedicines extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('itm_id, itm_po_id, itm_med_id, itm_pkg_id, itm_batch_no, itm_manf_date, itm_exp_date, itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_qty, itm_total_price', 'safe', 'on'=>'search'),
-			array('itm_med_id, itm_pkg_id, itm_batch_no, itm_manf_date, itm_exp_date, itm_qty', 'required', 'on'=>'medicine_add'),
+			//scopes
+                        array('itm_med_id, itm_pkg_id, itm_batch_no, itm_manf_date, itm_exp_date, itm_qty', 'required', 'on'=>'medicine_add'),
+                        //
                         array('itm_med_name, itm_pkg_name','length')
 		);
 	}
