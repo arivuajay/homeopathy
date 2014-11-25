@@ -147,7 +147,11 @@ class MedicinepkgController extends Controller
         public function actionLoadpackages($med_id) {
             $packages = CHtml::listData(MedicinePkg::model()->findAll('pkg_med_id = :med_id',array(':med_id'=>$med_id)), 'pkg_id', 'pkg_med_unit');
             $model = new PurchaseOrderMedicines;
-            echo CHtml::activeDropDownList($model, 'itm_pkg_id', $packages, array('class'=>'form-control','empty'=>Myclass::t('APP205')));
+            echo CHtml::activeDropDownList($model, 'itm_pkg_id', $packages, array(
+                                                                        'class'=>'form-control',
+                                                                        'empty'=>Myclass::t('APP205'),
+                                                                        'onchange' => 'setPackage()'
+                                                                    ));
             Yii::app()->end();
         }
 

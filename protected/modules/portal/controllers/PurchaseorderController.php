@@ -85,22 +85,14 @@ class PurchaseorderController extends Controller {
         $purchase_medicines = new PurchaseOrderMedicines('medicine_add');
 
         // Uncomment the following line if AJAX validation is needed
-        $this->performAjaxValidation(array($model,$purchase_medicines));
+        $this->performAjaxValidation($model);
         
-        if (isset($_POST['PurchaseOrderMedicines'])) {
-            $purchase_medicines->attributes = $_POST['PurchaseOrderMedicines'];
-            $valid = $purchase_medicines->validate();
-
-            if($valid)
-                echo 'success';
-            Yii::app()->end();
-        }
-/*        if (isset($_POST['PurchaseOrder'])) {
+        if (isset($_POST['PurchaseOrder'])) {
             $model->attributes = $_POST['PurchaseOrder'];
             if ($model->save())
                 $this->redirect(array('index'));
         }
-*/
+
         $this->render('create', array(
             'model' => $model,
             'purchase_medicines' => $purchase_medicines
@@ -109,11 +101,13 @@ class PurchaseorderController extends Controller {
     
     public function ActionMedicineadd() {
         $purchase_medicines = new PurchaseOrderMedicines('medicine_add');
+        
+        $this->performAjaxValidation($purchase_medicines);
         $purchase_medicines->attributes = $_POST['PurchaseOrderMedicines'];
         $valid = $purchase_medicines->validate();
         
         if($valid)
-            echo 'success';
+            echo json_encode ($_POST['PurchaseOrderMedicines']);
         Yii::app()->end();
     }
 

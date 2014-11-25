@@ -12,7 +12,7 @@ $form = $this->beginWidget('CActiveForm', array(
     'clientOptions' => array(
         'validateOnSubmit' => true,
     )
-));
+        ));
 ?>
 
 <?php //echo $form->errorSummary($model); ?>
@@ -83,6 +83,11 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 
+<!--Hidden Medicine Purchase Item Rows-->
+<div style="display: none" class="hidden_medicine_div">
+    
+</div>
+
 <?php
 //    $this->widget('ext.widgets.tabularinput.XTabularInput',array(
 //        'models'=>$purchase_medicines,
@@ -112,7 +117,7 @@ $form = $this->beginWidget('CActiveForm', array(
         </tr>
     </thead>
     <tbody>
-        
+
     </tbody>
 </table>
 <div class="form-group">
@@ -141,12 +146,13 @@ $form = $this->beginWidget('CActiveForm', array(
                                 'id' => 'medicine-form',
                                 'htmlOptions' => array(
                                     'role' => 'form',
-                                    ),
-//                                'action' => array('/portal/purchaseorder/medicineadd'),
+                                    'onsubmit' => "return false;"
+                                ),
+                                'action' => array('/portal/purchaseorder/medicineadd'),
                                 'enableAjaxValidation' => true,
                                 'clientOptions' => array(
                                     'validateOnSubmit' => true,
-                                    'afterValidate'=>'js:submiAjaxForm'
+                                    'afterValidate' => 'js:aftervalidate'
                                 )
                             ));
                             ?>
@@ -154,30 +160,43 @@ $form = $this->beginWidget('CActiveForm', array(
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_med_id'); ?>
                                     <?php $medicines = CHtml::listData(Medicines::model()->isActive()->findAll(), 'med_id', 'med_name'); ?>
-                                    <?php echo $form2->dropDownList($purchase_medicines, 'itm_med_id', $medicines, 
-                                            array( 
-                                                'class' => "form-control",
-                                                'prompt'=>Myclass::t('APP61'),
-                                                'ajax' => array(
-                                                    'type'=>'GET', 
-                                                    'url'=>$this->createUrl('/portal/medicinepkg/loadpackages'),
-                                                    'update' => '#package_dd_div',
-                                                    'data'=>array('med_id'=>'js:this.value'),
-                                                )
-                                            )); ?>
+                                    <?php
+                                    echo $form2->dropDownList($purchase_medicines, 'itm_med_id', $medicines, array(
+                                        'class' => "form-control",
+                                        'prompt' => Myclass::t('APP61'),
+                                        'ajax' => array(
+                                            'type' => 'GET',
+                                            'url' => $this->createUrl('/portal/medicinepkg/loadpackages'),
+                                            'success' => 'function(ret){'
+                                            . '$("#package_dd_div").html(ret);'
+                                            . 'var med_name = $("#PurchaseOrderMedicines_itm_med_id :selected").text();'
+                                            . '$("#PurchaseOrderMedicines_itm_med_name").val(med_name);'
+                                            . '}',
+                                            'data' => array('med_id' => 'js:this.value'),
+                                        )
+                                    ));
+                                    ?>
                                     <?php echo $form2->error($purchase_medicines, 'itm_med_id', array('class' => 'col-lg-12')); ?>
                                 </div>
                             </div>
                             
+                            <?php echo $form2->hiddenField($purchase_medicines, 'itm_med_name') ?>
+
                             <div class="col-lg-6">
-                                    <div class="form-group">
-                                    <?php echo $form2->labelEx($purchase_medicines, 'itm_pkg_id'); ?>
+                                <div class="form-group">
+                                        <?php echo $form2->labelEx($purchase_medicines, 'itm_pkg_id'); ?>
                                     <div id="package_dd_div">
-                                    <?php echo $form2->dropDownList($purchase_medicines, 'itm_pkg_id', '', array('class' => 'form-control', 'empty' => Myclass::t('APP205'))) ?>
+                                    <?php echo $form2->dropDownList($purchase_medicines, 'itm_pkg_id', '', array(
+                                                'class' => 'form-control', 
+                                                'empty' => Myclass::t('APP205'),
+                                                'onchange' => 'setPackage()'
+                                            )); ?>
                                     </div>
                                     <?php echo $form2->error($purchase_medicines, "itm_pkg_id"); ?>
                                 </div>  
                             </div>
+
+                            <?php echo $form2->hiddenField($purchase_medicines, 'itm_pkg_name') ?>
                             
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -186,7 +205,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_batch_no"); ?>                            
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_manf_date') ?>
@@ -194,7 +213,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_manf_date"); ?>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_exp_date') ?>
@@ -202,7 +221,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_exp_date"); ?>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_qty') ?>
@@ -210,7 +229,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_qty"); ?>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_mrp_price') ?>
@@ -218,7 +237,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_mrp_price"); ?>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_vat_tax') ?>
@@ -226,7 +245,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_vat_tax"); ?>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_discount') ?>
@@ -234,7 +253,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_discount"); ?>
                                 </div>
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <?php echo $form2->labelEx($purchase_medicines, 'itm_net_rate') ?>
@@ -248,8 +267,8 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo CHtml::submitButton(Myclass::t('APP82'), array('class' => 'btn btn-info')); ?>
                                 </div>
                             </div>
-                            
-                        <?php $this->endWidget(); ?>
+
+                            <?php $this->endWidget(); ?>
                         </div>
                     </div>
                 </div>
@@ -260,12 +279,65 @@ $form = $this->beginWidget('CActiveForm', array(
 </section>
 
 <script type="text/javascript">
-    function submiAjaxForm(form, data, hasError){
-        if(!hasError)
-        {
-            alert('yes it is');
+    function aftervalidate(form, data, hasError)
+    {
+        if(hasError == false){
+            var data = $("#medicine-form").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/portal/purchaseorder/medicineadd"); ?>',
+                data: data,
+                success: function (data) {
+                    var insert_row = '';
+                    insert_row += '<tr><td>'+data['itm_med_name']+' (<b><?php echo Myclass::t('APP77'); ?> : </b>'+data['itm_pkg_name']+') <br>';
+                    insert_row += '<b><?php echo Myclass::t('APP201'); ?></b> : '+data['itm_batch_no']+'<br>';
+                    insert_row += '<b><?php echo Myclass::t('APP203'); ?></b> : '+data['itm_exp_date']+'<br>';
+                    insert_row += '<b><?php echo Myclass::t('APP202'); ?></b> : '+data['itm_manf_date']+'<br></td>';
+                    insert_row += '<td>'+data['itm_qty']+'</td>';
+                    insert_row += '<td>'+data['itm_mrp_price']+'</td>';
+                    insert_row += '<td>'+data['itm_vat_tax']+'</td>';
+                    insert_row += '<td>'+data['itm_discount']+'</td>';
+                    insert_row += '<td>'+data['itm_net_rate']+'</td>';
+                    insert_row += '<td></td>';
+                    insert_row += '</tr>';
+                    $('#medicines_list > tbody:last').append(insert_row); 
+                    
+                    var hidden_fields = '';
+                    var count = $('.medicine_row').length;
+                    $.each(data, function(index, value){
+                        hidden_fields += '<input type="hidden" id="PurchaseOrderMedicines_'+index+'_'+count+'" name="PurchaseOrderMedicines['+count+']['+index+']" value="'+value+'">';
+                    });
+                    $('.hidden_medicine_div').append('<div class="medicine_row">'+hidden_fields+'</div>');
+                    
+                    $('#medicine_form').modal('hide');
+                },
+                error: function (data) { // if error occured
+                    alert("Error occured.please try again");
+                },
+                dataType: 'json'
+            });
         }
     }
+    
+    function setPackage(){
+        var pkg_name = $("#PurchaseOrderMedicines_itm_pkg_id :selected").text();
+        $("#PurchaseOrderMedicines_itm_pkg_name").val(pkg_name);
+    }
+        
+    
 </script>
 
+<script>
+    $(document).ready(function(){
+       //alert(jstophp('javavar'));
+    });
+    function jstophp(javavar){
+        <?php 
+        $phpvar='"+javavar+"'; 
+        ?>
+        return "<?php 
+//        $phpvar='"+javavar+"'; 
+        echo $phpvar;?>";
+    }
 
+</script> 
