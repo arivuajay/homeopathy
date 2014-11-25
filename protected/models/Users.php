@@ -148,6 +148,11 @@ class Users extends CActiveRecord
 			$this->tenant = Yii::app()->user->tenant;	
 			$this->ur_created_at = new CDbExpression('NOW()');
 		}
+                
+                if($_POST['Users']['ur_password'])
+                {
+                    $this->ur_password = Myclass::encrypt($_POST['Users']['ur_password']);
+                }
 		
 		$this->ur_modified_at = new CDbExpression('NOW()');	
 		

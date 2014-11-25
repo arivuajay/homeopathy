@@ -19,22 +19,22 @@ return array(
     'APP102' =>  'Action',
     'APP103' =>  'Doctor Name',
     'APP104' =>  'Create doctor',
-	'APP105' =>  'View Doctor',
-	'APP106' =>  'First Name',
-	'APP107' =>  'Last Name',
-	'APP108' =>  'Date of Birth',
-	'APP109' =>  'Speciality',
-	'APP110' =>  'Certificate',
-	'APP111' =>  'Designation',
-	'APP112' =>  'Awards',
-	'APP113' =>  'About',
-	'APP114' =>  'Address 1',
-	'APP115' =>  'Address 2',
-	'APP116' =>  'City',
-	'APP117' =>  'State',
-	'APP118' =>  'Country',
-	'APP119' =>  'Phone',
-	'APP120' =>  'Mobile',
+    'APP105' =>  'View Doctor',
+    'APP106' =>  'First Name',
+    'APP107' =>  'Last Name',
+    'APP108' =>  'Date of Birth',
+    'APP109' =>  'Speciality',
+    'APP110' =>  'Certificate',
+    'APP111' =>  'Designation',
+    'APP112' =>  'Awards',
+    'APP113' =>  'About',
+    'APP114' =>  'Address 1',
+    'APP115' =>  'Address 2',
+    'APP116' =>  'City',
+    'APP117' =>  'State',
+    'APP118' =>  'Country',
+    'APP119' =>  'Phone',
+    'APP120' =>  'Mobile',
     
     //Medical Category
     'APP51' => 'Category Name',
@@ -111,5 +111,9 @@ return array(
     'APP213' => 'Add Medicine',
     'APP214' => 'Medicine',
     'APP215' => 'Medicine Details',
+    
+    'APP301' => 'Create Pharmacist',
+    'APP302' => 'Pharmacist\'s'
+    
 );
 ?>
