@@ -37,6 +37,10 @@ class DoctorProfile extends CActiveRecord {
         return '{{doctor_profile}}';
     }
 
+    public function getDoc_fullname() {
+        return ucwords($this->doc_firstname . " " . $this->doc_lastname);
+    }
+
     /**
      * @return array validation rules for model attributes.
      */
@@ -78,6 +82,7 @@ class DoctorProfile extends CActiveRecord {
             'user_id' => 'User',
             'doc_firstname' => 'Doc Firstname',
             'doc_lastname' => 'Doc Lastname',
+            'doc_fullname' => 'Fullname',
             'doc_dob' => 'Doc Dob',
             'doc_speciality' => 'Doc Speciality',
             'doc_certificate' => 'Doc Certificate',
@@ -110,11 +115,15 @@ class DoctorProfile extends CActiveRecord {
         // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
-
+//        if (!empty($this->doc_fullname) || $this->doc_fullname != ' ') {
+//            var_dump($this->doc_fullname); exit;
+//            $criteria->addCondition("doc_firstname LIKE '%{$this->doc_fullname}%'",'OR');
+//            $criteria->addCondition("doc_lastname LIKE '%{$this->doc_fullname}%'");
+//        }
         $criteria->compare('docinfo_id', $this->docinfo_id);
         $criteria->compare('user_id', $this->user_id);
-        $criteria->compare('doc_firstname', $this->doc_firstname, true);
-        $criteria->compare('doc_lastname', $this->doc_lastname, true);
+//        $criteria->compare('doc_firstname', $this->doc_firstname, true);
+//        $criteria->compare('doc_lastname', $this->doc_lastname, true);
         $criteria->compare('doc_dob', $this->doc_dob, true);
         $criteria->compare('doc_speciality', $this->doc_speciality, true);
         $criteria->compare('doc_certificate', $this->doc_certificate, true);
@@ -123,7 +132,7 @@ class DoctorProfile extends CActiveRecord {
         $criteria->compare('doc_about', $this->doc_about, true);
         $criteria->compare('doc_address_1', $this->doc_address_1, true);
         $criteria->compare('doc_address_2', $this->doc_address_2, true);
-        $criteria->compare('doc_city', $this->doc_city);
+        $criteria->compare('doc_city', $this->docCity->city);
         $criteria->compare('doc_state', $this->doc_state);
         $criteria->compare('doc_country', $this->doc_country);
         $criteria->compare('doc_phone', $this->doc_phone, true);

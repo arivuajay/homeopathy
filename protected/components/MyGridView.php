@@ -5,7 +5,6 @@ Yii::import('zii.widgets.grid.CGridView');
 class MyGridView extends CGridView {
     
     public function init() {
-        
         $this->htmlOptions = array('class' => 'table');
         $this->tagName = 'table';
         $this->itemsCssClass = 'table table-striped table-bordered table-hover grid-table';
@@ -35,25 +34,6 @@ class MyGridView extends CGridView {
                 );
         
         parent::init();
-
-//        $classes = array('table');
-//        if (isset($this->type) && !empty($this->type)) {
-//            if (is_string($this->type)) {
-//                $this->type = explode(' ', $this->type);
-//            }
-//
-//            foreach ($this->type as $type) {
-//                $classes[] = 'table-' . $type;
-//            }
-//        }
-//        if (!empty($classes)) {
-//            $classes = implode(' ', $classes);
-//            if (isset($this->itemsCssClass)) {
-//                $this->itemsCssClass .= ' ' . $classes;
-//            } else {
-//                $this->itemsCssClass = $classes;
-//            }
-//        }
     }
 
 }

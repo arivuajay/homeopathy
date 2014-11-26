@@ -25,7 +25,7 @@ echo "\$this->breadcrumbs=array(
     <div class="panel-body">
         <div class="adv-table">
            <?php echo "<?php"; ?> 
-            $this->widget('zii.widgets.grid.CGridView', array(
+            $this->widget('MyGridView', array(
                 'id' => '<?php echo $this->class2id($this->modelClass); ?>',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
