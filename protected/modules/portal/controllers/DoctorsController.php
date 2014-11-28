@@ -47,7 +47,7 @@ class DoctorsController extends Controller {
         $profModel = new DoctorProfile;
 
         // Uncomment the following line if AJAX validation is needed
-        $this->performAjaxValidation($model);
+        $this->performAjaxValidation(array($model,$profModel));
 
         if (isset($_POST['Users'])) {
             $model->attributes = $_POST['Users'];
@@ -58,6 +58,7 @@ class DoctorsController extends Controller {
             if($valid) {
                 $model->ur_role_id = 9;
                 $model->ur_status = 1;
+				$model->ur_password = Myclass::encrypt($model->ur_password);
                 $model->save(false);
 
                 $profModel->user_id = $model->ur_id;

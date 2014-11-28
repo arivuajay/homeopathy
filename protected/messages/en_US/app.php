@@ -35,6 +35,7 @@ return array(
 	'APP118' =>  'Country',
 	'APP119' =>  'Phone',
 	'APP120' =>  'Mobile',
+	'APP121' =>  'View PatientProfile',
     
     //Medical Category
     'APP51' => 'Category Name',
