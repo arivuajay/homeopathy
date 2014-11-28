@@ -89,8 +89,25 @@ class PurchaseorderController extends Controller {
         
         if (isset($_POST['PurchaseOrder'])) {
             $model->attributes = $_POST['PurchaseOrder'];
-            if ($model->save())
-                $this->redirect(array('index'));
+            $valid = $model->validate();
+            
+            foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
+                $p_med = new PurchaseOrderMedicines('medicine_add');
+                $p_med->attributes = $data;
+                $valid = $model->validate() && $valid;
+            }
+            
+            if($valid){
+                if ($model->save(false))
+                    foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
+                        $data['itm_po_id'] = $model->po_id;
+                        unset($data['r_index']);
+                        $p_med = new PurchaseOrderMedicines('medicine_add');
+                        $p_med->attributes = $data;
+                        $p_med->save(false);
+                    }
+                    $this->redirect(array('index'));
+            }
         }
 
         $this->render('create', array(
@@ -118,18 +135,44 @@ class PurchaseorderController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
+        $purchase_medicines = new PurchaseOrderMedicines('medicine_add');
+        $purchase_medicine_list = PurchaseOrderMedicines::model()->findAll("itm_po_id = :PO_ID", array(':PO_ID' => $id));
+        
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['PurchaseOrder'])) {
             $model->attributes = $_POST['PurchaseOrder'];
-            if ($model->save())
-                $this->redirect(array('index'));
+            $valid = $model->validate();
+            
+            foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
+                $p_med = new PurchaseOrderMedicines('medicine_add');
+                $p_med->attributes = $data;
+                $valid = $model->validate() && $valid;
+            }
+            
+            if($valid){
+                if ($model->save(false))
+                    foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
+                        $data['itm_po_id'] = $id;
+                        if (isset($data['itm_id'])) {
+                            $p_med = PurchaseOrderMedicines::model()->findByPk($data['itm_id']);
+                            $p_med->attributes = $data;
+                            $p_med->update();
+                        } else {
+                            $p_med = new PurchaseOrderMedicines('medicine_add');;
+                            $p_med->attributes = $data;
+                            $p_med->save(false);
+                        }
+                    }
+                    $this->redirect(array('index'));
+            }
         }
 
         $this->render('update', array(
             'model' => $model,
+            'purchase_medicines' => $purchase_medicines,
+            'purchase_medicine_list' => $purchase_medicine_list
         ));
     }
 
