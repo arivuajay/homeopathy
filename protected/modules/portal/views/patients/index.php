@@ -57,10 +57,10 @@ $this->breadcrumbs=array(
                             'filter' => CHtml::activeTextField($model, 'user_id', array('class' => 'form-control input-sm')),
                         ),*/
                                             array(
-                            'name' => 'pt_fisrtname',
+                            'name' => 'pt_firstname',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_fisrtname)',
-                            'filter' => CHtml::activeTextField($model, 'pt_fisrtname', array('class' => 'form-control input-sm')),
+                            'value' => 'CHtml::encode($data->pt_firstname)',
+                            'filter' => CHtml::activeTextField($model, 'pt_firstname', array('class' => 'form-control input-sm')),
 							
                         ),
                                           /*  array(
