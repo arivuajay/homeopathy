@@ -1,6 +1,6 @@
 <?php
 
-class VendorsController extends Controller
+class MedstockController extends Controller
 {
 
 	/**
@@ -23,7 +23,7 @@ class VendorsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index', 'view', 'create', 'update', 'delete'),
+				'actions'=>array('index', 'view', 'create', 'update', 'delete', 'loadbatchmedicines'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -47,9 +47,9 @@ class VendorsController extends Controller
 	 * Lists all models.
 	 */
         public function actionIndex() {
-            $model = new Vendors('search');
-            if (isset($_GET['Vendors']))
-                $model->attributes = $_GET['Vendors'];
+            $model = new MedStock('search');
+            if (isset($_GET['MedStock']))
+                $model->attributes = $_GET['MedStock'];
 
             if (isset($_GET['pageSize'])) {
                 Yii::app()->user->setState('pageSize', (int) $_GET['pageSize']);
@@ -73,16 +73,16 @@ class VendorsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Vendors;
+		$model=new MedStock;
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Vendors']))
+		if(isset($_POST['MedStock']))
 		{
-			$model->attributes=$_POST['Vendors'];
+			$model->attributes=$_POST['MedStock'];
 			if($model->save())
-                            $this->redirect(array('index'));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -100,11 +100,11 @@ class VendorsController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Vendors']))
+		if(isset($_POST['MedStock']))
 		{
-			$model->attributes=$_POST['Vendors'];
+			$model->attributes=$_POST['MedStock'];
 			if($model->save())
 				$this->redirect(array('index'));
 		}
@@ -132,24 +132,36 @@ class VendorsController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Vendors the loaded model
+	 * @return MedStock the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Vendors::model()->findByPk($id);
+		$model=MedStock::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+        
+        public function actionLoadbatchmedicines($med_id,$pkg_id) {
+            $batch_list = CHtml::listData(MedStock::model()->findAll("stk_med_id = :med_id and stk_pkg_id = :pkg_id", array(":med_id" => $med_id, ":pkg_id" => $pkg_id)), 'stk_batch_no', 'stk_batch_no');
+            $model = new SalesOrderMedicines();
+            echo CHtml::activeDropDownList($model, 'so_user', $batch_list, array(
+                'class' => 'form-control',
+                'empty' => Myclass::t('APP205'),
+            ));
+
+            Yii::app()->end();
+        }
+
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Vendors $model the model to be validated
+	 * @param MedStock $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='vendors-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='med-stock-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

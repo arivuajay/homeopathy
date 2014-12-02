@@ -64,14 +64,6 @@ class Myclass extends CController {
 
         return $units;
     }
-	
-	public static function getSex($key = NULL) {
-        $sex = array('1' => 'Male', '2' => 'Female');
-        if (isset($key) && $key != NULL)
-            return $sex[$key];
-
-        return $sex;
-    }
     
     public static function getStatus($key=NULL) {
         $status = array('0' => 'In-active',  '1' => 'Active', '2' => 'Not defined');
@@ -92,5 +84,19 @@ class Myclass extends CController {
     public static function endsWith($str,$sub){
         return ( substr( $str, strlen( $str ) - strlen( $sub ) ) == $sub );
     }
+    
+    public static function getSaleType($type){
+        $s_type = array('1' => 'Retail', '2' => 'Wholesale');
+        if(isset($type))
+            return $s_type[$type];
+        return $s_type;
+    }
 
+    public static function getSex($key = NULL) {
+        $sex = array('1' => 'Male', '2' => 'Female');
+        if (isset($key) && $key != NULL)
+            return $sex[$key];
+
+        return $sex;
+    }
 }

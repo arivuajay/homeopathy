@@ -6,7 +6,7 @@
  * The followings are the available columns in table '{{patient_profile}}':
  * @property integer $pt_id
  * @property integer $user_id
- * @property string $pt_fisrtname
+ * @property string $pt_firstname
  * @property string $pt_lastname
  * @property string $pt_sex
  * @property string $pt_email
@@ -22,132 +22,134 @@
  * @property string $pt_mobile
  *
  * The followings are the available model relations:
- * @property Countries $ptCountry
  * @property Cities $ptCity
+ * @property Countries $ptCountry
  * @property States $ptState
  * @property Users $user
  */
-class PatientProfile extends CActiveRecord
-{
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return '{{patient_profile}}';
-	}
+class PatientProfile extends CActiveRecord {
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('pt_fisrtname, pt_sex, pt_dob, pt_city, pt_state, pt_country, pt_mobile', 'required'),
-			array('pt_id, user_id, pt_height, pt_weight, pt_city, pt_state, pt_country', 'numerical', 'integerOnly'=>true),
-			array('pt_fisrtname, pt_lastname, pt_telephone, pt_mobile', 'length', 'max'=>100),
-			array('pt_sex, pt_bloodgroup', 'length', 'max'=>1),
-			array('pt_email', 'length', 'max'=>255),
-			array('pt_address', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('pt_id, user_id, pt_fisrtname, pt_lastname, pt_sex, pt_email, pt_dob, pt_bloodgroup, pt_height, pt_weight, pt_address, pt_city, pt_state, pt_country, pt_telephone, pt_mobile', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName() {
+        return '{{patient_profile}}';
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'ptCountry' => array(self::BELONGS_TO, 'Countries', 'pt_country'),
-			'ptCity' => array(self::BELONGS_TO, 'Cities', 'pt_city'),
-			'ptState' => array(self::BELONGS_TO, 'States', 'pt_state'),
-			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
-		);
-	}
+    public function scopes() {
+        $alias = $this->getTableAlias(false, false);
+        return array(
+//            'isActive' => array('condition' => $alias . '.ven_status  = "1"'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'pt_id' => 'Pt',
-			'user_id' => 'User',
-			'pt_fisrtname' => 'Pt Fisrtname',
-			'pt_lastname' => 'Pt Lastname',
-			'pt_sex' => 'Pt Sex',
-			'pt_email' => 'Pt Email',
-			'pt_dob' => 'Pt Dob',
-			'pt_bloodgroup' => 'Pt Bloodgroup',
-			'pt_height' => 'Pt Height',
-			'pt_weight' => 'Pt Weight',
-			'pt_address' => 'Pt Address',
-			'pt_city' => 'Pt City',
-			'pt_state' => 'Pt State',
-			'pt_country' => 'Pt Country',
-			'pt_telephone' => 'Pt Telephone',
-			'pt_mobile' => 'Pt Mobile',
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules() {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('pt_id, user_id, pt_firstname, pt_sex, pt_dob, pt_city, pt_state, pt_country, pt_mobile', 'required'),
+            array('pt_id, user_id, pt_height, pt_weight, pt_city, pt_state, pt_country', 'numerical', 'integerOnly' => true),
+            array('pt_firstname, pt_lastname, pt_telephone, pt_mobile', 'length', 'max' => 100),
+            array('pt_sex, pt_bloodgroup', 'length', 'max' => 1),
+            array('pt_email', 'length', 'max' => 255),
+            array('pt_address', 'safe'),
+            // The following rule is used by search().
+            // @todo Please remove those attributes that should not be searched.
+            array('pt_id, user_id, pt_firstname, pt_lastname, pt_sex, pt_email, pt_dob, pt_bloodgroup, pt_height, pt_weight, pt_address, pt_city, pt_state, pt_country, pt_telephone, pt_mobile', 'safe', 'on' => 'search'),
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+    /**
+     * @return array relational rules.
+     */
+    public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'ptCity' => array(self::BELONGS_TO, 'Cities', 'pt_city'),
+            'ptCountry' => array(self::BELONGS_TO, 'Countries', 'pt_country'),
+            'ptState' => array(self::BELONGS_TO, 'States', 'pt_state'),
+            'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+        );
+    }
 
-		$criteria=new CDbCriteria;
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels() {
+        return array(
+            'pt_id' => 'Pt',
+            'user_id' => 'User',
+            'pt_firstname' => 'Pt Fisrtname',
+            'pt_lastname' => 'Pt Lastname',
+            'pt_sex' => 'Pt Sex',
+            'pt_email' => 'Pt Email',
+            'pt_dob' => 'Pt Dob',
+            'pt_bloodgroup' => 'Pt Bloodgroup',
+            'pt_height' => 'Pt Height',
+            'pt_weight' => 'Pt Weight',
+            'pt_address' => 'Pt Address',
+            'pt_city' => 'Pt City',
+            'pt_state' => 'Pt State',
+            'pt_country' => 'Pt Country',
+            'pt_telephone' => 'Pt Telephone',
+            'pt_mobile' => 'Pt Mobile',
+        );
+    }
 
-		$criteria->compare('pt_id',$this->pt_id);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('pt_fisrtname',$this->pt_fisrtname,true);
-		$criteria->compare('pt_lastname',$this->pt_lastname,true);
-		$criteria->compare('pt_sex',$this->pt_sex,true);
-		$criteria->compare('pt_email',$this->pt_email,true);
-		$criteria->compare('pt_dob',$this->pt_dob,true);
-		$criteria->compare('pt_bloodgroup',$this->pt_bloodgroup,true);
-		$criteria->compare('pt_height',$this->pt_height);
-		$criteria->compare('pt_weight',$this->pt_weight);
-		$criteria->compare('pt_address',$this->pt_address,true);
-		$criteria->compare('pt_city',$this->pt_city);
-		$criteria->compare('pt_state',$this->pt_state);
-		$criteria->compare('pt_country',$this->pt_country);
-		$criteria->compare('pt_telephone',$this->pt_telephone,true);
-		$criteria->compare('pt_mobile',$this->pt_mobile,true);
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     *
+     * Typical usecase:
+     * - Initialize the model fields with values from filter form.
+     * - Execute this method to get CActiveDataProvider instance which will filter
+     * models according to data in model fields.
+     * - Pass data provider to CGridView, CListView or any similar widget.
+     *
+     * @return CActiveDataProvider the data provider that can return the models
+     * based on the search/filter conditions.
+     */
+    public function search() {
+        // @todo Please modify the following code to remove attributes that should not be searched.
 
-                return new CActiveDataProvider(get_class($this), array(
-                    'criteria' => $criteria,
-                    'pagination' => array(
-                        'pageSize' => Yii::app()->user->getState('pageSize', Yii::app()->params['DEFAULT_PAGE_SIZE']),
-                    ),
-                ));
-	}
+        $criteria = new CDbCriteria;
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return PatientProfile the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+        $criteria->compare('pt_id', $this->pt_id);
+        $criteria->compare('user_id', $this->user_id);
+        $criteria->compare('pt_firstname', $this->pt_firstname, true);
+        $criteria->compare('pt_lastname', $this->pt_lastname, true);
+        $criteria->compare('pt_sex', $this->pt_sex, true);
+        $criteria->compare('pt_email', $this->pt_email, true);
+        $criteria->compare('pt_dob', $this->pt_dob, true);
+        $criteria->compare('pt_bloodgroup', $this->pt_bloodgroup, true);
+        $criteria->compare('pt_height', $this->pt_height);
+        $criteria->compare('pt_weight', $this->pt_weight);
+        $criteria->compare('pt_address', $this->pt_address, true);
+        $criteria->compare('pt_city', $this->pt_city);
+        $criteria->compare('pt_state', $this->pt_state);
+        $criteria->compare('pt_country', $this->pt_country);
+        $criteria->compare('pt_telephone', $this->pt_telephone, true);
+        $criteria->compare('pt_mobile', $this->pt_mobile, true);
+
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => Yii::app()->user->getState('pageSize', Yii::app()->params['DEFAULT_PAGE_SIZE']),
+            ),
+        ));
+    }
+
+    /**
+     * Returns the static model of the specified AR class.
+     * Please note that you should have this exact method in all your CActiveRecord descendants!
+     * @param string $className active record class name.
+     * @return PatientProfile the static model class
+     */
+    public static function model($className = __CLASS__) {
+        return parent::model($className);
+    }
+
 }

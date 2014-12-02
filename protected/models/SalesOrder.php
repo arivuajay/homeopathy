@@ -67,16 +67,16 @@ class SalesOrder extends RActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'tenant' => 'Tenant',
-			'so_id' => 'So',
-			'so_type' => '1 => Retailer(Patient), 2=> Wholesale(Other homeo centre)',
-			'so_date' => 'So Date',
-			'so_user' => 'If SO Type is 1 => refer user tbl, else refer vendor tbl',
-			'so_doctor' => 'So Doctor',
-			'so_memo' => 'So Memo',
-			'so_total' => 'So Total',
-			'so_paid' => 'So Paid',
-			'so_status' => 'So Status',
+			'tenant' => Myclass::t('APP78'),
+			'so_id' => Myclass::t('APP231'),
+			'so_type' => Myclass::t('APP233'),
+			'so_date' => Myclass::t('APP232'),
+			'so_user' => Myclass::t('APP237'),
+			'so_doctor' => Myclass::t('APP235'),
+			'so_memo' => Myclass::t('APP90'),
+			'so_total' => Myclass::t('APP91'),
+			'so_paid' => Myclass::t('APP92'),
+			'so_status' => Myclass::t('APP55'),
 		);
 	}
 

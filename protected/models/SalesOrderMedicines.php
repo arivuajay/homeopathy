@@ -23,6 +23,8 @@
  */
 class SalesOrderMedicines extends CActiveRecord
 {
+        public $itm_med_name;
+        public $itm_pkg_name;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,13 +41,16 @@ class SalesOrderMedicines extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('itm_so_id, itm_med_id, itm_pkg_id, itm_batch_no, itm_qty', 'required'),
+			array('itm_med_id, itm_pkg_id, itm_batch_no, itm_qty', 'required'),
 			array('itm_so_id, itm_med_id, itm_pkg_id, itm_qty', 'numerical', 'integerOnly'=>true),
 			array('itm_batch_no', 'length', 'max'=>150),
 			array('itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_total_price', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('itm_id, itm_so_id, itm_med_id, itm_pkg_id, itm_batch_no, itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_qty, itm_total_price', 'safe', 'on'=>'search'),
+                        //scope
+			array('itm_med_id, itm_pkg_id, itm_batch_no, itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_qty, itm_total_price', 'required', 'on'=>'medicineadd'),
+                        array('itm_med_name, itm_pkg_name','length')
 		);
 	}
 
@@ -69,17 +74,18 @@ class SalesOrderMedicines extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'itm_id' => 'Itm',
-			'itm_so_id' => 'Relatrion to sales_order',
-			'itm_med_id' => 'Relatrion to medicines',
-			'itm_pkg_id' => 'Relatrion to med_package',
-			'itm_batch_no' => 'Itm Batch No',
-			'itm_vat_tax' => 'Itm Vat Tax',
-			'itm_mrp_price' => 'Itm Mrp Price',
-			'itm_discount' => 'Itm Discount',
-			'itm_net_rate' => 'Itm Net Rate',
-			'itm_qty' => 'Itm Qty',
-			'itm_total_price' => 'Itm Total Price',
+			'itm_id' => Myclass::t('APP212'),
+			'itm_so_id' => Myclass::t('APP236'),
+			'itm_med_id' => Myclass::t('APP68'),
+			'itm_pkg_id' => Myclass::t('APP75'),
+			'itm_vat_tax' => Myclass::t('APP208'),
+			'itm_mrp_price' => Myclass::t('APP207'),
+			'itm_discount' => Myclass::t('APP209'),
+			'itm_net_rate' => Myclass::t('APP210'),
+			'itm_qty' => Myclass::t('APP206'),
+			'itm_total_price' => Myclass::t('APP211'),
+                        'itm_med_name' => Myclass::t('APP214'),
+                        'itm_pkg_name' => Myclass::t('APP77'),
 		);
 	}
 

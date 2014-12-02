@@ -8,7 +8,8 @@ $this->breadcrumbs = array(
 ?>
 <section class="panel">
     <header class="panel-heading">
-        Vendors        <?php
+        <?php echo Myclass::t('APP88'); ?>
+        <?php
         echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/vendors/create'), array('class' => 'btn btn-sm btn-success pull-right'));
         ?>
     </header>

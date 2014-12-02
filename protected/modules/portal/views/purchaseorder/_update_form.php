@@ -47,6 +47,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <!--        <button class="btn btn-default" type="button">Default</button>-->
     </div>
 </div>
+<div class="clearfix"></div>
 <div class="form-group col-lg-6">
     <?php echo $form->labelEx($model, 'po_invoice', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
     <div class="col-lg-8">
@@ -57,13 +58,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'po_invoice', array('class' => 'col-lg-12')); ?>
     </div>
 </div>
-<!--<div class="form-group col-lg-6">
-<?php echo $form->labelEx($model, 'po_memo', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
-    <div class="col-lg-8">
-<?php echo $form->textArea($model, 'po_memo', array('rows' => 6, 'cols' => 50, 'class' => 'form-control')); ?>
-<?php echo $form->error($model, 'po_memo', array('class' => 'col-lg-12')); ?>
-    </div>
-</div>-->
 <div class="form-group col-lg-6">
     <?php echo $form->labelEx($model, 'po_total', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
     <div class="col-lg-8">
@@ -74,6 +68,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'po_total', array('class' => 'col-lg-12')); ?>
     </div>
 </div>
+<div class="clearfix"></div>
 <div class="form-group col-lg-6">
     <?php echo $form->labelEx($model, 'po_paid', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
     <div class="col-lg-8">
@@ -91,6 +86,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'po_status'); ?>
     </div>
 </div>
+<div class="clearfix"></div>
 <div class="form-group col-lg-12">
     <?php echo $form->labelEx($model, 'po_memo', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
     <div class="col-lg-10">
@@ -99,6 +95,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <?php echo $form->hiddenField($model, 'po_created_by', array('value' => Yii::app()->user->getId())) ?>
+<div class="clearfix"></div>
 
 <div class="form-group">
     <div class="col-sm-12">
@@ -148,7 +145,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 <td class="text-right"><?php echo $med->itm_total_price ?></td>
                 <td class="text-center">
                     <a href="javascript:edit(<?php echo $key + 1 ?>)" title="<?php echo Myclass::t('APP65'); ?>"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-                    <a href="javascript:delete_row(<?php echo $key + 1 ?>)" title="<?php echo Myclass::t('APP66'); ?>"><i class="fa fa-times"></i></a></td>            
+                    <a href="javascript:delete_row(<?php echo $key + 1 ?>)" title="<?php echo Myclass::t('APP66'); ?>"><i class="fa fa-times"></i></a>
+                </td>            
             </tr>
         <?php } ?>
 
@@ -229,12 +227,12 @@ $form = $this->beginWidget('CActiveForm', array(
                                         ));
                                         ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_pkg_id"); ?>
+                                    <?php echo $form2->error($purchase_medicines, "itm_pkg_id"); ?>
                                 </div>  
                             </div>
                             <div class="clearfix"></div>
 
-<?php echo $form2->hiddenField($purchase_medicines, 'itm_pkg_name', array('class' => 'med_hidden')) ?>
+                            <?php echo $form2->hiddenField($purchase_medicines, 'itm_pkg_name', array('class' => 'med_hidden')) ?>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -243,7 +241,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                         <i class="fa fa-barcode"></i>
                                     <?php echo $form2->textField($purchase_medicines, "itm_batch_no", array('class' => "form-control")); ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_batch_no"); ?>                            
+                                    <?php echo $form2->error($purchase_medicines, "itm_batch_no"); ?>                            
                                 </div>
                             </div>
 
@@ -254,7 +252,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                         <i class="fa fa-calendar"></i>
                                     <?php echo $form2->textField($purchase_medicines, "itm_manf_date", array('class' => "form-control default-date-picker", 'value' => '')); ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_manf_date"); ?>
+                                    <?php echo $form2->error($purchase_medicines, "itm_manf_date"); ?>
                                 </div>
                             </div>
 
@@ -265,62 +263,62 @@ $form = $this->beginWidget('CActiveForm', array(
                                         <i class="fa fa-calendar"></i>
                                     <?php echo $form2->textField($purchase_medicines, "itm_exp_date", array('class' => "form-control default-date-picker", 'value' => '')); ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_exp_date"); ?>
+                                    <?php echo $form2->error($purchase_medicines, "itm_exp_date"); ?>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                        <?php echo $form2->labelEx($purchase_medicines, 'itm_qty') ?>
+                                    <?php echo $form2->labelEx($purchase_medicines, 'itm_qty') ?>
                                     <div class="iconic-input right">
                                         <i class="fa fa-list"></i>
                                     <?php echo $form2->textField($purchase_medicines, "itm_qty", array('class' => "form-control calc-price", 'placeholder' => '')); ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_qty"); ?>
+                                    <?php echo $form2->error($purchase_medicines, "itm_qty"); ?>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                        <?php echo $form2->labelEx($purchase_medicines, 'itm_mrp_price') ?>
+                                    <?php echo $form2->labelEx($purchase_medicines, 'itm_mrp_price') ?>
                                     <div class="iconic-input right">
                                         <i class="fa fa-rupee"></i>
                                     <?php echo $form2->textField($purchase_medicines, "itm_mrp_price", array('class' => "form-control calc-price", 'placeholder' => '0.00')); ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_mrp_price"); ?>
+                                    <?php echo $form2->error($purchase_medicines, "itm_mrp_price"); ?>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                        <?php echo $form2->labelEx($purchase_medicines, 'itm_vat_tax') ?>
+                                    <?php echo $form2->labelEx($purchase_medicines, 'itm_vat_tax') ?>
                                     <div class="iconic-input right">
                                         <i class="fa  fa-plus-square"></i>
                                     <?php echo $form2->textField($purchase_medicines, "itm_vat_tax", array('class' => "form-control calc-price", 'placeholder' => '0.00')); ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_vat_tax"); ?>
+                                    <?php echo $form2->error($purchase_medicines, "itm_vat_tax"); ?>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                        <?php echo $form2->labelEx($purchase_medicines, 'itm_discount') ?>
+                                    <?php echo $form2->labelEx($purchase_medicines, 'itm_discount') ?>
                                     <div class="iconic-input right">
                                         <i class="fa  fa-minus-square"></i>
                                     <?php echo $form2->textField($purchase_medicines, "itm_discount", array('class' => "form-control calc-price", 'placeholder' => '0.00')); ?>
                                     </div>
-<?php echo $form2->error($purchase_medicines, "itm_discount"); ?>
+                                    <?php echo $form2->error($purchase_medicines, "itm_discount"); ?>
                                 </div>
                             </div>
 
                             <div class="clearfix"></div>
 
-<?php echo $form2->hiddenField($purchase_medicines, 'itm_net_rate', array('class' => 'med_hidden')) ?>
-<?php echo $form2->hiddenField($purchase_medicines, 'itm_total_price', array('class' => 'med_hidden')) ?>
+                            <?php echo $form2->hiddenField($purchase_medicines, 'itm_net_rate', array('class' => 'med_hidden')) ?>
+                            <?php echo $form2->hiddenField($purchase_medicines, 'itm_total_price', array('class' => 'med_hidden')) ?>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-<?php echo CHtml::submitButton(Myclass::t('APP82'), array('class' => 'btn btn-info')); ?>
+                                    <?php echo CHtml::submitButton(Myclass::t('APP82'), array('class' => 'btn btn-info')); ?>
                                 </div>
                             </div>
 
@@ -332,7 +330,7 @@ $form = $this->beginWidget('CActiveForm', array(
                             </div>
 
 
-<?php $this->endWidget(); ?>
+                            <?php $this->endWidget(); ?>
                         </div>
                     </div>
                 </div>
@@ -478,11 +476,11 @@ $form = $this->beginWidget('CActiveForm', array(
     }
 
     function delete_row(key) {
-        var con = confirm("Are you sure to delete ?");
-        if (con)
+        var con = confirm("<?php echo Myclass::t('APP217'); ?>");
+        if (con){
             $("#med_tr_" + key).remove();
-        $("#medicine_row_" + key).remove();
-
+            $("#medicine_row_" + key).remove();
+        }
     }
 
     function reset_form() {

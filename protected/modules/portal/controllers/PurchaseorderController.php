@@ -21,7 +21,7 @@ class PurchaseorderController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view', 'create', 'update', 'delete', 'add_medicine_entry', 'medicineadd'),
-                'users' => array('*'),
+                'users' => array('@'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -145,13 +145,21 @@ class PurchaseorderController extends Controller {
             $model->attributes = $_POST['PurchaseOrder'];
             $valid = $model->validate();
             
+            $post_ids = array();
             foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
                 $p_med = new PurchaseOrderMedicines('medicine_add');
                 $p_med->attributes = $data;
                 $valid = $model->validate() && $valid;
+                $post_ids[] = $data['itm_id'];
             }
             
             if($valid){
+                $med_ids = array();
+                foreach ($purchase_medicine_list as $medicine) {
+                    $med_ids[] = $medicine->attributes['itm_id'];
+                }
+                $delete_med = array_diff($med_ids, $post_ids);
+                
                 if ($model->save(false))
                     foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
                         $data['itm_po_id'] = $id;
@@ -164,6 +172,10 @@ class PurchaseorderController extends Controller {
                             $p_med->attributes = $data;
                             $p_med->save(false);
                         }
+                    }
+                    //delete medicine list
+                    foreach ($delete_med as $id) {
+                        PurchaseOrderMedicines::model()->findByPk($id)->delete();
                     }
                     $this->redirect(array('index'));
             }

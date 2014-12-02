@@ -66,7 +66,7 @@ class MedicinesController extends Controller {
      */
     public function actionCreate() {
         $model = new Medicines;
-        $package = new MedicinePkg;
+        $package = new MedicinePkg('create');
 
         // Uncomment the following line if AJAX validation is needed
         $this->performAjaxValidation($model);
@@ -74,15 +74,15 @@ class MedicinesController extends Controller {
         if (isset($_POST['Medicines'])) {
             $model->attributes = $_POST['Medicines'];
             $valid = $model->validate();
-
-//            foreach ($_POST['MedicinePkg'] as $key => $data) {
-//                $package = new MedicinePkg;
-//                $package->attributes = $data;
-//                $valid = $package->validate() && $valid;
-//            }
+            
+            foreach ($_POST['MedicinePkg'] as $key => $data) {
+                $package = new MedicinePkg;
+                $package->attributes = $data;
+                $valid = $package->validate() && $valid;
+            }
 
             if ($valid) {
-                if ($model->save())
+                if ($model->save(false))
                     foreach ($_POST['MedicinePkg'] as $key => $data) {
                         $data['pkg_med_id'] = $model->med_id;
 
@@ -114,21 +114,44 @@ class MedicinesController extends Controller {
 
         if (isset($_POST['Medicines'])) {
             $model->attributes = $_POST['Medicines'];
-            if ($model->save())
-                foreach ($_POST['MedicinePkg'] as $key => $data) {
-                    $data['pkg_med_id'] = $id;
-                    if ($data['pkg_id'] != '') {
-                        $package = MedicinePkg::model()->findByPk($data['pkg_id']);
-                        $package->attributes = $data;
-                        $package->update();
-                    } else {
-                        $package = new MedicinePkg;
-                        $package->attributes = $data;
-                        $package->save();
-                    }
+            $valid = $model->validate();
+            
+            $post_ids = array();
+            foreach ($_POST['MedicinePkg'] as $key => $data) {
+                $v_pkg = new MedicinePkg;
+                $v_pkg->attributes = $data;
+                $valid = $v_pkg->validate() && $valid;
+                $post_ids[] = $data['pkg_id'];
+            }
+            
+            if($valid){
+                $pkg_ids = array();
+                foreach ($package as $pkg) {
+                    $pkg_ids[] = $pkg->attributes['pkg_id'];
                 }
+                $delete_pkg = array_diff($pkg_ids, $post_ids);
+                
+                if ($model->save(false))
+                    foreach ($_POST['MedicinePkg'] as $key => $data) {
+                        $data['pkg_med_id'] = $id;
+                        if ($data['pkg_id'] != '') {
+                            $package = MedicinePkg::model()->findByPk($data['pkg_id']);
+                            $package->attributes = $data;
+                            $package->update();
+                        } else {
+                            $package = new MedicinePkg('create');
+                            $package->attributes = $data;
+                            $package->save();
+                        }
+                    }
+                    //delete packages
+                    foreach ($delete_pkg as $id) {
+                        MedicinePkg::model()->findByPk($id)->delete();
+                    }
 
-            $this->redirect(array('view', 'id' => $model->med_id));
+                    $this->redirect(array('view', 'id' => $model->med_id));
+                
+            }
         }
 
         $this->render('update', array(
