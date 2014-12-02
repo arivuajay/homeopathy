@@ -70,7 +70,7 @@ class Myclass extends CController {
         if (isset($key) && $key != NULL)
             return $sex[$key];
 
-        return $sex;
+        return $sex; 
     }
     
     public static function getStatus($key=NULL) {
