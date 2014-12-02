@@ -2,21 +2,15 @@
 
 class PharmacistController extends Controller
 {
-        /**
-         * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-         * using two-column layout. See 'protected/views/layouts/column2.php'.
-         */
-        public $layout = '//layouts/column2';
-
 	/**
 	 * @return array action filters
 	 */
 	public function filters()
 	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
+            return array(
+                'accessControl', // perform access control for CRUD operations
+                'postOnly + delete', // we only allow deletion via POST request
+            );
 	}
 
 	/**
@@ -28,13 +22,9 @@ class PharmacistController extends Controller
 	{
             return array(
                 array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                    'actions' => array('index', 'view', 'create', 'update'),
+                    'actions' => array('index', 'view', 'create', 'update', 'delete'),
                     'users' => array('@'),
-                ),
-                array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                    'actions' => array('admin', 'delete'),
-                    'users' => array('admin'),
-                ),
+                ),                
                 array('deny', // deny all users
                     'users' => array('*'),
                 ),
@@ -104,7 +94,7 @@ class PharmacistController extends Controller
                     $profileModel->user_id = $model->ur_id;
                     $profileModel->save(false);
 
-                    $this->redirect(array('view', 'id' => $model->ur_id));
+                    $this->redirect(array('view', 'id' => $profileModel->phr_id));
                 }
             }
 
@@ -141,7 +131,7 @@ class PharmacistController extends Controller
                     $profileModel->user_id = $model->ur_id;
                     $profileModel->save(false);
 
-                    $this->redirect(array('view', 'id' => $model->ur_id));
+                    $this->redirect(array('view', 'id' => $profileModel->phr_id));
                 }
             }
 
@@ -158,11 +148,14 @@ class PharmacistController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+            $pharmacist_profile = $this->loadModel($id);
+            $user = Users::model()->findByPk($pharmacist_profile->user_id);
+            $user->delete();
+            $pharmacist_profile->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
     
 	/**
@@ -186,10 +179,10 @@ class PharmacistController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='pharmacist-profile-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+            if(isset($_POST['ajax']) && $_POST['ajax']==='pharmacist-profile-form')
+            {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
 	}
 }

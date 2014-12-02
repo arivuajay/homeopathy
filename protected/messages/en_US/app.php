@@ -134,5 +134,12 @@ return array(
     'APP235' => 'Doctor',
     'APP236' => 'Sales Order',
     'APP237' => 'Customer',
+    
+    'APP301' => 'Pharmacist',
+    'APP302' => 'View Pharmacist',
+    'APP303' => 'Create Pharmacist',
+    'APP304' => 'Update Pharmacist',
+    
+    
 );
 ?>

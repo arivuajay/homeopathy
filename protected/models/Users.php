@@ -55,6 +55,7 @@ class Users extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('tenant, ur_id, ur_role_id, ur_username, ur_password, ur_activation_key, ur_created_at, ur_modified_at, ur_last_login, ur_last_ip, ur_status', 'safe', 'on'=>'search'),
+                        array('ur_username', 'unique', 'message'=>'Username already exists!'),
 		);
 	}
 
@@ -71,6 +72,7 @@ class Users extends CActiveRecord
 			'tenant' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
 			'doctor' => array(self::HAS_ONE, 'DoctorProfile', 'user_id'),
 			'patient' => array(self::HAS_ONE, 'PatientProfile', 'user_id'),
+			'pharmacist' => array(self::HAS_ONE, 'PharmacistProfile', 'user_id'),
 		);
 	}
 

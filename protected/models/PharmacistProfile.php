@@ -75,8 +75,6 @@ class PharmacistProfile extends CActiveRecord
 	public function attributeLabels()
 	{
             return array(
-                'phr_id' => 'Phr',
-                'user_id' => 'User',
                 'phr_first_name' => Myclass::t('APP106'),
                 'phr_last_name' => Myclass::t('APP107'),
                 'phr_dob' => Myclass::t('APP108'),

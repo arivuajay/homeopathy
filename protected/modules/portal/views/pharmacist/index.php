@@ -1,16 +1,9 @@
-<?php
-/* @var $this PharmacistController */
-/* @var $dataProvider CActiveDataProvider */
-
-$this->breadcrumbs=array(
-	'Pharmacist Profiles',
-);
-?>
 <section class="panel">
     <header class="panel-heading">
-       <?php echo Myclass::t('APP302'); ?> <?php        
+       <?php echo Myclass::t('APP301'); ?> 
+       <?php        
         echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/pharmacist/create'), array('class' => 'btn btn-sm btn-success pull-right'));
-        ?>
+       ?>
     </header>
     <div class="panel-body">
         <div class="adv-table">
@@ -50,18 +43,13 @@ $this->breadcrumbs=array(
                     'nextPageLabel' => '>',
                 ),
                 'columns' => array(
-                                            array(
-                            'name' => 'user_id',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->user_id)',
-                            'filter' => CHtml::activeTextField($model, 'user_id', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'phr_first_name',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->phr_first_name)',
-                            'filter' => CHtml::activeTextField($model, 'phr_first_name', array('class' => 'form-control input-sm')),
-                        ),
+                                           
+                                array(
+                                    'name' => 'phr_first_name',
+                                    'type' => 'raw',
+                                    'value' => 'CHtml::encode($data->phr_first_name)',
+                                    'filter' => CHtml::activeTextField($model, 'phr_first_name', array('class' => 'form-control input-sm')),
+                                ),
                                             array(
                             'name' => 'phr_last_name',
                             'type' => 'raw',
@@ -74,43 +62,26 @@ $this->breadcrumbs=array(
                             'value' => 'CHtml::encode($data->phr_dob)',
                             'filter' => CHtml::activeTextField($model, 'phr_dob', array('class' => 'form-control input-sm')),
                         ),
-                                            array(
-                            'name' => 'phr_designation',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->phr_designation)',
-                            'filter' => CHtml::activeTextField($model, 'phr_designation', array('class' => 'form-control input-sm')),
-                        ),
+                                            
                                             array(
                             'name' => 'phr_city',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->phr_city)',
+                            'value' => 'CHtml::encode($data->phrCity->city)',
                             'filter' => CHtml::activeTextField($model, 'phr_city', array('class' => 'form-control input-sm')),
                         ),
                                             array(
                             'name' => 'phr_state',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->phr_state)',
+                            'value' => 'CHtml::encode($data->phrState->state)',
                             'filter' => CHtml::activeTextField($model, 'phr_state', array('class' => 'form-control input-sm')),
                         ),
                                             array(
                             'name' => 'phr_country',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->phr_country)',
+                            'value' => 'CHtml::encode($data->phrCountry->country)',
                             'filter' => CHtml::activeTextField($model, 'phr_country', array('class' => 'form-control input-sm')),
                         ),
-                                            array(
-                            'name' => 'phr_phone',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->phr_phone)',
-                            'filter' => CHtml::activeTextField($model, 'phr_phone', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'phr_mobile',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->phr_mobile)',
-                            'filter' => CHtml::activeTextField($model, 'phr_mobile', array('class' => 'form-control input-sm')),
-                        ),
-                                    
+                                            
                     array(
                         'class' => 'CButtonColumn',
                         'header' => 'Action',

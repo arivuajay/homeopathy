@@ -18,9 +18,10 @@
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading"> Update PharmacistProfile <?php //echo $model->phr_id; ?></header>
+            <header class="panel-heading"> <?php echo Myclass::t('APP304'); ?> </header>
             <div class="panel-body">
-                <?php $this->renderPartial('_form', array('model'=>$model, 'profileModel' => $profileModel)); ?>            </div>
+                <?php $this->renderPartial('_form', array('model'=>$model, 'profileModel' => $profileModel)); ?>                  
+            </div>
         </section>
     </div>
 </div>
