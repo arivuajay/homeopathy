@@ -3,8 +3,8 @@
 /* @var $model PharmacistProfile */
 
 $this->breadcrumbs=array(
-	'Pharmacist Profiles'=>array('index'),
-	$model->phr_id,
+	'Pharmacists'=>array('index'),
+	'View',
 );
 
 $this->menu=array(

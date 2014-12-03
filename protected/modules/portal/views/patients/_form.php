@@ -10,29 +10,32 @@
 	'enableAjaxValidation'=>true,
 )); ?>
 
-<?php echo $form->errorSummary($model); ?>
+<?php //echo $form->errorSummary($model); ?>
 
     <div class="form-group">
         <?php echo $form->labelEx($user_model, 'ur_username',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
-                     <?php echo $form->textField($user_model, 'ur_username', array('class' => 'form-control')); ?>
-                 <?php echo $form->error($user_model, 'ur_username'); ?>
+            <?php echo $form->textField($user_model, 'ur_username', array('class' => 'form-control')); ?>
+            <?php echo $form->error($user_model, 'ur_username'); ?>
         </div>
     </div>
-        <div class="form-group">
+
+    <div class="form-group">
       <?php echo $form->labelEx($user_model, 'ur_password',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
-        <?php echo $form->passwordField($user_model, 'ur_password', array('class' => 'form-control')); ?>
-                <?php echo $form->error($user_model, 'ur_password'); ?>
+            <?php echo $form->passwordField($user_model, 'ur_password', array('value'=>'','class' => 'form-control')); ?>
+            <?php echo $form->error($user_model, 'ur_password'); ?>
         </div>
     </div>
-        <div class="form-group">
-        <?php echo $form->labelEx($model,'pt_fisrtname',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+
+    <div class="form-group">
+        <?php echo $form->labelEx($model,'pt_firstname',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
-                    <?php echo $form->textField($model,'pt_fisrtname',array('size'=>60,'maxlength'=>100,'class'=>'form-control')); ?>
-                <?php echo $form->error($model,'pt_fisrtname'); ?>
+            <?php echo $form->textField($model,'pt_firstname',array('size'=>60,'maxlength'=>100,'class'=>'form-control')); ?>
+            <?php echo $form->error($model,'pt_firstname'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_lastname',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -40,15 +43,16 @@
                 <?php echo $form->error($model,'pt_lastname'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_sex',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
-                    <?php //echo $form->textField($model,'pt_sex',array('size'=>1,'maxlength'=>1,'class'=>'form-control')); ?>
-                    <?php $sex = Myclass::getSex();?>
+                <?php $sex = Myclass::getSex();?>
                 <?php echo $form->dropDownList($model, 'pt_sex', $sex, array('class'=>"form-control"));?>
                 <?php echo $form->error($model,'pt_sex'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_email',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -56,6 +60,7 @@
                 <?php echo $form->error($model,'pt_email'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_dob',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -63,13 +68,16 @@
                 <?php echo $form->error($model,'pt_dob'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_bloodgroup',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
-                    <?php echo $form->textField($model,'pt_bloodgroup',array('size'=>1,'maxlength'=>1,'class'=>'form-control')); ?>
-                <?php echo $form->error($model,'pt_bloodgroup'); ?>
+            <?php $bloodGroups = Myclass::getBloodGroups();?>
+            <?php echo $form->dropDownList($model, 'pt_bloodgroup', $bloodGroups, array('empty'=>'--Select--', 'class'=>"form-control"));?>
+            <?php echo $form->error($model,'pt_bloodgroup'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_height',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -77,6 +85,7 @@
                 <?php echo $form->error($model,'pt_height'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_weight',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -84,6 +93,7 @@
                 <?php echo $form->error($model,'pt_weight'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_address',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -91,6 +101,7 @@
                 <?php echo $form->error($model,'pt_address'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_city',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -98,6 +109,7 @@
                 <?php echo $form->error($model,'pt_city'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_state',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -105,6 +117,7 @@
                 <?php echo $form->error($model,'pt_state'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_country',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -112,6 +125,7 @@
                 <?php echo $form->error($model,'pt_country'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_telephone',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -119,6 +133,7 @@
                 <?php echo $form->error($model,'pt_telephone'); ?>
         </div>
     </div>
+
         <div class="form-group">
         <?php echo $form->labelEx($model,'pt_mobile',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
         <div class="col-lg-10">
@@ -126,9 +141,11 @@
                 <?php echo $form->error($model,'pt_mobile'); ?>
         </div>
     </div>
+
     <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-info')); ?>
+        <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/patients/'),array('class'=>'btn btn-sm btn-default')); ?>
     </div>
 </div>
 

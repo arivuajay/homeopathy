@@ -2,11 +2,10 @@
 /* @var $this PharmacistController */
 /* @var $model PharmacistProfile */
 
-//$this->breadcrumbs=array(
-//	'Pharmacist Profiles'=>array('index'),
-//	$model->phr_id=>array('view','id'=>$model->phr_id),
-//	'Update',
-//);
+$this->breadcrumbs=array(
+	'Pharmacists'=>array('index'),
+	'Update',
+);
 
 //$this->menu=array(
 //    array('label'=>'List PharmacistProfile', 'url'=>array('index')),

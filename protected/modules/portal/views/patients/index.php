@@ -1,20 +1,19 @@
-<?php
-/* @var $this PatientsController */
-/* @var $dataProvider CActiveDataProvider */
-
+<?php 
 $this->breadcrumbs=array(
-	'Patient Profiles',
+	'Patients',
 );
 ?>
+
 <section class="panel">
     <header class="panel-heading">
-        Patient Profiles        <?php        
-        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/patients/create'), array('class' => 'btn btn-sm btn-success pull-right'));
+        <?php echo Myclass::t('APP406'); ?>
+        <?php        
+        echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/patients/create'), array('class' => 'btn btn-sm btn-success pull-right', 'title'=>'Create'));
         ?>
     </header>
     <div class="panel-body">
         <div class="adv-table">
-           <?php  $sex = Myclass::getSex();
+           <?php  
             $this->widget('zii.widgets.grid.CGridView', array(
                 'id' => 'categories-grid',
                 'dataProvider' => $model->search(),
@@ -50,12 +49,6 @@ $this->breadcrumbs=array(
                     'nextPageLabel' => '>',
                 ),
                 'columns' => array(
-                                           /* array(
-                            'name' => 'user_id',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->user_id)',
-                            'filter' => CHtml::activeTextField($model, 'user_id', array('class' => 'form-control input-sm')),
-                        ),*/
                                             array(
                             'name' => 'pt_firstname',
                             'type' => 'raw',
@@ -63,18 +56,11 @@ $this->breadcrumbs=array(
                             'filter' => CHtml::activeTextField($model, 'pt_firstname', array('class' => 'form-control input-sm')),
 							
                         ),
-                                          /*  array(
-                            'name' => 'pt_lastname',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_lastname)',
-                            'filter' => CHtml::activeTextField($model, 'pt_lastname', array('class' => 'form-control input-sm')),
-                        ),*/ 
                                             array(
                             'name' => 'pt_sex',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_sex)',
-							'filter' => CHtml::activeTextField($model, 'pt_sex', array('class' => 'form-control input-sm')),
-                         
+                            'value' => 'Myclass::getSex($data->pt_sex)',
+			    'filter' => CHtml::activeTextField($model, 'pt_sex', array('class' => 'form-control input-sm')),
                         ),
                                             array(
                             'name' => 'pt_email',
@@ -82,54 +68,12 @@ $this->breadcrumbs=array(
                             'value' => 'CHtml::encode($data->pt_email)',
                             'filter' => CHtml::activeTextField($model, 'pt_email', array('class' => 'form-control input-sm')),
                         ),
-                                           /* array(
-                            'name' => 'pt_dob',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_dob)',
-                            'filter' => CHtml::activeTextField($model, 'pt_dob', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'pt_bloodgroup',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_bloodgroup)',
-                            'filter' => CHtml::activeTextField($model, 'pt_bloodgroup', array('class' => 'form-control input-sm')),
-                        ),
-                                           array(
-                            'name' => 'pt_height',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_height)',
-                            'filter' => CHtml::activeTextField($model, 'pt_height', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'pt_weight',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_weight)',
-                            'filter' => CHtml::activeTextField($model, 'pt_weight', array('class' => 'form-control input-sm')),
-                        ),*/
                                             array(
                             'name' => 'pt_city',
                             'type' => 'raw',
                             'value' => 'CHtml::encode($data->ptCity->city)',
                             'filter' => CHtml::activeTextField($model, 'pt_city', array('class' => 'form-control input-sm')),
                         ),
-                                            /*array(
-                            'name' => 'pt_state',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_state)',
-                            'filter' => CHtml::activeTextField($model, 'pt_state', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'pt_country',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_country)',
-                            'filter' => CHtml::activeTextField($model, 'pt_country', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'pt_telephone',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->pt_telephone)',
-                            'filter' => CHtml::activeTextField($model, 'pt_telephone', array('class' => 'form-control input-sm')),
-                        ),*/
                                             array(
                             'name' => 'pt_mobile',
                             'type' => 'raw',
@@ -145,19 +89,18 @@ $this->breadcrumbs=array(
                             'view' => array(
                                 'label' => '<i class="fa fa-book"></i>',
                                 'imageUrl' => false,
-                                'options' => array('class' => 'btn btn-success btn-xs'),
+                                'options' => array('class' => 'btn btn-success btn-xs', 'title'=>'View'),
 								
                             ),
                             'update' => array(
                                 'label' => '<i class="fa fa-pencil"></i>',
                                 'imageUrl' => false,
-                                'options' => array('class' => 'btn btn-primary btn-xs'),
-								//'url'=>'Yii::app()->createUrl("portal/patients/update", array("id"=>$data->user_id))',
+                                'options' => array('class' => 'btn btn-primary btn-xs', 'title'=>'Update'),
                             ),
                             'delete' => array(
                                 'label' => '<i class="fa fa-trash-o"></i>',
                                 'imageUrl' => false,
-                                'options' => array('class' => 'btn btn-danger btn-xs'),
+                                'options' => array('class' => 'btn btn-danger btn-xs', 'title'=>'Delete'),
                             ),
                         ),
                     ),

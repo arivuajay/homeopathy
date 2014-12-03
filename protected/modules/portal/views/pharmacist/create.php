@@ -3,7 +3,7 @@
 /* @var $model PharmacistProfile */
 
 $this->breadcrumbs=array(
-	'Pharmacist'=>array('index'),
+	'Pharmacists'=>array('index'),
 	'Create',
 );
 

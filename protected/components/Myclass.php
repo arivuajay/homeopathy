@@ -99,5 +99,22 @@ class Myclass extends CController {
 
         return $sex;
     }
+    
+    public static function getBloodGroups($key = NULL){
+        $blood_groups = array(
+            '1' => 'O−',
+            '2' => 'O+',
+            '3' => 'A−',
+            '4' => 'A+',
+            '5' => 'B−',
+            '6' => 'B+',
+            '7' => 'AB−',
+            '8' => 'AB+'
+        );
+        if(isset($key) && $key != NULL)
+            return $blood_groups[$key];
+        
+        return $blood_groups;
+    }
 
 }

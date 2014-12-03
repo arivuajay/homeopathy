@@ -50,15 +50,15 @@ class PatientProfile extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('pt_id, user_id, pt_firstname, pt_sex, pt_dob, pt_city, pt_state, pt_country, pt_mobile', 'required'),
-            array('pt_id, user_id, pt_height, pt_weight, pt_city, pt_state, pt_country', 'numerical', 'integerOnly' => true),
+            array('pt_firstname, pt_sex, pt_dob, pt_city, pt_state, pt_country, pt_mobile', 'required'),
+            array('pt_height, pt_weight, pt_city, pt_state, pt_country', 'numerical', 'integerOnly' => true),
             array('pt_firstname, pt_lastname, pt_telephone, pt_mobile', 'length', 'max' => 100),
             array('pt_sex, pt_bloodgroup', 'length', 'max' => 1),
             array('pt_email', 'length', 'max' => 255),
             array('pt_address', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('pt_id, user_id, pt_firstname, pt_lastname, pt_sex, pt_email, pt_dob, pt_bloodgroup, pt_height, pt_weight, pt_address, pt_city, pt_state, pt_country, pt_telephone, pt_mobile', 'safe', 'on' => 'search'),
+            array('pt_id, user_id, pt_firstname, pt_lastname, pt_sex, pt_email, pt_dob, pt_bloodgroup, pt_height, pt_weight, pt_address, pt_city, pt_state, pt_country, pt_telephone, pt_mobile', 'safe', 'on' => 'search'),            
         );
     }
 
@@ -81,22 +81,20 @@ class PatientProfile extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'pt_id' => 'Pt',
-            'user_id' => 'User',
-            'pt_firstname' => 'Pt Fisrtname',
-            'pt_lastname' => 'Pt Lastname',
-            'pt_sex' => 'Pt Sex',
-            'pt_email' => 'Pt Email',
-            'pt_dob' => 'Pt Dob',
-            'pt_bloodgroup' => 'Pt Bloodgroup',
-            'pt_height' => 'Pt Height',
-            'pt_weight' => 'Pt Weight',
-            'pt_address' => 'Pt Address',
-            'pt_city' => 'Pt City',
-            'pt_state' => 'Pt State',
-            'pt_country' => 'Pt Country',
-            'pt_telephone' => 'Pt Telephone',
-            'pt_mobile' => 'Pt Mobile',
+            'pt_firstname' => Myclass::t('APP106'),
+            'pt_lastname' => Myclass::t('APP107'),
+            'pt_sex' => Myclass::t('APP401'),
+            'pt_email' => Myclass::t('APP98'),
+            'pt_dob' => Myclass::t('APP108'),
+            'pt_bloodgroup' => Myclass::t('APP402'),
+            'pt_height' => Myclass::t('APP403'),
+            'pt_weight' => Myclass::t('APP404'),
+            'pt_address' => Myclass::t('APP405'),
+            'pt_city' => Myclass::t('APP116'),
+            'pt_state' => Myclass::t('APP117'),
+            'pt_country' => Myclass::t('APP118'),
+            'pt_telephone' => Myclass::t('APP119'),
+            'pt_mobile' => Myclass::t('APP120'),
         );
     }
 

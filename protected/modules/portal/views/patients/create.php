@@ -3,7 +3,7 @@
 /* @var $model PatientProfile */
 
 $this->breadcrumbs=array(
-	'Patient Profiles'=>array('index'),
+	'Patients'=>array('index'),
 	'Create',
 );
 
@@ -11,9 +11,10 @@ $this->breadcrumbs=array(
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading"> Create PatientProfile</header>
+            <header class="panel-heading"> <?php echo Myclass::t('APP407'); ?></header>
             <div class="panel-body">
-                <?php $this->renderPartial('_form', array('model'=>$model, 'user_model' => $user_model)); ?>            </div>
+                <?php $this->renderPartial('_form', array('model'=>$model, 'user_model' => $user_model)); ?>            
+            </div>
         </section>
     </div>
 </div>

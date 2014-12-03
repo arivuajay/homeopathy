@@ -8,10 +8,10 @@ class PatientsController extends Controller
 	 */
 	public function filters()
 	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
+            return array(
+                'accessControl', // perform access control for CRUD operations
+                'postOnly + delete', // we only allow deletion via POST request
+            );
 	}
 
 	/**
@@ -21,15 +21,15 @@ class PatientsController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index', 'view', 'create', 'update', 'delete'),
-				'users'=>array('*'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+            return array(
+                array('allow',  // allow all users to perform 'index' and 'view' actions
+                    'actions'=>array('index', 'view', 'create', 'update', 'delete'),
+                    'users'=>array('@'),
+                ),
+                array('deny',  // deny all users
+                    'users'=>array('*'),
+                ),
+            );
 	}
 
 	/**
@@ -38,9 +38,9 @@ class PatientsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+            $this->render('view',array(
+                'model'=>$this->loadModel($id),
+            ));
 	}
 
 	/**
@@ -73,100 +73,69 @@ class PatientsController extends Controller
 	 */
 	 
 	 public function actionCreate() {
-        $user_model = new Users;
-        $model=new PatientProfile;
+            $user_model = new Users;
+            $model = new PatientProfile;
 		
-        // Uncomment the following line if AJAX validation is needed
-        $this->performAjaxValidation(array($user_model, $model));
+            // Uncomment the following line if AJAX validation is needed
+            $this->performAjaxValidation(array($user_model, $model));
 
-        if (isset($_POST['Users'])) {
-			//print_r( $_POST['PatientProfile']);print_r( $_POST['Users']);exit;
-            $user_model->attributes = $_POST['Users'];
-            $model->attributes = $_POST['PatientProfile'];
-            // validate BOTH models
-            $valid = $user_model->validate();
-            $valid = $model->validate() && $valid;
-            if($valid) {
-                $user_model->ur_role_id = 8;
-                $user_model->ur_status = 1;
-				$user_model->ur_password = Myclass::encrypt($user_model->ur_password);
-                $user_model->save(false);
+            if (isset($_POST['Users'])) {
+                $user_model->attributes = $_POST['Users'];
+                $model->attributes = $_POST['PatientProfile'];
+                // validate BOTH models
+                $valid = $user_model->validate();
+                $valid = $model->validate() && $valid;
+                if($valid) {
+                    $user_model->ur_role_id = 8;
+                    $user_model->ur_status = 1;
+                    
+                    $user_model->save(false);
 
-                $model->user_id = $user_model->ur_id;
-                $model->save(false);
+                    $model->user_id = $user_model->ur_id;
+                    $model->save(false);
 
-                $this->redirect(array('index'));
+                    $this->redirect(array('index'));
+                }
             }
+
+            $this->render('create', array(
+                'model' => $model,
+                'user_model' => $user_model,
+            ));
         }
-
-        $this->render('create', array(
-            'model' => $model,
-            'user_model' => $user_model,
-        ));
-    }
-
 	 
-	/*public function actionCreate()
-	{
-		$model=new PatientProfile;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['PatientProfile']))
-		{
-			$model->attributes=$_POST['PatientProfile'];
-			if($model->save())
-				$this->redirect(array('index'));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}*/
-
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	
-	 
 	public function actionUpdate($id)
 	{
-		
-		$model=$this->loadModel($id);
-		$user_model = Users::model()->findByAttributes(array('ur_id'=>$model->user_id));
-		//echo $user_model->ur_username; exit;
+            $model=$this->loadModel($id);
+            $user_model = Users::model()->findByAttributes(array('ur_id'=>$model->user_id));
 
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation(array($user_model, $model));
+            // Uncomment the following line if AJAX validation is needed
+            $this->performAjaxValidation(array($user_model, $model));
 
-		if(isset($_POST['PatientProfile'],$_POST['Users']))
-		{
-			$model->attributes=$_POST['PatientProfile'];
-			$user_model->attributes=$_POST['Users'];
-			// validate BOTH models
-            $valid = $model->validate();
-            $valid = $user_model->validate() && $valid;
-            if($valid) {
-             //   $model->ur_role_id = 9;
-              //  $model->ur_status = 1;
-                $user_model->save(false);
-
-                $model->user_id = $user_model->ur_id;
-                $model->save(false);
-
-                $this->redirect(array('view', 'id' => $model->pt_id));
+            if(isset($_POST['PatientProfile'],$_POST['Users']))
+            {
+                $model->attributes=$_POST['PatientProfile'];
+                $user_model->attributes=$_POST['Users'];
+                // validate BOTH models
+                $valid = $model->validate();
+                $valid = $user_model->validate() && $valid;
+                if($valid) {
+                    $user_model->save(false);
+                    $model->user_id = $user_model->ur_id;
+                    $model->save(false);
+                    $this->redirect(array('index'));
+                }
             }
-			if($model->save())
-				$this->redirect(array('index'));
-		}
 
-		$this->render('update',array(
-			'model'=>$model,
-			'user_model' => $user_model,
-		));
+            $this->render('update',array(
+                'model'=>$model,
+                'user_model' => $user_model,
+            ));
 	}
 
 	/**
@@ -174,15 +143,18 @@ class PatientsController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+        public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+            $patient_profile = $this->loadModel($id);
+            $user = Users::model()->findByPk($patient_profile->user_id);
+            $patient_profile->delete();
+            $user->delete();            
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
-    
+        
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

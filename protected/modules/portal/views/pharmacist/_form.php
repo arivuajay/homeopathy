@@ -22,7 +22,7 @@
         <div class="form-group">
             <?php echo $form->labelEx($model, 'ur_password', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
-                <?php echo $form->passwordField($model, 'ur_password', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+                <?php echo $form->passwordField($model, 'ur_password', array('value'=>'', 'size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
                 <?php echo $form->error($model, 'ur_password'); ?>
             </div>
         </div>
