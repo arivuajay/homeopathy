@@ -107,6 +107,7 @@ class PharmacistProfile extends CActiveRecord
             // @todo Please modify the following code to remove attributes that should not be searched.
 
             $criteria=new CDbCriteria;
+            $criteria->with = array( 'phrCountry', 'phrState', 'phrCity' );
 
             $criteria->compare('phr_id',$this->phr_id);
             $criteria->compare('user_id',$this->user_id);
@@ -117,9 +118,9 @@ class PharmacistProfile extends CActiveRecord
             $criteria->compare('phr_about',$this->phr_about,true);
             $criteria->compare('phr_address_1',$this->phr_address_1,true);
             $criteria->compare('phr_address_2',$this->phr_address_2,true);
-            $criteria->compare('phr_city',$this->phr_city);
-            $criteria->compare('phr_state',$this->phr_state);
-            $criteria->compare('phr_country',$this->phr_country);
+            $criteria->compare('phrCity.city',$this->phr_city, true);
+            $criteria->compare('phrState.state',$this->phr_state, true);
+            $criteria->compare('phrCountry.country',$this->phr_country, true);
             $criteria->compare('phr_phone',$this->phr_phone,true);
             $criteria->compare('phr_mobile',$this->phr_mobile,true);
 
