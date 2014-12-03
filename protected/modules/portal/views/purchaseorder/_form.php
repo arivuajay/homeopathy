@@ -44,7 +44,6 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="col-lg-2">
         <?php echo CHtml::button(Myclass::t('APP80'), array('class' => 'btn btn-default', 'onclick' => 'location.href="'.$this->createUrl('/portal/vendors/create').'"')) ?>
-<!--        <button class="btn btn-default" type="button">Default</button>-->
     </div>
 </div>
 <div class="clearfix"></div>
@@ -181,7 +180,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                             . 'var med_name = $("#PurchaseOrderMedicines_itm_med_id :selected").text();'
                                             . '$("#PurchaseOrderMedicines_itm_med_name").val(med_name);'
                                             . '}',
-                                            'data' => array('med_id' => 'js:this.value'),
+                                            'data' => array('med_id' => 'js:this.value', 'model' => 'PurchaseOrderMedicines'),
                                         )
                                     ));
                                     ?>
@@ -320,6 +319,10 @@ $form = $this->beginWidget('CActiveForm', array(
             var qty = $('#PurchaseOrderMedicines_itm_qty').val();
             var mrp = $('#PurchaseOrderMedicines_itm_mrp_price').val();
             var disc_perc = $('#PurchaseOrderMedicines_itm_discount').val();
+            
+            qty.length == 0 ? qty = 0 : '';
+            mrp.length == 0 ? mrp = 0 : '';
+            disc_perc.length == 0 ? disc_perc = 0 : '';
             
             var valid = ($.isNumeric(qty) && $.isNumeric(mrp) && $.isNumeric(disc_perc));
 

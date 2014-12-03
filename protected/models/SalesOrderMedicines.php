@@ -49,7 +49,7 @@ class SalesOrderMedicines extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('itm_id, itm_so_id, itm_med_id, itm_pkg_id, itm_batch_no, itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_qty, itm_total_price', 'safe', 'on'=>'search'),
                         //scope
-			array('itm_med_id, itm_pkg_id, itm_batch_no, itm_vat_tax, itm_mrp_price, itm_discount, itm_net_rate, itm_qty, itm_total_price', 'required', 'on'=>'medicineadd'),
+			array('itm_med_id, itm_pkg_id, itm_batch_no, itm_mrp_price, itm_net_rate, itm_qty, itm_total_price', 'required', 'on'=>'medicine_add'),
                         array('itm_med_name, itm_pkg_name','length')
 		);
 	}

@@ -76,8 +76,26 @@ class SalesorderController extends Controller {
 
         if (isset($_POST['SalesOrder'])) {
             $model->attributes = $_POST['SalesOrder'];
-            if ($model->save())
-                $this->redirect(array('index'));
+            $valid = $model->validate();
+            
+            foreach ($_POST['SalesOrderMedicines'] as $key => $data) {
+                $s_med = new SalesOrderMedicines('medicine_add');
+                $s_med->attributes = $data;
+                $valid = $s_med->validate() && $valid;
+            }
+            
+            if($valid){
+                if ($model->save(false)){
+                    foreach ($_POST['SalesOrderMedicines'] as $key => $data) {
+                        $data['itm_so_id'] = $model->so_id;
+                        unset($data['r_index']);
+                        $s_med = new SalesOrderMedicines('medicine_add');
+                        $s_med->attributes = $data;
+                        $s_med->save(false);
+                    }
+                    $this->redirect(array('index'));
+                }
+            }
         }
 
         $this->render('create', array(
@@ -93,18 +111,58 @@ class SalesorderController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
+        $sale_medicines = new SalesOrderMedicines;
+        $sales_medicine_list = SalesOrderMedicines::model()->findAll("itm_so_id = :SO_ID", array(':SO_ID' => $id));
+        
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['SalesOrder'])) {
             $model->attributes = $_POST['SalesOrder'];
-            if ($model->save())
-                $this->redirect(array('index'));
+            $valid = $model->validate();
+            
+            $post_ids = array();
+            foreach ($_POST['SalesOrderMedicines'] as $key => $data) {
+                $s_med = new SalesOrderMedicines('medicine_add');
+                $s_med->attributes = $data;
+                $valid = $s_med->validate() && $valid;
+                $post_ids[] = $data['itm_id'];
+            }
+            
+            if($valid){
+                $med_ids = array();
+                foreach ($sales_medicine_list as $medicine) {
+                    $med_ids[] = $medicine->attributes['itm_id'];
+                }
+                $delete_med = array_diff($med_ids, $post_ids);
+                
+                if ($model->save(false))
+                    foreach ($_POST['SalesOrderMedicines'] as $key => $data) {
+                        $data['itm_so_id'] = $id;
+                        if (isset($data['itm_id'])) {
+                            $p_med = SalesOrderMedicines::model()->findByPk($data['itm_id']);
+                            $p_med->attributes = $data;
+                            $p_med->update();
+                        } else {
+                            $p_med = new SalesOrderMedicines('medicine_add');;
+                            $p_med->attributes = $data;
+                            $p_med->save(false);
+                        }
+                    }
+                    //delete medicine list
+                    foreach ($delete_med as $id) {
+                        SalesOrderMedicines::model()->findByPk($id)->delete();
+                    }
+
+                    $this->redirect(array('index'));
+                
+            }
         }
 
         $this->render('update', array(
             'model' => $model,
+            'sale_medicines' => $sale_medicines,
+            'sales_medicine_list' => $sales_medicine_list
         ));
     }
 
@@ -135,15 +193,14 @@ class SalesorderController extends Controller {
         return $model;
     }
 
-    public function ActionMedicineadd() {
+    public function actionMedicineadd() {
         $sales_medicines = new SalesOrderMedicines('medicine_add');
-
         $this->performAjaxValidation($sales_medicines);
-        $sales_medicines->attributes = $_POST['PurchaseOrderMedicines'];
+        $sales_medicines->attributes = $_POST['SalesOrderMedicines'];
         $valid = $sales_medicines->validate();
 
         if ($valid)
-            echo json_encode($_POST['PurchaseOrderMedicines']);
+            echo json_encode($_POST['SalesOrderMedicines']);
         Yii::app()->end();
     }
 
@@ -172,7 +229,7 @@ class SalesorderController extends Controller {
      * @param SalesOrder $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'sales-order-form') {
+        if (isset($_POST['ajax']) && ($_POST['ajax'] === 'sales-order-form'  || $_POST['ajax'] === 'medicine-form')) {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

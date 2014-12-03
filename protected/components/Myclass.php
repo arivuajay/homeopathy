@@ -39,15 +39,15 @@ class Myclass extends CController {
     }
 
     public static function slugify($text) {
-// replace non letter or digits by -
+        // replace non letter or digits by -
         $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
-// trim
+        // trim
         $text = trim($text, '-');
-// transliterate
+        // transliterate
         $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-// lowercase
+        // lowercase
         $text = strtolower($text);
-// remove unwanted characters
+        // remove unwanted characters
         $text = preg_replace('~[^-\w]+~', '', $text);
 
         if (empty($text)) {
@@ -64,30 +64,30 @@ class Myclass extends CController {
 
         return $units;
     }
-    
-    public static function getStatus($key=NULL) {
-        $status = array('0' => 'In-active',  '1' => 'Active', '2' => 'Not defined');
-        if(isset($key) && $key != NULL)
+
+    public static function getStatus($key = NULL) {
+        $status = array('0' => 'In-active', '1' => 'Active', '2' => 'Not defined');
+        if (isset($key) && $key != NULL)
             return $status[$key];
-        
+
         return $status;
     }
-    
-    public static function getMedicineStatus($key=NULL) {
-        $status = array('0' => 'In-active',  '1' => 'Active', '2' => 'Not defined');
-        if(isset($key) && $key != NULL)
+
+    public static function getMedicineStatus($key = NULL) {
+        $status = array('0' => 'In-active', '1' => 'Active', '2' => 'Not defined');
+        if (isset($key) && $key != NULL)
             return $status[$key];
-        
+
         return $status;
     }
-    
-    public static function endsWith($str,$sub){
-        return ( substr( $str, strlen( $str ) - strlen( $sub ) ) == $sub );
+
+    public static function endsWith($str, $sub) {
+        return ( substr($str, strlen($str) - strlen($sub)) == $sub );
     }
-    
-    public static function getSaleType($type){
-        $s_type = array('1' => 'Retail', '2' => 'Wholesale');
-        if(isset($type))
+
+    public static function getSaleType($type) {
+        $s_type = array('1' => 'Retail (Patient)', '2' => 'Wholesale');
+        if (isset($type))
             return $s_type[$type];
         return $s_type;
     }
@@ -99,4 +99,5 @@ class Myclass extends CController {
 
         return $sex;
     }
+
 }

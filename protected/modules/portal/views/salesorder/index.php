@@ -22,46 +22,22 @@ $this->breadcrumbs=array(
                 'ajaxUrl' => $this->createUrl('/portal/salesorder/index'),
                 'columns' => array(
                                             array(
-                            'name' => 'tenant',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->tenant)',
-                            'filter' => CHtml::activeTextField($model, 'tenant', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'so_type',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->so_type)',
-                            'filter' => CHtml::activeTextField($model, 'so_type', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
                             'name' => 'so_date',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->so_date)',
+                            'value' => 'CHtml::encode(date("Y-m-d", strtotime($data->so_date)))',
                             'filter' => CHtml::activeTextField($model, 'so_date', array('class' => 'form-control input-sm')),
                         ),
                                             array(
                             'name' => 'so_user',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->so_user)',
+                            'value' => '$data->so_type == "1" ? $data->user->patient->pt_firstname : $data->vendor->ven_name',
                             'filter' => CHtml::activeTextField($model, 'so_user', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'so_doctor',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->so_doctor)',
-                            'filter' => CHtml::activeTextField($model, 'so_doctor', array('class' => 'form-control input-sm')),
                         ),
                                             array(
                             'name' => 'so_total',
                             'type' => 'raw',
                             'value' => 'CHtml::encode($data->so_total)',
                             'filter' => CHtml::activeTextField($model, 'so_total', array('class' => 'form-control input-sm')),
-                        ),
-                                            array(
-                            'name' => 'so_paid',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->so_paid)',
-                            'filter' => CHtml::activeTextField($model, 'so_paid', array('class' => 'form-control input-sm')),
                         ),
                                             array(
                             'name' => 'so_status',

@@ -58,6 +58,8 @@ class SalesOrder extends RActiveRecord
 		return array(
 			'tenant0' => array(self::BELONGS_TO, 'Tenants', 'tenant'),
 			'salesOrderMedicines' => array(self::HAS_MANY, 'SalesOrderMedicines', 'itm_so_id'),
+			'user' => array(self::BELONGS_TO, 'Users', 'so_user'),
+			'vendor' => array(self::BELONGS_TO, 'Vendors', 'so_user'),
 		);
 	}
 

@@ -66,7 +66,7 @@
     <div class="col-lg-8">
         <div id="customer_dd_div">
             <?php  
-            $patients_list = CHtml::listData(PatientProfile::model()->with('user')->findAll("ur_status = :STATUS", array(":STATUS" => '1')), 'user_id', 'pt_firstname');
+            $patients_list = CHtml::listData(PatientProfile::model()->with('user')->findAll("ur_status = :STATUS", array(":STATUS" => '1')), 'pt_id', 'pt_firstname');
             echo $form->dropDownList($model, 'so_user', $patients_list, array(
                                                                             'class'=>'form-control',
                                                                             'empty'=>Myclass::t('APP205'),
@@ -132,6 +132,14 @@
 
 <!--Hidden Medicine Sales Item Rows-->
 <div style="display: none" class="hidden_medicine_div">
+    <?php foreach ($sales_medicine_list as $key => $med) {?>
+        <div id="medicine_row_<?php echo $key+1 ?>" class="medicine_row">
+            <input type="hidden" value="<?php echo $key+1 ?>" name="SalesOrderMedicines[<?php echo $key+1 ?>][r_index]" id="SalesOrderMedicines_r_index_<?php echo $key+1 ?>">
+            <?php foreach($med as $index => $value){ ?>
+                <input type="hidden" value="<?php echo $value?>" name="SalesOrderMedicines[<?php echo $key+1 ?>][<?php echo $index ?>]" id="SalesOrderMedicines_<?php echo $index ?>_<?php echo $key+1 ?>">
+            <?php } ?>
+        </div>
+    <?php } ?>
 </div>
 
 
@@ -149,6 +157,23 @@
         </tr>
     </thead>
     <tbody>
+        <?php foreach ($sales_medicine_list as $key => $med) { ?>
+            <tr id="med_tr_<?php echo $key + 1 ?>">
+                <td><p><?php echo $med->itmMed->med_name ?> <b><?php echo Myclass::t('APP77'); ?> : </b><?php echo $med->itmPkg->pkg_med_unit ?></p>
+                    <p><b><?php echo Myclass::t('APP201'); ?></b> : <?php echo $med->itm_batch_no ?><p>
+                </td>
+                <td class="text-center"><?php echo $med->itm_qty ?></td>
+                <td class="text-right"><?php echo $med->itm_mrp_price ?></td>
+                <td class="text-right"><?php echo $med->itm_vat_tax ?></td>
+                <td class="text-right"><?php echo $med->itm_discount ?></td>
+                <td class="text-right"><?php echo $med->itm_net_rate ?></td>
+                <td class="text-right"><?php echo $med->itm_total_price ?></td>
+                <td class="text-center">
+                    <a href="javascript:edit(<?php echo $key + 1 ?>)" title="<?php echo Myclass::t('APP65'); ?>"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+                    <a href="javascript:delete_row(<?php echo $key + 1 ?>)" title="<?php echo Myclass::t('APP66'); ?>"><i class="fa fa-times"></i></a>
+                </td>            
+            </tr>
+        <?php } ?>
 
     </tbody>
 </table>
@@ -335,7 +360,7 @@
         qty.length == 0 ? qty = 0 : '';
         mrp.length == 0 ? mrp = 0 : '';
         disc_perc.length == 0 ? disc_perc = 0 : '';
-        
+
         var valid = ($.isNumeric(qty) && $.isNumeric(mrp) && $.isNumeric(disc_perc));
 
         if(valid){
@@ -452,8 +477,7 @@
     }
     
     function setPackage(){
-        var pkg_name = $("#SalesOrderMedicines_itm_pkg_id :selected").text();
-        $("#SalesOrderMedicines_itm_pkg_name").val(pkg_name);
+        $("#SalesOrderMedicines_itm_pkg_name").val($("#SalesOrderMedicines_itm_pkg_id :selected").text());
         get_batch($('#SalesOrderMedicines_itm_med_id').val(),$('#SalesOrderMedicines_itm_pkg_id').val());
     }
     
@@ -470,12 +494,14 @@
                     data: {'med_id':$("#SalesOrderMedicines_itm_med_id_"+key).val(),'pkg_id':$("#SalesOrderMedicines_itm_pkg_id_"+key).val(),'model':'SalesOrderMedicines'},
                     success:function(ret2){
                         $('#batch_dd_div').html(ret2);
+
                         $('#SalesOrderMedicines_itm_med_id').val($("#SalesOrderMedicines_itm_med_id_"+key).val());
                         $('#SalesOrderMedicines_itm_pkg_id').val($("#SalesOrderMedicines_itm_pkg_id_"+key).val());
                         $('#SalesOrderMedicines_itm_batch_no').val($("#SalesOrderMedicines_itm_batch_no_"+key).val());
                         
-                        $("#SalesOrderMedicines_itm_med_name").val($("#SalesOrderMedicines_itm_med_id :selected").text());
                         $("#SalesOrderMedicines_itm_pkg_name").val($("#SalesOrderMedicines_itm_pkg_id :selected").text());
+                        $("#SalesOrderMedicines_itm_med_name").val($("#SalesOrderMedicines_itm_med_id :selected").text());
+
                     }
                 });
             },

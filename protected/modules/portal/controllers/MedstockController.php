@@ -23,7 +23,7 @@ class MedstockController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index', 'view', 'create', 'update', 'delete', 'loadbatchmedicines'),
+				'actions'=>array('index', 'view', 'create', 'update', 'delete', 'loadmedicines'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -143,12 +143,16 @@ class MedstockController extends Controller
 		return $model;
 	}
         
-        public function actionLoadbatchmedicines($med_id,$pkg_id) {
-            $batch_list = CHtml::listData(MedStock::model()->findAll("stk_med_id = :med_id and stk_pkg_id = :pkg_id", array(":med_id" => $med_id, ":pkg_id" => $pkg_id)), 'stk_batch_no', 'stk_batch_no');
-            $model = new SalesOrderMedicines();
-            echo CHtml::activeDropDownList($model, 'so_user', $batch_list, array(
+        public function actionLoadmedicines($med_id,$pkg_id,$model) {
+            $batch_list = CHtml::listData(MedStock::model()->findAll("stk_med_id = :med_id and stk_pkg_id = :pkg_id", 
+                                                                    array(":med_id" => $med_id, 
+                                                                        ":pkg_id" => $pkg_id)), 
+                        'stk_batch_no', 'stk_batch_no');
+            $model = new $model;
+            echo CHtml::activeDropDownList($model, 'itm_batch_no', $batch_list, array(
                 'class' => 'form-control',
                 'empty' => Myclass::t('APP205'),
+                'onchange' => 'set_rates(this.value)'
             ));
 
             Yii::app()->end();

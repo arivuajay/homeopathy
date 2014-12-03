@@ -20,7 +20,7 @@ class PurchaseorderController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'create', 'update', 'delete', 'add_medicine_entry', 'medicineadd'),
+                'actions' => array('index', 'view', 'create', 'update', 'delete', 'add_medicine_entry', 'medicineadd', 'loadmedrate'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -94,7 +94,7 @@ class PurchaseorderController extends Controller {
             foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
                 $p_med = new PurchaseOrderMedicines('medicine_add');
                 $p_med->attributes = $data;
-                $valid = $model->validate() && $valid;
+                $valid = $p_med->validate() && $valid;
             }
             
             if($valid){
@@ -116,7 +116,7 @@ class PurchaseorderController extends Controller {
         ));
     }
     
-    public function ActionMedicineadd() {
+    public function actionMedicineadd() {
         $purchase_medicines = new PurchaseOrderMedicines('medicine_add');
         
         $this->performAjaxValidation($purchase_medicines);
@@ -149,7 +149,7 @@ class PurchaseorderController extends Controller {
             foreach ($_POST['PurchaseOrderMedicines'] as $key => $data) {
                 $p_med = new PurchaseOrderMedicines('medicine_add');
                 $p_med->attributes = $data;
-                $valid = $model->validate() && $valid;
+                $valid = $p_med->validate() && $valid;
                 $post_ids[] = $data['itm_id'];
             }
             
@@ -215,6 +215,17 @@ class PurchaseorderController extends Controller {
         return $model;
     }
 
+    public function actionLoadmedrate($batch_no) {
+        $medicine = PurchaseOrderMedicines::model()->find('itm_batch_no = :batch order by itm_id desc ', array(':batch' => $batch_no));
+        $return = array();
+        $return['mrp'] = $medicine->attributes['itm_mrp_price'];
+        $return['vat'] = $medicine->attributes['itm_vat_tax'];
+        $return['disc'] = $medicine->attributes['itm_discount'];
+        $return['net_rate'] = $medicine->attributes['itm_net_rate'];
+        echo json_encode($return);
+        Yii::app()->end();
+    }
+    
     /**
      * Performs the AJAX validation.
      * @param PurchaseOrder $model the model to be validated
