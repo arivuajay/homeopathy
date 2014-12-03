@@ -42,7 +42,7 @@ echo "\$this->breadcrumbs=array(
                                             "\t\t\t\t\t\t\t\t\t\t\t\$lbl_cls = (\$data->{$column->name} == 1) ? 'label-success' : 'label-danger'; \n".
                                             "return '<span class=\"label '.\$lbl_cls.' label-mini\">' . Myclass::getStatus(\$data->{$column->name}) . '</span>'; \n".
                                           "}";
-                            $filterVal = "CHtml::activeDropDownList(\$model, '$column->name', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm'))";
+                            $filterVal = "CHtml::activeDropDownList(\$model, '$column->name', Myclass::getStatus(), array('empty' => Myclass::t('APP61'), 'class' => 'form-control input-sm'))";
                         }
                         ?>
                         array(

@@ -64,12 +64,12 @@ class MedStock extends RActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'tenant' => 'Tenant',
-			'stk_id' => 'Stk',
-			'stk_med_id' => 'Stk Med',
-			'stk_pkg_id' => 'Stk Pkg',
-			'stk_batch_no' => 'Stk Batch No',
-			'stk_avail_units' => 'Stk Avail Units',
+			'tenant' => Myclass::t('APP78'),
+			'stk_id' => Myclass::t('APP244'),
+			'stk_med_id' => Myclass::t('APP214'),
+			'stk_pkg_id' => Myclass::t('APP77'),
+			'stk_batch_no' => Myclass::t('APP201'),
+			'stk_avail_units' => Myclass::t('APP245'),
 			'stk_debit_units' => 'Stk Debit Units',
 		);
 	}

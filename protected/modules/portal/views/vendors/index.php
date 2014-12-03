@@ -76,7 +76,7 @@ $this->breadcrumbs = array(
                             $lbl_cls = ($data->ven_status == 1) ? 'label-success' : 'label-danger';
                             return '<span class="label ' . $lbl_cls . ' label-mini">' . Myclass::getStatus($data->ven_status) . '</span>';
                         },
-                        'filter' => CHtml::activeDropDownList($model, 'ven_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeDropDownList($model, 'ven_status', Myclass::getStatus(), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
                     ),
 //                    array(
 //                        'name' => 'ven_created_by',

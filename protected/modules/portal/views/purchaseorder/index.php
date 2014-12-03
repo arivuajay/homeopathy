@@ -8,7 +8,8 @@ $this->breadcrumbs=array(
 ?>
 <section class="panel">
     <header class="panel-heading">
-        Purchase Orders        <?php        
+        <?php
+        echo Myclass::t('APP240');
         echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/purchaseorder/create'), array('class' => 'btn btn-sm btn-success pull-right'));
         ?>
     </header>
@@ -62,33 +63,33 @@ $this->breadcrumbs=array(
                             'value' => 'CHtml::encode($data->poVendor->ven_name)',
                             'filter' => CHtml::activeTextField($model, 'po_vendor', array('class' => 'form-control input-sm')),
                         ),
-                                            array(
-                            'name' => 'po_invoice',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->po_invoice)',
-                            'filter' => CHtml::activeTextField($model, 'po_invoice', array('class' => 'form-control input-sm')),
-                        ),
 //                                            array(
-//                            'name' => 'po_total',
+//                            'name' => 'po_invoice',
 //                            'type' => 'raw',
-//                            'value' => 'CHtml::encode($data->po_total)',
-//                            'filter' => CHtml::activeTextField($model, 'po_total', array('class' => 'form-control input-sm')),
+//                            'value' => 'CHtml::encode($data->po_invoice)',
+//                            'filter' => CHtml::activeTextField($model, 'po_invoice', array('class' => 'form-control input-sm')),
 //                        ),
                                             array(
-                            'name' => 'po_paid',
+                            'name' => 'po_total',
                             'type' => 'raw',
-                            'value' => 'CHtml::encode($data->po_paid)',
-                            'filter' => CHtml::activeTextField($model, 'po_paid', array('class' => 'form-control input-sm')),
+                            'value' => 'CHtml::encode($data->po_total)',
+                            'filter' => CHtml::activeTextField($model, 'po_total', array('class' => 'form-control input-sm')),
                         ),
 //                                            array(
-//                            'name' => 'po_status',
+//                            'name' => 'po_paid',
 //                            'type' => 'raw',
-//                            'value' => function($data) { 
-//											$lbl_cls = ($data->po_status == 1) ? 'label-success' : 'label-danger'; 
-//return '<span class="label '.$lbl_cls.' label-mini">' . Myclass::getStatus($data->po_status) . '</span>'; 
-//},
-//                            'filter' => CHtml::activeDropDownList($model, 'po_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
+//                            'value' => 'CHtml::encode($data->po_paid)',
+//                            'filter' => CHtml::activeTextField($model, 'po_paid', array('class' => 'form-control input-sm')),
 //                        ),
+                                            array(
+                            'name' => 'po_status',
+                            'type' => 'raw',
+                            'value' => function($data) { 
+											$lbl_cls = ($data->po_status == 1) ? 'label-success' : 'label-danger'; 
+return '<span class="label '.$lbl_cls.' label-mini">' . Myclass::getStatus($data->po_status) . '</span>'; 
+},
+                            'filter' => CHtml::activeDropDownList($model, 'po_status', Myclass::getStatus(), array('empty' => Myclass::t('APP61'), 'class' => 'form-control input-sm')),
+                        ),
                                            
                                     
                     array(

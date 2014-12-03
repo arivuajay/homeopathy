@@ -54,7 +54,8 @@ $this->breadcrumbs = array(
                         'name' => 'med_cat_id',
                         'type' => 'raw',
                         'value' => 'CHtml::encode($data->medCat->med_cat_name)',
-                        'filter' => CHtml::activeTextField($model, 'med_cat_id', array('class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeDropDownList($model, 'med_cat_id',  CHtml ::listData(MedCategories::model()->findAll(), 'med_cat_id', 'med_cat_name'), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
+//                        'filter' => CHtml::activeTextField($model, 'med_cat_id', array('class' => 'form-control input-sm')),
                     ),
                     array(
                         'name' => 'med_name',
@@ -75,7 +76,7 @@ $this->breadcrumbs = array(
                             $lbl_cls = ($data->med_status == 1) ? 'label-success' : 'label-danger';
                             return '<span class="label ' . $lbl_cls . ' label-mini">' . Myclass::getStatus($data->med_status) . '</span>';
                         },
-                        'filter' => CHtml::activeDropDownList($model, 'med_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeDropDownList($model, 'med_status', Myclass::getStatus(), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
                     ),
                     array(
                         'class' => 'CButtonColumn',

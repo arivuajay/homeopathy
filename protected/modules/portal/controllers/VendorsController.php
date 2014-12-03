@@ -48,6 +48,7 @@ class VendorsController extends Controller
 	 */
         public function actionIndex() {
             $model = new Vendors('search');
+            $model->setAttribute('ven_status', '');
             if (isset($_GET['Vendors']))
                 $model->attributes = $_GET['Vendors'];
 

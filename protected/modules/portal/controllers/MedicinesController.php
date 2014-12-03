@@ -178,6 +178,7 @@ class MedicinesController extends Controller {
      */
     public function actionIndex() {
         $model = new Medicines('search');
+        $model->setAttribute('med_status','');
         if (isset($_GET['Medicines']))
             $model->attributes = $_GET['Medicines'];
 

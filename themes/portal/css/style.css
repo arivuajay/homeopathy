@@ -5546,3 +5546,7 @@ table  .grid-table thead th{
 .sort-link.desc.disabled {
     background: url("../img/sort_desc_disabled.png") no-repeat scroll right center rgba(0, 0, 0, 0);
 }
+
+.form-control {
+  color: #000000;
+}

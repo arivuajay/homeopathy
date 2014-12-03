@@ -47,8 +47,10 @@ class PurchaseorderController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        $purchase_medicine_list = PurchaseOrderMedicines::model()->findAll("itm_po_id = :PO_ID", array(':PO_ID' => $id));
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'purchase_medicine_list' => $purchase_medicine_list
         ));
     }
 
@@ -57,6 +59,7 @@ class PurchaseorderController extends Controller {
      */
     public function actionIndex() {
         $model = new PurchaseOrder('search');
+        $model->setAttribute('po_status','');
         if (isset($_GET['PurchaseOrder']))
             $model->attributes = $_GET['PurchaseOrder'];
 

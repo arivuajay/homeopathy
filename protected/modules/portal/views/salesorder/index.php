@@ -30,7 +30,7 @@ $this->breadcrumbs=array(
                                             array(
                             'name' => 'so_user',
                             'type' => 'raw',
-                            'value' => '$data->so_type == "1" ? $data->user->patient->pt_firstname : $data->vendor->ven_name',
+                            'value' => '$data->so_type == "1" ? CHtml::encode($data->user->patient->pt_firstname) : CHtml::encode($data->vendor->ven_name)',
                             'filter' => CHtml::activeTextField($model, 'so_user', array('class' => 'form-control input-sm')),
                         ),
                                             array(
@@ -46,7 +46,7 @@ $this->breadcrumbs=array(
 											$lbl_cls = ($data->so_status == 1) ? 'label-success' : 'label-danger'; 
 return '<span class="label '.$lbl_cls.' label-mini">' . Myclass::getStatus($data->so_status) . '</span>'; 
 },
-                            'filter' => CHtml::activeDropDownList($model, 'so_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
+                            'filter' => CHtml::activeDropDownList($model, 'so_status', Myclass::getStatus(), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
                         ),
                                     
                     array(

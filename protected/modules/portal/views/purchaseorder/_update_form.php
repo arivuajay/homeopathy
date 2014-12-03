@@ -30,7 +30,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="col-lg-8">
         <div class="iconic-input right">
             <i class="fa fa-calendar"></i>
-            <?php echo $form->textField($model, 'po_date', array('class' => 'form-control form-control-inline input-medium default-date-picker')); ?>
+            <?php echo $form->textField($model, 'po_date', array('class' => 'form-control form-control-inline input-medium default-date-picker', 'value' => date("Y-m-d", strtotime($model->po_date)))); ?>
         </div>
         <?php echo $form->error($model, 'po_date', array('class' => 'col-lg-12')); ?>
     </div>
@@ -59,7 +59,12 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <div class="form-group col-lg-6">
-    <?php echo $form->labelEx($model, 'po_total', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
+    <?php echo $form->labelEx($model, 'po_total', array(
+                                                    'class' => 'col-lg-4 col-sm-2 control-label tooltips',
+                                                    'data-toggle' => 'tooltip',
+                                                    'data-placement' => 'left',
+                                                    'data-original-title' => Myclass::t('APP242')
+                                                )); ?>
     <div class="col-lg-8">
         <div class="iconic-input right">
             <i class="fa fa-rupee"></i>
@@ -120,11 +125,11 @@ $form = $this->beginWidget('CActiveForm', array(
     <thead>
         <tr>
             <th><i class="fa fa-medkit"></i> <?php echo Myclass::t('APP215'); ?></th>
-            <th class="text-center"><i class="fa fa-list"></i> <?php echo Myclass::t('APP206'); ?></th>
-            <th class="text-right"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP207'); ?></th>
-            <th class="text-right"><?php echo Myclass::t('APP208'); ?></th>
-            <th class="text-right"><?php echo Myclass::t('APP209'); ?></th>
-            <th class="text-right"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP210'); ?></th>
+            <th class="text-center hidden-phone"><i class="fa fa-list"></i> <?php echo Myclass::t('APP206'); ?></th>
+            <th class="text-right hidden-phone"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP207'); ?></th>
+            <th class="text-right hidden-phone"><?php echo Myclass::t('APP208'); ?></th>
+            <th class="text-right hidden-phone"><?php echo Myclass::t('APP209'); ?></th>
+            <th class="text-right hidden-phone"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP210'); ?></th>
             <th class="text-right"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP211'); ?></th>
             <th class="text-center"><i class=" fa fa-edit"></i> <?php echo Myclass::t('APP102'); ?></th>
         </tr>
@@ -137,11 +142,11 @@ $form = $this->beginWidget('CActiveForm', array(
                     <p><b><?php echo Myclass::t('APP203'); ?></b> : <?php echo date('Y-m-d', strtotime($med->itm_exp_date)) ?><p>
                     <p><b><?php echo Myclass::t('APP202'); ?></b> : <?php echo date('Y-m-d', strtotime($med->itm_manf_date)) ?><p>
                 </td>
-                <td class="text-center"><?php echo $med->itm_qty ?></td>
-                <td class="text-right"><?php echo $med->itm_mrp_price ?></td>
-                <td class="text-right"><?php echo $med->itm_vat_tax ?></td>
-                <td class="text-right"><?php echo $med->itm_discount ?></td>
-                <td class="text-right"><?php echo $med->itm_net_rate ?></td>
+                <td class="text-center hidden-phone"><?php echo $med->itm_qty ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_mrp_price ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_vat_tax ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_discount ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_net_rate ?></td>
                 <td class="text-right"><?php echo $med->itm_total_price ?></td>
                 <td class="text-center">
                     <a href="javascript:edit(<?php echo $key + 1 ?>)" title="<?php echo Myclass::t('APP65'); ?>"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
@@ -255,6 +260,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_manf_date"); ?>
                                 </div>
                             </div>
+                            <div class="clearfix"></div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -277,6 +283,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_qty"); ?>
                                 </div>
                             </div>
+                            <div class="clearfix"></div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -299,6 +306,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form2->error($purchase_medicines, "itm_vat_tax"); ?>
                                 </div>
                             </div>
+                            <div class="clearfix"></div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -398,11 +406,11 @@ $form = $this->beginWidget('CActiveForm', array(
                     insert_row += '<p><b><?php echo Myclass::t('APP201'); ?></b> : ' + data['itm_batch_no'] + '<p>';
                     insert_row += '<p><b><?php echo Myclass::t('APP203'); ?></b> : ' + data['itm_exp_date'] + '<p>';
                     insert_row += '<p><b><?php echo Myclass::t('APP202'); ?></b> : ' + data['itm_manf_date'] + '<p></td>';
-                    insert_row += '<td class="text-center">' + data['itm_qty'] + '</td>';
-                    insert_row += '<td class="text-right">' + Number(data['itm_mrp_price']).toFixed(2) + '</td>';
-                    insert_row += '<td class="text-right">' + Number(data['itm_vat_tax']).toFixed(2) + '</td>';
-                    insert_row += '<td class="text-right">' + Number(data['itm_discount']).toFixed(2) + '</td>';
-                    insert_row += '<td class="text-right">' + Number(data['itm_net_rate']).toFixed(2) + '</td>';
+                    insert_row += '<td class="text-center hidden-phone">' + data['itm_qty'] + '</td>';
+                    insert_row += '<td class="text-right hidden-phone">' + Number(data['itm_mrp_price']).toFixed(2) + '</td>';
+                    insert_row += '<td class="text-right hidden-phone">' + Number(data['itm_vat_tax']).toFixed(2) + '</td>';
+                    insert_row += '<td class="text-right hidden-phone">' + Number(data['itm_discount']).toFixed(2) + '</td>';
+                    insert_row += '<td class="text-right hidden-phone">' + Number(data['itm_net_rate']).toFixed(2) + '</td>';
                     insert_row += '<td class="text-right">' + Number(data['itm_total_price']).toFixed(2) + '</td>';
                     insert_row += '<td class="text-center"><a href="javascript:edit(' + count + ')" title="<?php echo Myclass::t('APP65'); ?>"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;<a href="javascript:delete_row(' + count + ')" title="<?php echo Myclass::t('APP66'); ?>"><i class="fa fa-times"></i></a></td>';
 
@@ -413,11 +421,6 @@ $form = $this->beginWidget('CActiveForm', array(
                     else if (mode == 'edit') {
                         $('#medicines_list #med_tr_' + count).html(insert_row);
                     }
-
-//                    $('#medicines_list #med_tr_'+count).css('background','#a9d86e');
-//                    setTimeout(function() {
-//                        $('#medicines_list #med_tr_'+count).css('background','');
-//                    }, 2000);
 
                     //add hidden form fields in main form
                     if (mode == 'add') {
@@ -433,7 +436,8 @@ $form = $this->beginWidget('CActiveForm', array(
                             $('#PurchaseOrderMedicines_' + index + '_' + count).val(value);
                         });
                     }
-
+                    
+                    set_total_amount();
                     //reset form and close the modal
                     reset_form();
                 },
@@ -453,8 +457,13 @@ $form = $this->beginWidget('CActiveForm', array(
     function edit(key) {
         $("#PurchaseOrderMedicines_itm_med_id").val($("#PurchaseOrderMedicines_itm_med_id_" + key).val()).change();
         $('#PurchaseOrderMedicines_itm_batch_no').val($("#PurchaseOrderMedicines_itm_batch_no_" + key).val());
-        $('#PurchaseOrderMedicines_itm_manf_date').val($("#PurchaseOrderMedicines_itm_manf_date_" + key).val());
-        $('#PurchaseOrderMedicines_itm_exp_date').val($("#PurchaseOrderMedicines_itm_exp_date_" + key).val());
+        
+        var itm_manf_date = Date.parse($("#PurchaseOrderMedicines_itm_manf_date_" + key).val()).toString('yyyy-MM-dd');
+        var itm_exp_date = Date.parse($("#PurchaseOrderMedicines_itm_exp_date_" + key).val()).toString('yyyy-MM-dd');
+        
+        $('#PurchaseOrderMedicines_itm_manf_date').val(itm_manf_date);
+        $('#PurchaseOrderMedicines_itm_exp_date').val(itm_exp_date);
+        
         $('#PurchaseOrderMedicines_itm_qty').val($("#PurchaseOrderMedicines_itm_qty_" + key).val());
         $('#PurchaseOrderMedicines_itm_mrp_price').val($("#PurchaseOrderMedicines_itm_mrp_price_" + key).val());
         $('#PurchaseOrderMedicines_itm_vat_tax').val($("#PurchaseOrderMedicines_itm_vat_tax_" + key).val());
@@ -484,6 +493,7 @@ $form = $this->beginWidget('CActiveForm', array(
         if (con){
             $("#med_tr_" + key).remove();
             $("#medicine_row_" + key).remove();
+            set_total_amount();
         }
     }
 
@@ -493,4 +503,16 @@ $form = $this->beginWidget('CActiveForm', array(
         $('.med_hidden_span').html('');
         $('#medicine_form').modal('hide');
     }
+    
+    function set_total_amount(){
+        total_amount = 0.00;
+        for(i = 1; i <= length; i++){
+            if($('#PurchaseOrderMedicines_itm_total_price_'+i).val()){
+                console.log($('#PurchaseOrderMedicines_itm_total_price_'+i).val());
+                total_amount = total_amount + parseFloat($('#PurchaseOrderMedicines_itm_total_price_'+i).val());
+            }
+        }
+        $.isNumeric(total_amount) ? $('#PurchaseOrder_po_total').val(total_amount.toFixed(2)) : '0.00';
+    }
+
 </script>

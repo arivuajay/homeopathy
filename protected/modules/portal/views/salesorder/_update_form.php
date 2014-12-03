@@ -29,7 +29,7 @@
     <div class="col-lg-8">
         <div class="iconic-input right">
             <i class="fa fa-calendar"></i>
-            <?php echo $form->textField($model, 'so_date', array('class' => 'form-control form-control-inline input-medium default-date-picker')); ?>
+            <?php echo $form->textField($model, 'so_date', array('class' => 'form-control form-control-inline input-medium default-date-picker', 'value' => date("Y-m-d", strtotime($model->so_date)))); ?>
         </div>
         <?php echo $form->error($model, 'so_date', array('class' => 'col-lg-12')); ?>
     </div>
@@ -66,7 +66,7 @@
     <div class="col-lg-8">
         <div id="customer_dd_div">
             <?php  
-            $patients_list = CHtml::listData(PatientProfile::model()->with('user')->findAll("ur_status = :STATUS", array(":STATUS" => '1')), 'pt_id', 'pt_firstname');
+            $patients_list = CHtml::listData(PatientProfile::model()->with('user')->findAll("ur_status = :STATUS", array(":STATUS" => '1')), 'user_id', 'pt_firstname');
             echo $form->dropDownList($model, 'so_user', $patients_list, array(
                                                                             'class'=>'form-control',
                                                                             'empty'=>Myclass::t('APP205'),
@@ -79,7 +79,7 @@
 <div class="form-group col-lg-6" id="doctor-div">
     <?php echo $form->labelEx($model,'so_doctor',array('class'=>'col-lg-4 col-sm-2 control-label')); ?>
     <div class="col-lg-8">
-        <?php $doctors_list = CHtml::listData(DoctorProfile::model()->with('user')->findAll("ur_status = :STATUS", array(":STATUS" => '1')), 'docinfo_id', 'doc_firstname');?>
+        <?php $doctors_list = CHtml::listData(DoctorProfile::model()->with('user')->findAll("ur_status = :STATUS", array(":STATUS" => '1')), 'user_id', 'doc_firstname');?>
         <?php echo $form->dropDownList($model, 'so_doctor', $doctors_list, array('empty' => Myclass::t('APP61'), 'class' => "form-control")) ?>
         <?php echo $form->error($model,'so_doctor'); ?>
     </div>
@@ -87,7 +87,12 @@
 <div class="clearfix"></div>
 
 <div class="form-group col-lg-6">
-    <?php echo $form->labelEx($model, 'so_total', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
+    <?php echo $form->labelEx($model, 'so_total', array(
+                                                    'class' => 'col-lg-4 col-sm-2 control-label tooltips',
+                                                    'data-toggle' => 'tooltip',
+                                                    'data-placement' => 'top',
+                                                    'data-original-title' => Myclass::t('APP242')
+                                                )); ?>
     <div class="col-lg-8">
         <div class="iconic-input right">
             <i class="fa fa-rupee"></i>
@@ -147,11 +152,11 @@
     <thead>
         <tr>
             <th><i class="fa fa-medkit"></i> <?php echo Myclass::t('APP215'); ?></th>
-            <th class="text-center"><i class="fa fa-list"></i> <?php echo Myclass::t('APP206'); ?></th>
-            <th class="text-right"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP207'); ?></th>
-            <th class="text-right"><?php echo Myclass::t('APP208'); ?></th>
-            <th class="text-right"><?php echo Myclass::t('APP209'); ?></th>
-            <th class="text-right"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP210'); ?></th>
+            <th class="text-center hidden-phone"><i class="fa fa-list"></i> <?php echo Myclass::t('APP206'); ?></th>
+            <th class="text-right hidden-phone"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP207'); ?></th>
+            <th class="text-right hidden-phone"><?php echo Myclass::t('APP208'); ?></th>
+            <th class="text-right hidden-phone"><?php echo Myclass::t('APP209'); ?></th>
+            <th class="text-right hidden-phone"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP210'); ?></th>
             <th class="text-right"><i class=" fa fa-rupee"></i> <?php echo Myclass::t('APP211'); ?></th>
             <th class="text-center"><i class=" fa fa-edit"></i> <?php echo Myclass::t('APP102'); ?></th>
         </tr>
@@ -162,11 +167,11 @@
                 <td><p><?php echo $med->itmMed->med_name ?> <b><?php echo Myclass::t('APP77'); ?> : </b><?php echo $med->itmPkg->pkg_med_unit ?></p>
                     <p><b><?php echo Myclass::t('APP201'); ?></b> : <?php echo $med->itm_batch_no ?><p>
                 </td>
-                <td class="text-center"><?php echo $med->itm_qty ?></td>
-                <td class="text-right"><?php echo $med->itm_mrp_price ?></td>
-                <td class="text-right"><?php echo $med->itm_vat_tax ?></td>
-                <td class="text-right"><?php echo $med->itm_discount ?></td>
-                <td class="text-right"><?php echo $med->itm_net_rate ?></td>
+                <td class="text-center hidden-phone"><?php echo $med->itm_qty ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_mrp_price ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_vat_tax ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_discount ?></td>
+                <td class="text-right hidden-phone"><?php echo $med->itm_net_rate ?></td>
                 <td class="text-right"><?php echo $med->itm_total_price ?></td>
                 <td class="text-center">
                     <a href="javascript:edit(<?php echo $key + 1 ?>)" title="<?php echo Myclass::t('APP65'); ?>"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
@@ -403,7 +408,7 @@
         });
     }
 
-    var length = 0;
+    var length = <?php echo count($sales_medicine_list) ?>;
     
     function aftervalidate(form, data, hasError)
     {
@@ -429,11 +434,11 @@
                     
                     insert_row += '<td><p>'+data['itm_med_name']+' (<b><?php echo Myclass::t('APP77'); ?> : </b>'+data['itm_pkg_name']+') </p>';
                     insert_row += '<p><b><?php echo Myclass::t('APP201'); ?></b> : '+data['itm_batch_no']+'<p>';
-                    insert_row += '<td class="text-center">'+data['itm_qty']+'</td>';
-                    insert_row += '<td class="text-right">'+Number(data['itm_mrp_price']).toFixed(2)+'</td>';
-                    insert_row += '<td class="text-right">'+Number(data['itm_vat_tax']).toFixed(2)+'</td>';
-                    insert_row += '<td class="text-right">'+Number(data['itm_discount']).toFixed(2)+'</td>';
-                    insert_row += '<td class="text-right">'+Number(data['itm_net_rate']).toFixed(2)+'</td>';
+                    insert_row += '<td class="text-center hidden-phone">'+data['itm_qty']+'</td>';
+                    insert_row += '<td class="text-right hidden-phone">'+Number(data['itm_mrp_price']).toFixed(2)+'</td>';
+                    insert_row += '<td class="text-right hidden-phone">'+Number(data['itm_vat_tax']).toFixed(2)+'</td>';
+                    insert_row += '<td class="text-right hidden-phone">'+Number(data['itm_discount']).toFixed(2)+'</td>';
+                    insert_row += '<td class="text-right hidden-phone">'+Number(data['itm_net_rate']).toFixed(2)+'</td>';
                     insert_row += '<td class="text-right">'+Number(data['itm_total_price']).toFixed(2)+'</td>';
                     insert_row += '<td class="text-center"><a href="javascript:edit('+count+')" title="<?php echo Myclass::t('APP65'); ?>"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;<a href="javascript:delete_row('+count+')" title="<?php echo Myclass::t('APP66'); ?>"><i class="fa fa-times"></i></a></td>';
                     
@@ -465,6 +470,7 @@
                         });
                     }
                     
+                    set_total_amount();
                     //reset form and close the modal
                     reset_form();
                 },
@@ -534,7 +540,7 @@
         if(con)
             $("#med_tr_"+key).remove();
             $("#medicine_row_"+key).remove();
-            
+            set_total_amount();
     }
     
     function reset_form(){
@@ -543,4 +549,16 @@
         $('.med_hidden_span').html('');
         $('#medicine_form').modal('hide');
     }
+    
+    function set_total_amount(){
+        total_amount = 0.00;
+        for(i = 1; i <= length; i++){
+            if($('#SalesOrderMedicines_itm_total_price_'+i).val()){
+                console.log($('#SalesOrderMedicines_itm_total_price_'+i).val());
+                total_amount = total_amount + parseFloat($('#SalesOrderMedicines_itm_total_price_'+i).val());
+            }
+        }
+        $.isNumeric(total_amount) ? $('#SalesOrder_so_total').val(total_amount.toFixed(2)) : '0.00';
+    }
+
 </script>

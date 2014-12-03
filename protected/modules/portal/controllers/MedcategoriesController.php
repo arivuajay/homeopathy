@@ -41,6 +41,7 @@ class MedcategoriesController extends Controller {
 
     public function actionIndex() {
         $model = new MedCategories('search');
+        $model->setAttribute('med_cat_status','');
         if (isset($_GET['MedCategories']))
             $model->attributes = $_GET['MedCategories'];
         

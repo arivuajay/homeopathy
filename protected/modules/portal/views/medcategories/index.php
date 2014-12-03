@@ -24,7 +24,8 @@
                         'name' => 'med_cat_unit',
                         'type' => 'raw',
                         'value' => 'Myclass::getMedicineUnit($data->med_cat_unit)',
-                        'filter' => CHtml::activeTextField($model, 'med_cat_unit', array('class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeDropDownList($model, 'med_cat_unit', Myclass ::getMedicineUnit(), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
+//                        'filter' => CHtml::activeTextField($model, 'med_cat_unit', array('class' => 'form-control input-sm')),
                     ),
                     array(
                         'name' => 'active',
@@ -34,7 +35,7 @@
                             $lbl_cls = ($data->med_cat_status == 1) ? "label-success" : "label-danger" ;
                             return '<span class="label '.$lbl_cls.' label-mini">' . Myclass::getStatus($data->med_cat_status) . '</span>';
                         },
-                        'filter' => CHtml::activeDropDownList($model, 'med_cat_status', Myclass::getStatus(), array('empty' => '-Select-', 'class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeDropDownList($model, 'med_cat_status', Myclass::getStatus(), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
                     ),
                     array(
                         'class' => 'CButtonColumn',

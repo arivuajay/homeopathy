@@ -61,6 +61,7 @@ class Vendors extends RActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'purchaseOrders' => array(self::HAS_MANY, 'PurchaseOrder', 'po_vendor'),
+            'createuser' => array(self::BELONGS_TO, 'Users', 'ven_created_by'),
         );
     }
 

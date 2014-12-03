@@ -48,6 +48,7 @@ class MedstockController extends Controller
 	 */
         public function actionIndex() {
             $model = new MedStock('search');
+            $model->setAttribute('stk_avail_units','');
             if (isset($_GET['MedStock']))
                 $model->attributes = $_GET['MedStock'];
 

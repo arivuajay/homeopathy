@@ -34,8 +34,10 @@ class SalesorderController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        $sales_medicine_list = SalesOrderMedicines::model()->findAll("itm_so_id = :SO_ID", array(':SO_ID' => $id));
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'sales_medicine_list' => $sales_medicine_list
         ));
     }
 
@@ -44,6 +46,8 @@ class SalesorderController extends Controller {
      */
     public function actionIndex() {
         $model = new SalesOrder('search');
+        $model->setAttribute('so_type','');
+        $model->setAttribute('so_status','');
         if (isset($_GET['SalesOrder']))
             $model->attributes = $_GET['SalesOrder'];
 

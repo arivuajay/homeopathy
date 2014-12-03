@@ -134,6 +134,15 @@ return array(
     'APP235' => 'Doctor',
     'APP236' => 'Sales Order',
     'APP237' => 'Customer',
+    'APP238' => 'View Purchase Order',
+    'APP239' => 'View Sales Order',
+    'APP240' => 'Purchase Orders',
+    'APP241' => 'View Supplier',
+    'APP242' => 'Update Automatically',
+    'APP243' => 'Stock',
+    'APP244' => 'Stock Id',
+    'APP245' => 'Available Stock',
+    'APP246' => 'Stock Report',
     
     //Pharmacist
     'APP301' => 'Pharmacist',

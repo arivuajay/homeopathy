@@ -12,6 +12,7 @@
         <?php
         $themeUrl = Yii::app()->theme->baseUrl;
         $cs = Yii::app()->getClientScript();
+        $cs_pos_end = CClientScript::POS_END;
 
         $cs->registerCssFile($themeUrl . '/css/bootstrap.min.css');
         $cs->registerCssFile($themeUrl . '/css/bootstrap-reset.css');
@@ -44,28 +45,29 @@
         </section>
         <?php
         $cs->registerCoreScript('jquery');
-        $cs->registerScriptFile($themeUrl . '/js/bootstrap.min.js');
-        $cs->registerScriptFile($themeUrl . '/js/bootstrap-switch.js');
+        $cs->registerScriptFile($themeUrl . '/js/bootstrap.min.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/bootstrap-switch.js',$cs_pos_end);
         
-        $cs->registerScriptFile($themeUrl . '/js/jquery.dcjqaccordion.2.7.js');
-        $cs->registerScriptFile($themeUrl . '/js/jquery.scrollTo.min.js');
-        $cs->registerScriptFile($themeUrl . '/js/jquery.nicescroll.js');
-        $cs->registerScriptFile($themeUrl . '/js/jquery.sparkline.js');
+        $cs->registerScriptFile($themeUrl . '/js/jquery.dcjqaccordion.2.7.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/jquery.scrollTo.min.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/jquery.nicescroll.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/jquery.sparkline.js',$cs_pos_end);
 
-        $cs->registerScriptFile($themeUrl . '/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js');
+        $cs->registerScriptFile($themeUrl . '/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js',$cs_pos_end);
 //        $cs->registerScriptFile($themeUrl . '/assets/advanced-datatable/media/js/jquery.dataTables.js');
 //        $cs->registerScriptFile($themeUrl . '/assets/data-tables/DT_bootstrap.js');
-        $cs->registerScriptFile($themeUrl . '/js/owl.carousel.js');
+        $cs->registerScriptFile($themeUrl . '/js/owl.carousel.js',$cs_pos_end);
         
-        $cs->registerScriptFile($themeUrl . '/js/jquery.customSelect.min.js');
-        $cs->registerScriptFile($themeUrl . '/js/respond.min.js');
+        $cs->registerScriptFile($themeUrl . '/js/jquery.customSelect.min.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/respond.min.js',$cs_pos_end);
         
-        $cs->registerScriptFile($themeUrl . '/js/common-scripts.js');
-        $cs->registerScriptFile($themeUrl . '/js/sparkline-chart.js');
-        $cs->registerScriptFile($themeUrl . '/js/easy-pie-chart.js');
-        $cs->registerScriptFile($themeUrl . '/js/count.js');
+        $cs->registerScriptFile($themeUrl . '/js/common-scripts.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/sparkline-chart.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/easy-pie-chart.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/count.js',$cs_pos_end);
+        $cs->registerScriptFile($themeUrl . '/js/date.js',$cs_pos_end);
 
-        $cs->registerScriptFile($themeUrl . '/assets/bootstrap-datepicker/js/bootstrap-datepicker.js');
+        $cs->registerScriptFile($themeUrl . '/assets/bootstrap-datepicker/js/bootstrap-datepicker.js',$cs_pos_end);
 
         $cs->registerScript(
                 'Init', ' $(".alert-notify").animate({opacity: 1.0}, 3000).fadeOut("slow");
