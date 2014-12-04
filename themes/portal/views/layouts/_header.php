@@ -226,14 +226,13 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="<?php echo $app->theme->baseUrl; ?>/img/avatar1_small.jpg">
-                    <span class="username">Jhon Doue</span>
+                    <span class="username"><?php echo (Yii::app()->user->getName()); ?></span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
                     <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i>Change Password</a></li>
                     <li>
                         <?php
                         echo CHtml::link('<i class="fa fa-key"></i> Log Out', array('/portal/default/logout'));

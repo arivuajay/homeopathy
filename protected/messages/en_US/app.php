@@ -14,6 +14,7 @@ return array(
     'APP11' => 'Incorrect Username or Password',
     'APP12' => 'Your account has been blocked',
     'APP13' => 'Your account was deleted. Contact Administrator.',
+    'APP14' => 'Change Password',
     
     'APP101' =>  "Doctor's",
     'APP102' =>  'Action',
