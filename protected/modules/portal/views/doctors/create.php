@@ -3,13 +3,8 @@
 /* @var $model DoctorProfile */
 
 $this->breadcrumbs = array(
-    'Doctor Profiles' => array('index'),
+    'Doctors' => array('index'),
     'Create',
-);
-
-$this->menu = array(
-    array('label' => 'List DoctorProfile', 'url' => array('index')),
-    array('label' => 'Manage DoctorProfile', 'url' => array('admin')),
 );
 ?>
 <div class="row">

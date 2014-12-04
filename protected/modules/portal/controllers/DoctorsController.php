@@ -33,8 +33,9 @@ class DoctorsController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        $profModel = DoctorProfile::model()->findByPk($id);
         $this->render('view', array(
-            'model' => $this->loadModel($id),
+            'model' => $this->loadModel($profModel->user_id),
         ));
     }
 
@@ -58,13 +59,13 @@ class DoctorsController extends Controller {
             if($valid) {
                 $model->ur_role_id = 9;
                 $model->ur_status = 1;
-				$model->ur_password = Myclass::encrypt($model->ur_password);
+                
                 $model->save(false);
 
                 $profModel->user_id = $model->ur_id;
                 $profModel->save(false);
 
-                $this->redirect(array('view', 'id' => $model->ur_id));
+                $this->redirect(array('index'));
             }
         }
 
@@ -80,33 +81,31 @@ class DoctorsController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-        //$profModel = new DoctorProfile;
-		 $profModel = DoctorProfile::model()->findByAttributes(array('user_id'=>$id));
+        $profModel = DoctorProfile::model()->findByPk($id);
+        $model = $this->loadModel($profModel->user_id);
+        
         // Uncomment the following line if AJAX validation is needed
-         $this->performAjaxValidation($model);
+        $this->performAjaxValidation(array($model, $profModel));
 
         if (isset($_POST['Users'],$_POST['DoctorProfile'])) {
-           $model->attributes = $_POST['Users'];
+            $model->attributes = $_POST['Users'];
             $profModel->attributes = $_POST['DoctorProfile'];
             // validate BOTH models
             $valid = $model->validate();
             $valid = $profModel->validate() && $valid;
             if($valid) {
-             //   $model->ur_role_id = 9;
-              //  $model->ur_status = 1;
                 $model->save(false);
 
                 $profModel->user_id = $model->ur_id;
                 $profModel->save(false);
 
-                $this->redirect(array('view', 'id' => $model->ur_id));
+                $this->redirect(array('index'));
             }
         }
 
         $this->render('update', array(
             'model' => $model,
-			'profModel' => $profModel,
+            'profModel' => $profModel,
         ));
     }
 
@@ -115,11 +114,15 @@ class DoctorsController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
-        $this->loadModel($id)->delete();
-
+    public function actionDelete($id)
+    {
+        $doctor_profile = DoctorProfile::model()->findByPk($id);
+        $user = $this->loadModel($doctor_profile->user_id);
+        $doctor_profile->delete();
+        $user->delete();
+        
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
+        if(!isset($_GET['ajax']))
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 	
@@ -147,20 +150,6 @@ class DoctorsController extends Controller {
             $this->render('index', $params);
         else
             $this->renderPartial('index', $params);
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
-        $model = new Users('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Users']))
-            $model->attributes = $_GET['Users'];
-
-        $this->render('admin', array(
-            'model' => $model,
-        ));
     }
 
     /**

@@ -12,20 +12,18 @@
                 ));
         ?>
 
-        <?php //echo $form->errorSummary($profModel); ?>
         <div class="form-group">
             <?php echo $form->labelEx($model, 'ur_username', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
                 <?php echo $form->textField($model, 'ur_username', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
-                  <?php echo $form->error($model, 'ur_username'); ?>
+                <?php echo $form->error($model, 'ur_username'); ?>
             </div>
-          
         </div>                                
 
         <div class="form-group">
             <?php echo $form->labelEx($model, 'ur_password', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
-                <?php echo $form->passwordField($model, 'ur_password', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+                <?php echo $form->passwordField($model, 'ur_password', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control', 'value'=>'')); ?>
                 <?php echo $form->error($model, 'ur_password'); ?>
             </div>
         </div>
@@ -153,6 +151,7 @@
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <?php echo CHtml::submitButton($profModel->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-info')); ?>
+                <?php echo CHtml::link(Myclass::t('APP64'),array('/portal/doctors/'),array('class'=>'btn btn-sm btn-default')); ?>
             </div>
         </div>
 

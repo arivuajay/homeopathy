@@ -18,7 +18,7 @@ return array(
     'APP101' =>  "Doctor's",
     'APP102' =>  'Action',
     'APP103' =>  'Doctor Name',
-    'APP104' =>  'Create doctor',
+    'APP104' =>  'Create Doctor',
     'APP105' =>  'View Doctor',
     'APP106' =>  'First Name',
     'APP107' =>  'Last Name',
@@ -36,6 +36,7 @@ return array(
     'APP119' =>  'Phone',
     'APP120' =>  'Mobile',
     'APP121' =>  'View PatientProfile',
+    'APP122' =>  'Update Doctor',
     
     //Medical Category
     'APP51' => 'Category Name',
