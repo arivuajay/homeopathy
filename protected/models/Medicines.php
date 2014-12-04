@@ -104,10 +104,11 @@ class Medicines extends RActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                $criteria->with = array('medCat');
 
 		$criteria->compare('tenant',$this->tenant);
 		$criteria->compare('med_id',$this->med_id);
-		$criteria->compare('med_cat_id',$this->med_cat_id);
+		$criteria->compare('medCat.med_cat_name',$this->med_cat_id,true);
 		$criteria->compare('med_name',$this->med_name,true);
 		$criteria->compare('med_desc',$this->med_desc,true);
 		$criteria->compare('med_status',$this->med_status,true);

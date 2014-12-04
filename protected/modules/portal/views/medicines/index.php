@@ -54,8 +54,8 @@ $this->breadcrumbs = array(
                         'name' => 'med_cat_id',
                         'type' => 'raw',
                         'value' => 'CHtml::encode($data->medCat->med_cat_name)',
-                        'filter' => CHtml::activeDropDownList($model, 'med_cat_id',  CHtml ::listData(MedCategories::model()->findAll(), 'med_cat_id', 'med_cat_name'), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
-//                        'filter' => CHtml::activeTextField($model, 'med_cat_id', array('class' => 'form-control input-sm')),
+//                        'filter' => CHtml::activeDropDownList($model, 'med_cat_id',  CHtml ::listData(MedCategories::model()->findAll(), 'med_cat_id', 'med_cat_name'), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeTextField($model, 'med_cat_id', array('class' => 'form-control input-sm')),
                     ),
                     array(
                         'name' => 'med_name',
