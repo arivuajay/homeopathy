@@ -100,17 +100,17 @@ return '<span class="label '.$lbl_cls.' label-mini">' . Myclass::getStatus($data
                             'view' => array(
                                 'label' => '<i class="fa fa-book"></i>',
                                 'imageUrl' => false,
-                                'options' => array('class' => 'btn btn-success btn-xs'),
+                                'options' => array('class' => 'btn btn-success btn-xs', 'title' => Myclass::t("APP67")),
                             ),
                             'update' => array(
                                 'label' => '<i class="fa fa-pencil"></i>',
                                 'imageUrl' => false,
-                                'options' => array('class' => 'btn btn-primary btn-xs'),
+                                'options' => array('class' => 'btn btn-primary btn-xs', 'title' => Myclass::t("APP65")),
                             ),
                             'delete' => array(
                                 'label' => '<i class="fa fa-trash-o"></i>',
                                 'imageUrl' => false,
-                                'options' => array('class' => 'btn btn-danger btn-xs'),
+                                'options' => array('class' => 'btn btn-danger btn-xs', 'title' => Myclass::t("APP66")),
                             ),
                         ),
                     ),

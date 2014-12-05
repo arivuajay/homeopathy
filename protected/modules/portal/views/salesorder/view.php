@@ -68,7 +68,8 @@ $this->menu = array(
                     <tbody>
 <?php foreach ($sales_medicine_list as $key => $med) { ?>
                             <tr id="med_tr_<?php echo $key + 1 ?>">
-                                <td><p><?php echo $med->itmMed->med_name ?> <b><?php echo Myclass::t('APP77'); ?> : </b><?php echo $med->itmPkg->pkg_med_unit ?></p>
+                                <td><p><?php echo $med->itmMed->med_name ?> </p>
+                                    <p><b><?php echo Myclass::t('APP77'); ?> : </b><?php echo $med->itmPkg->pkg_med_unit ?></p>
                                     <p><b><?php echo Myclass::t('APP201'); ?></b> : <?php echo $med->itm_batch_no ?><p>
                                 </td>
                                 <td class="text-center"><?php echo $med->itm_qty ?></td>
