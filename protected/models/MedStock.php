@@ -91,11 +91,12 @@ class MedStock extends RActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                $criteria->with = array('stkMed', 'stkPkg');
 
 		$criteria->compare('tenant',$this->tenant);
 		$criteria->compare('stk_id',$this->stk_id);
-		$criteria->compare('stk_med_id',$this->stk_med_id);
-		$criteria->compare('stk_pkg_id',$this->stk_pkg_id);
+		$criteria->compare('stkMed.med_name',$this->stk_med_id,true);
+		$criteria->compare('stkPkg.pkg_med_unit',$this->stk_pkg_id,true);
 		$criteria->compare('stk_batch_no',$this->stk_batch_no,true);
 		$criteria->compare('stk_avail_units',$this->stk_avail_units);
 		$criteria->compare('stk_debit_units',$this->stk_debit_units);

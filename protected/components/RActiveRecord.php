@@ -15,8 +15,9 @@ class RActiveRecord extends CActiveRecord {
     //comment defaultScope(), if you using beforeFind()
     public function defaultScope() {
         $tenant = $this->getTenant();
+        $alias = $this->getTableAlias(false,false);
         return array(
-            'condition' => "tenant=:tenant",
+            'condition' => "$alias.tenant=:tenant",
             'params' => array(":tenant" => $tenant));
     }
 

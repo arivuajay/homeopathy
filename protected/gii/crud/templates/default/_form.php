@@ -39,7 +39,7 @@ foreach ($this->tableSchema->columns as $column) {
 ?>
 <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-        <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-info')); ?>\n"; ?>
+        <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ?  Myclass::t('APP59'): Myclass::t('APP82'), array('class' => 'btn btn-info')); ?>\n"; ?>
     </div>
 </div>
 

@@ -27,6 +27,7 @@ $this->widget('application.components.MyMenu', array(
             ),
         ),
         array('label' => '<i class="fa fa-truck"></i><span>' . Myclass::t('APP229') . '</span>', 'url' => array('/portal/vendors/index')),
+        array('label' => '<i class="fa fa-medkit"></i><span>' . Myclass::t('APP247') . '</span>', 'url' => array('/portal/purchaseordermedicines/index')),
     ),
     'submenuHtmlOptions' => array('class' => 'sub'),
     'htmlOptions' => array('class' => 'sidebar-menu', 'id' => 'nav-accordion'),

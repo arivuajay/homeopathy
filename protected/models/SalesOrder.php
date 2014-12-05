@@ -100,12 +100,16 @@ class SalesOrder extends RActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                $alias = $this->getTableAlias(false,false);
+                $criteria->with = array('vendor');
+                $criteria->join = "Left Outer Join `hme_patient_profile` `pat` ON (`pat`.`user_id`=`$alias`.`so_user`) ";
 
 		$criteria->compare('tenant',$this->tenant);
 		$criteria->compare('so_id',$this->so_id);
 		$criteria->compare('so_type',$this->so_type,true);
 		$criteria->compare('so_date',$this->so_date,true);
-		$criteria->compare('so_user',$this->so_user);
+		$criteria->compare('vendor.ven_name',$this->so_user,true,'OR');
+		$criteria->compare('pat.pt_firstname',$this->so_user,true,'OR');
 		$criteria->compare('so_doctor',$this->so_doctor);
 		$criteria->compare('so_memo',$this->so_memo,true);
 		$criteria->compare('so_total',$this->so_total,true);

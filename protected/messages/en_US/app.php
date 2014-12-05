@@ -146,6 +146,10 @@ return array(
     'APP244' => 'Stock Id',
     'APP245' => 'Available Stock',
     'APP246' => 'Stock Report',
+    'APP247' => 'Opening Stock',
+    'APP248' => 'Create Opening Stock',
+    'APP248' => 'Update Opening Stock',
+    'APP250' => 'View Opening Stock',
     
     //Pharmacist
     'APP301' => 'Pharmacist',

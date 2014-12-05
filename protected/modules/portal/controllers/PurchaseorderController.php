@@ -20,7 +20,7 @@ class PurchaseorderController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'create', 'update', 'delete', 'add_medicine_entry', 'medicineadd', 'loadmedrate'),
+                'actions' => array('index', 'view', 'create', 'update', 'delete', 'add_medicine_entry', 'medicineadd', 'loadmedrate', 'openingstock'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -78,7 +78,7 @@ class PurchaseorderController extends Controller {
         else
             $this->renderPartial('index', $params);
     }
-
+    
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -137,7 +137,11 @@ class PurchaseorderController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
+        $model = PurchaseOrder::model()->with('poVendor')->excptSelf()->findByPk($id);
+        
+        if(empty($model))
+            throw new CHttpException(404,'The specified post cannot be found.');
+        
         $purchase_medicines = new PurchaseOrderMedicines('medicine_add');
         $purchase_medicine_list = PurchaseOrderMedicines::model()->findAll("itm_po_id = :PO_ID", array(':PO_ID' => $id));
         

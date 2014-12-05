@@ -38,7 +38,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="form-group col-lg-6">
     <?php echo $form->labelEx($model, 'po_vendor', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
     <div class="col-lg-8">
-        <?php $vendors = CHtml::listData(Vendors::model()->isActive()->findAll(), 'ven_id', 'ven_name') ?>        
+        <?php $vendors = CHtml::listData(Vendors::model()->isActive()->excptSelf()->findAll(), 'ven_id', 'ven_name') ?>        
         <?php echo $form->dropDownList($model, 'po_vendor', $vendors, array('empty' => Myclass::t('APP61'), 'class' => "form-control")) ?>
         <?php echo $form->error($model, 'po_vendor', array('class' => 'col-lg-12')); ?>
     </div>
@@ -373,7 +373,8 @@ $form = $this->beginWidget('CActiveForm', array(
                         var count = data['r_index'];
                     }
                     
-                    insert_row += '<td><p>'+data['itm_med_name']+' (<b><?php echo Myclass::t('APP77'); ?> : </b>'+data['itm_pkg_name']+') </p>';
+                    insert_row += '<td><p>'+data['itm_med_name']+' </p>';
+                    insert_row += '<p><b><?php echo Myclass::t('APP77'); ?> : </b>'+data['itm_pkg_name']+' </p>';
                     insert_row += '<p><b><?php echo Myclass::t('APP201'); ?></b> : '+data['itm_batch_no']+'<p>';
                     insert_row += '<p><b><?php echo Myclass::t('APP203'); ?></b> : '+data['itm_exp_date']+'<p>';
                     insert_row += '<p><b><?php echo Myclass::t('APP202'); ?></b> : '+data['itm_manf_date']+'<p></td>';

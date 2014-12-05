@@ -27,6 +27,7 @@ class PurchaseOrderMedicines extends CActiveRecord
 {
         public $itm_med_name;
         public $itm_pkg_name;
+        public $self;
 
 	/**
 	 * @return string the associated database table name
@@ -114,11 +115,12 @@ class PurchaseOrderMedicines extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                $criteria->with = array('itmPo', 'itmMed', 'itmPkg');
 
 		$criteria->compare('itm_id',$this->itm_id);
 		$criteria->compare('itm_po_id',$this->itm_po_id);
-		$criteria->compare('itm_med_id',$this->itm_med_id);
-		$criteria->compare('itm_pkg_id',$this->itm_pkg_id);
+		$criteria->compare('itmMed.med_name',$this->itm_med_id,true);
+		$criteria->compare('itmPkg.pkg_med_unit',$this->itm_pkg_id,true);
 		$criteria->compare('itm_batch_no',$this->itm_batch_no,true);
 		$criteria->compare('itm_manf_date',$this->itm_manf_date,true);
 		$criteria->compare('itm_exp_date',$this->itm_exp_date,true);
@@ -128,6 +130,7 @@ class PurchaseOrderMedicines extends CActiveRecord
 		$criteria->compare('itm_net_rate',$this->itm_net_rate,true);
 		$criteria->compare('itm_qty',$this->itm_qty);
 		$criteria->compare('itm_total_price',$this->itm_total_price,true);
+		$criteria->compare('itmPo.po_vendor',$this->self,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

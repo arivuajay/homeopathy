@@ -30,6 +30,7 @@ class Vendors extends RActiveRecord {
         $alias = $this->getTableAlias(false, false);
         return array(
             'isActive' => array('condition' => $alias . '.ven_status  = "1"'),
+            'excptSelf' => array('condition' => $alias  . '.self_user_id IS NULL'),
         );
     }
     
@@ -46,10 +47,10 @@ class Vendors extends RActiveRecord {
             array('ven_phone_no, ven_email', 'length', 'max' => 150),
             array('ven_email', 'email'),
             array('ven_status', 'length', 'max' => 1),
-            array('ven_address', 'safe'),
+            array('ven_address, self_user_id', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('tenant, ven_id, ven_name, ven_address, ven_phone_no, ven_email, ven_status, ven_created_by, ven_created_at', 'safe', 'on' => 'search'),
+            array('tenant, ven_id, ven_name, ven_address, ven_phone_no, ven_email, ven_status, ven_created_by, ven_created_at, self_user_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -98,6 +99,8 @@ class Vendors extends RActiveRecord {
         // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
+        $alias = $this->getTableAlias(false,false);
+        $criteria->addCondition("$alias.self_user_id IS NULL");
 
         $criteria->compare('tenant', $this->tenant);
         $criteria->compare('ven_id', $this->ven_id);

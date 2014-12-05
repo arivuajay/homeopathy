@@ -31,6 +31,14 @@ class PurchaseOrder extends RActiveRecord
 		return '{{purchase_order}}';
 	}
         
+        public function scopes() {
+            $alias = $this->getTableAlias(false, false);
+            return array(
+                'isActive' => array('condition' => $alias . '.po_status  = "1"'),
+                'excptSelf' => array('condition' => 'poVendor' . '.self_user_id IS NULL'),
+            );
+        }
+
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -103,10 +111,8 @@ class PurchaseOrder extends RActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-//                $criteria->join = ' LEFT OUTER JOIN `hme_vendors` `poVendor` ON (`hme_purchase_order`.`po_vendor`=`poVendor`.`ven_id`)';
-//                $criteria->with = array('poVendor');
-//                $criteria->together = true;
-
+                $criteria->with = array('poVendor');
+                $criteria->addCondition("poVendor.self_user_id IS NULL");
 
 		$criteria->compare('tenant',$this->tenant);
 		$criteria->compare('po_id',$this->po_id);
@@ -117,6 +123,7 @@ class PurchaseOrder extends RActiveRecord
 		$criteria->compare('po_total',$this->po_total,true);
 		$criteria->compare('po_paid',$this->po_paid,true);
 		$criteria->compare('po_status',$this->po_status,true);
+                
 		$criteria->compare('po_created_by',$this->po_created_by);
 
 		return new CActiveDataProvider($this, array(

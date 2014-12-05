@@ -25,13 +25,15 @@ $this->breadcrumbs = array(
                         'name' => 'stk_med_id',
                         'type' => 'raw',
                         'value' => 'CHtml::encode($data->stkMed->med_name)',
-                        'filter' => CHtml::activeDropDownList($model, 'stk_med_id', CHtml::listData(Medicines::model()->isActive()->findAll(), 'med_id', 'med_name'), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeTextField($model, 'stk_med_id', array('class' => 'form-control input-sm')),
+//                        'filter' => CHtml::activeDropDownList($model, 'stk_med_id', CHtml::listData(Medicines::model()->isActive()->findAll(), 'med_id', 'med_name'), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
                     ),
                     array(
                         'name' => 'stk_pkg_id',
                         'type' => 'raw',
                         'value' => 'CHtml::encode($data->stkPkg->pkg_med_unit)',
-                        'filter' => CHtml::activeDropDownList($model, 'stk_pkg_id', CHtml::listData(MedicinePkg::model()->findAll(), 'pkg_id', 'pkg_med_unit'), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
+                        'filter' => CHtml::activeTextField($model, 'stk_pkg_id', array('class' => 'form-control input-sm')),
+//                        'filter' => CHtml::activeDropDownList($model, 'stk_pkg_id', CHtml::listData(MedicinePkg::model()->findAll(), 'pkg_id', 'pkg_med_unit'), array('empty' => Myclass::t("APP61"), 'class' => 'form-control input-sm')),
                     ),
                     array(
                         'name' => 'stk_batch_no',

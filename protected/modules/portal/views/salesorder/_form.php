@@ -408,7 +408,8 @@
                         var count = data['r_index'];
                     }
                     
-                    insert_row += '<td><p>'+data['itm_med_name']+' (<b><?php echo Myclass::t('APP77'); ?> : </b>'+data['itm_pkg_name']+') </p>';
+                    insert_row += '<td><p>'+data['itm_med_name']+'</p>';
+                    insert_row += '<p><b><?php echo Myclass::t('APP77'); ?> : </b>'+data['itm_pkg_name']+' </p>';
                     insert_row += '<p><b><?php echo Myclass::t('APP201'); ?></b> : '+data['itm_batch_no']+'<p>';
                     insert_row += '<td class="text-center hidden-phone">'+data['itm_qty']+'</td>';
                     insert_row += '<td class="text-right hidden-phone">'+Number(data['itm_mrp_price']).toFixed(2)+'</td>';
