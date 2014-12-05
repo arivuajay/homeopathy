@@ -3,8 +3,8 @@
 /* @var $model MedCategories */
 
 $this->breadcrumbs=array(
-	'Med Categories'=>array('index'),
-	'Create',
+	Myclass::t('APP57')=>array('index'),
+	Myclass::t('APP59'),
 );
 
 $this->menu=array(

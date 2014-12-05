@@ -1,3 +1,11 @@
+<?php
+$this->breadcrumbs = array(
+    Myclass::t('APP57'),
+);
+
+$this->flashMessages = Yii::app()->user->getFlashes();
+?>
+
 <section class="panel">
     <header class="panel-heading">
         <?php

@@ -74,6 +74,7 @@ class MedcategoriesController extends Controller {
         if (isset($_POST['MedCategories'])) {
             $model->attributes = $_POST['MedCategories'];
             if ($model->save())
+                Yii::app()->user->setFlash('success', Myclass::t('APP461'));
                 $this->redirect(array('index'));
         }
 
@@ -99,6 +100,7 @@ class MedcategoriesController extends Controller {
             $model->attributes = $_POST['MedCategories'];
             
             if ($model->save())
+                Yii::app()->user->setFlash('success', Myclass::t('APP462'));
                 $this->redirect(array('index'));
         }
 

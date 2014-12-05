@@ -15,6 +15,7 @@ return array(
     'APP12' => 'Your account has been blocked',
     'APP13' => 'Your account was deleted. Contact Administrator.',
     'APP14' => 'Change Password',
+    'APP15' => 'Update',
     
     'APP101' =>  "Doctor's",
     'APP102' =>  'Action',
@@ -45,15 +46,15 @@ return array(
     'APP53' => 'Units',
     'APP54' => 'Description',
     'APP55' => 'Status',
-    'APP56' => 'Create Category',
-    'APP57' => 'Medical Categories',
+    'APP56' => 'Create Medicine Category',
+    'APP57' => 'Medicine Categories',
     
     'APP58' => 'No Record Found !!!',
     'APP59' => 'Create',
     'APP60' => 'Sl.No',
     'APP61' => '__Select__',
     
-    'APP62' => 'Update Category',
+    'APP62' => 'Update Medicine Category',
     'APP63' => 'View Category',
     
     'APP64' => 'Back',
@@ -121,7 +122,7 @@ return array(
     'APP220' => 'Doctors',
     'APP221' => 'Pharmacist',
     'APP222' => 'Patient',
-    'APP223' => 'Medicne Management',
+    'APP223' => 'Medicine Management',
     'APP224' => 'Categories',
     'APP225' => 'Stocks Entry',
     'APP226' => 'Reports',
@@ -165,15 +166,22 @@ return array(
     //Flash Messages
     'APP450' => 'Password changed successfully.',
     'APP451' => 'Password not changed.',
+    
     'APP452' => 'Doctor created successfully.',
     'APP453' => 'Doctor updated successfully.',
     'APP454' => 'Doctor deleted successfully.',
+    
     'APP455' => 'Pharmacist created successfully.',
     'APP456' => 'Pharmacist updated successfully.',
     'APP457' => 'Pharmacist deleted successfully.',
+    
     'APP458' => 'Patient created successfully.',
     'APP459' => 'Patient updated successfully.',
     'APP460' => 'Patient deleted successfully.',
+    
+    'APP461' => 'Medicine Category created successfully.',
+    'APP462' => 'Medicine Category updated successfully.',
+    'APP463' => 'Medicine Category deleted successfully.',
 
 );
 ?>
