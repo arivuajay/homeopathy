@@ -232,12 +232,8 @@
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
                     <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i>Change Password</a></li>
-                    <li>
-                        <?php
-                        echo CHtml::link('<i class="fa fa-key"></i> Log Out', array('/portal/default/logout'));
-                        ?>
-                    </li>
+                    <li><?php echo CHtml::link('<i class="fa fa-cog"></i> Change Password', array('/portal/users/changepassword')); ?>
+                    <li><?php echo CHtml::link('<i class="fa fa-key"></i> Log Out', array('/portal/default/logout')); ?></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->

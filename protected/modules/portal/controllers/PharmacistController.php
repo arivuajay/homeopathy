@@ -93,8 +93,8 @@ class PharmacistController extends Controller
 
                     $profileModel->user_id = $model->ur_id;
                     $profileModel->save(false);
-
-                    $this->redirect(array('view', 'id' => $profileModel->phr_id));
+                    Yii::app()->user->setFlash('success', Myclass::t('APP455'));
+                    $this->redirect(array('index'));
                 }
             }
 
@@ -130,8 +130,8 @@ class PharmacistController extends Controller
 
                     $profileModel->user_id = $model->ur_id;
                     $profileModel->save(false);
-
-                    $this->redirect(array('view', 'id' => $profileModel->phr_id));
+                    Yii::app()->user->setFlash('success', Myclass::t('APP456'));
+                    $this->redirect(array('index'));
                 }
             }
 
@@ -150,9 +150,9 @@ class PharmacistController extends Controller
 	{
             $pharmacist_profile = $this->loadModel($id);
             $user = Users::model()->findByPk($pharmacist_profile->user_id);
-            $user->delete();
             $pharmacist_profile->delete();
-
+            $user->delete();
+            
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if(!isset($_GET['ajax']))
                     $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

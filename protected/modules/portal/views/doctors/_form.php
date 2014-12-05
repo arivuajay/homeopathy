@@ -47,7 +47,7 @@
         <div class="form-group">
             <?php echo $form->labelEx($profModel, 'doc_dob', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
-                <?php echo $form->textField($profModel, 'doc_dob', array('class' => 'form-control')); ?>
+                <?php echo $form->textField($profModel, 'doc_dob', array('class' => 'form-control default-date-picker')); ?>
                 <?php echo $form->error($profModel, 'doc_dob'); ?>
             </div>
         </div>

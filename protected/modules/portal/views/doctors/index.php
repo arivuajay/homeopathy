@@ -5,7 +5,7 @@
 $this->breadcrumbs = array(
     'Doctors',
 );
-
+$this->flashMessages = Yii::app()->user->getFlashes();
 ?>
 <section class="panel">
     <header class="panel-heading">

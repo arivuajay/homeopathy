@@ -64,7 +64,7 @@ class DoctorsController extends Controller {
 
                 $profModel->user_id = $model->ur_id;
                 $profModel->save(false);
-
+                Yii::app()->user->setFlash('success', Myclass::t('APP452'));
                 $this->redirect(array('index'));
             }
         }
@@ -98,7 +98,7 @@ class DoctorsController extends Controller {
 
                 $profModel->user_id = $model->ur_id;
                 $profModel->save(false);
-
+                Yii::app()->user->setFlash('success', Myclass::t('APP453'));
                 $this->redirect(array('index'));
             }
         }

@@ -2,6 +2,8 @@
 $this->breadcrumbs=array(
 	'Patients',
 );
+
+$this->flashMessages = Yii::app()->user->getFlashes();
 ?>
 
 <section class="panel">

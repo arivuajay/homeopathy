@@ -6,6 +6,8 @@ $this->breadcrumbs = array(
     'Doctors' => array('index'),
     'Create',
 );
+
+$this->flashMessages = Yii::app()->user->getFlashes();
 ?>
 <div class="row">
     <div class="col-lg-12">

@@ -161,5 +161,19 @@ return array(
     'APP406' => 'Patients',
     'APP407' => 'Create Patient',
     'APP408' => 'Update Patient',
+    
+    //Flash Messages
+    'APP450' => 'Password changed successfully.',
+    'APP451' => 'Password not changed.',
+    'APP452' => 'Doctor created successfully.',
+    'APP453' => 'Doctor updated successfully.',
+    'APP454' => 'Doctor deleted successfully.',
+    'APP455' => 'Pharmacist created successfully.',
+    'APP456' => 'Pharmacist updated successfully.',
+    'APP457' => 'Pharmacist deleted successfully.',
+    'APP458' => 'Patient created successfully.',
+    'APP459' => 'Patient updated successfully.',
+    'APP460' => 'Patient deleted successfully.',
+
 );
 ?>

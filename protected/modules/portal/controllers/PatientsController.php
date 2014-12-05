@@ -93,7 +93,7 @@ class PatientsController extends Controller
 
                     $model->user_id = $user_model->ur_id;
                     $model->save(false);
-
+                    Yii::app()->user->setFlash('success', Myclass::t('APP458'));
                     $this->redirect(array('index'));
                 }
             }
@@ -128,6 +128,7 @@ class PatientsController extends Controller
                     $user_model->save(false);
                     $model->user_id = $user_model->ur_id;
                     $model->save(false);
+                    Yii::app()->user->setFlash('success', Myclass::t('APP459'));
                     $this->redirect(array('index'));
                 }
             }
