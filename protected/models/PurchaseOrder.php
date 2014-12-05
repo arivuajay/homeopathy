@@ -103,7 +103,7 @@ class PurchaseOrder extends RActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-                $criteria->join = ' LEFT OUTER JOIN `hme_vendors` `poVendor` ON (`hme_purchase_order`.`po_vendor`=`poVendor`.`ven_id`)';
+//                $criteria->join = ' LEFT OUTER JOIN `hme_vendors` `poVendor` ON (`hme_purchase_order`.`po_vendor`=`poVendor`.`ven_id`)';
 //                $criteria->with = array('poVendor');
 //                $criteria->together = true;
 
@@ -111,7 +111,7 @@ class PurchaseOrder extends RActiveRecord
 		$criteria->compare('tenant',$this->tenant);
 		$criteria->compare('po_id',$this->po_id);
 		$criteria->compare('po_date',$this->po_date,true);
-//		$criteria->compare('poVendor.ven_name',$this->po_vendor,true);
+		$criteria->compare('poVendor.ven_name',$this->po_vendor,true);
 		$criteria->compare('po_invoice',$this->po_invoice,true);
 		$criteria->compare('po_memo',$this->po_memo,true);
 		$criteria->compare('po_total',$this->po_total,true);
