@@ -22,6 +22,7 @@
         $cs->registerCssFile($themeUrl . '/css/style.css');
         $cs->registerCssFile($themeUrl . '/css/style-responsive.css');
         $cs->registerCssFile($themeUrl . '/assets/bootstrap-datepicker/css/datepicker.css');
+        $cs->registerCssFile($themeUrl . '/assets/gritter/css/jquery.gritter.css');
 //        $cs->registerCssFile($themeUrl . '/assets/advanced-datatable/media/css/demo_table.css');
         
         ?>
@@ -68,7 +69,8 @@
         $cs->registerScriptFile($themeUrl . '/js/date.js',$cs_pos_end);
 
         $cs->registerScriptFile($themeUrl . '/assets/bootstrap-datepicker/js/bootstrap-datepicker.js',$cs_pos_end);
-
+        $cs->registerScriptFile($themeUrl . '/assets/gritter/js/jquery.gritter.js',$cs_pos_end);
+        
         $cs->registerScript(
                 'Init', ' $(".alert-notify").animate({opacity: 1.0}, 3000).fadeOut("slow");
                     $(".alert-close").click(function(){ $(this).closest(".alert-notify").hide(); });

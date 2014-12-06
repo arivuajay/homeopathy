@@ -3,7 +3,6 @@ $this->breadcrumbs = array(
     Myclass::t('APP14')
 );
 
-$this->flashMessages = Yii::app()->user->getFlashes();
 ?>
 <div class="row">
     <div class="col-lg-12">

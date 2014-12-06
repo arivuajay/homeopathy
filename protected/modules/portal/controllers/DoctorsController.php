@@ -85,18 +85,17 @@ class DoctorsController extends Controller {
         $model = $this->loadModel($profModel->user_id);
         
         // Uncomment the following line if AJAX validation is needed
-        $this->performAjaxValidation(array($model, $profModel));
+        $this->performAjaxValidation(array(/*$model, */$profModel));
 
-        if (isset($_POST['Users'],$_POST['DoctorProfile'])) {
-            $model->attributes = $_POST['Users'];
+        if (isset(/*$_POST['Users'],*/$_POST['DoctorProfile'])) {
+//            $model->attributes = $_POST['Users'];
             $profModel->attributes = $_POST['DoctorProfile'];
-            // validate BOTH models
-            $valid = $model->validate();
-            $valid = $profModel->validate() && $valid;
+            
+//            $valid = $model->validate();
+            $valid = $profModel->validate();
             if($valid) {
-                $model->save(false);
-
-                $profModel->user_id = $model->ur_id;
+//                $model->save(false);
+//                $profModel->user_id = $model->ur_id;
                 $profModel->save(false);
                 Yii::app()->user->setFlash('success', Myclass::t('APP453'));
                 $this->redirect(array('index'));

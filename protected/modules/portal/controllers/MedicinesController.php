@@ -90,7 +90,8 @@ class MedicinesController extends Controller {
                         $package->attributes = $data;
                         $package->save();
                     }
-                $this->redirect(array('view', 'id' => $model->med_id));
+                    Yii::app()->user->setFlash('success', Myclass::t('APP464'));
+                    $this->redirect(array('view', 'id' => $model->med_id));
             }
         }
 
@@ -148,8 +149,9 @@ class MedicinesController extends Controller {
                     foreach ($delete_pkg as $id) {
                         MedicinePkg::model()->findByPk($id)->delete();
                     }
-
-                    $this->redirect(array('view', 'id' => $model->med_id));
+                    Yii::app()->user->setFlash('success', Myclass::t('APP465'));
+                    $this->redirect(array('index'));
+//                    $this->redirect(array('view', 'id' => $model->med_id));
                 
             }
         }
@@ -170,6 +172,7 @@ class MedicinesController extends Controller {
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
+            Yii::app()->user->setFlash('success', Myclass::t('APP466'));
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 

@@ -150,12 +150,23 @@ return array(
     'APP248' => 'Create Opening Stock',
     'APP248' => 'Update Opening Stock',
     'APP250' => 'View Opening Stock',
+    'APP251' => 'User Id',
+    'APP252' => 'User Role',
+    'APP253' => 'Activation Key',
+    'APP254' => 'Modified At',
+    'APP255' => 'Last Login',
+    'APP256' => 'Last IP Address',
+    'APP257' => 'Old Password',
+    'APP258' => 'New Passowrd',
+    'APP259' => 'Repeat Password',
+    'APP260' => 'Total Sales',
     
     //Pharmacist
     'APP301' => 'Pharmacist',
     'APP302' => 'View Pharmacist',
     'APP303' => 'Create Pharmacist',
     'APP304' => 'Update Pharmacist',
+    'APP305' => 'Pharmacists',
     
     //Patient
     'APP401' => 'Sex',
@@ -186,6 +197,31 @@ return array(
     'APP461' => 'Medicine Category created successfully.',
     'APP462' => 'Medicine Category updated successfully.',
     'APP463' => 'Medicine Category deleted successfully.',
-
+    
+    'APP464' => 'Medicine created successfully.',
+    'APP465' => 'Medicine updated successfully.',
+    'APP466' => 'Medicine deleted successfully.',
+    
+    'APP467' => 'Purchase Order created successfully.',
+    'APP468' => 'Purchase Order updated successfully.',
+    'APP469' => 'Purchase Order deleted successfully.',
+    
+    'APP470' => 'Sales Order created successfully.',
+    'APP471' => 'Sales Order updated successfully.',
+    'APP472' => 'Sales Order deleted successfully.',
+    
+    'APP473' => 'Supplier created successfully.',
+    'APP474' => 'Supplier updated successfully.',
+    'APP475' => 'Supplier deleted successfully.',
+    
+    'APP476' => 'Opening Stock created successfully.',
+    'APP477' => 'Opening Stock updated successfully.',
+    'APP478' => 'Opening Stock deleted successfully.',
+    
+    'APP479' => 'Username updated successfully.',
+    'APP480' => 'Password updated successfully.',
+    'APP481' => 'Success !',
+    'APP482' => 'Error occured.please try again',
+    
 );
 ?>

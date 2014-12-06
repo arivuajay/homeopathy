@@ -83,6 +83,7 @@ class VendorsController extends Controller
 		{
 			$model->attributes=$_POST['Vendors'];
 			if($model->save())
+                            Yii::app()->user->setFlash('success', Myclass::t('APP473'));
                             $this->redirect(array('index'));
 		}
 
@@ -107,7 +108,8 @@ class VendorsController extends Controller
 		{
 			$model->attributes=$_POST['Vendors'];
 			if($model->save())
-				$this->redirect(array('index'));
+                            Yii::app()->user->setFlash('success', Myclass::t('APP474'));
+                            $this->redirect(array('index'));
 		}
 
 		$this->render('update',array(
@@ -126,7 +128,8 @@ class VendorsController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                    Yii::app()->user->setFlash('success', Myclass::t('APP475'));
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
     
 	/**

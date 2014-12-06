@@ -119,6 +119,7 @@ class MedcategoriesController extends Controller {
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
+            Yii::app()->user->setFlash('success', Myclass::t('APP463'));
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 

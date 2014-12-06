@@ -115,20 +115,20 @@ class PharmacistController extends Controller
             $model=Users::model()->findByPk($profileModel->user_id);
             
             // Uncomment the following line if AJAX validation is needed
-            $this->performAjaxValidation(array($model, $profileModel));
+            $this->performAjaxValidation(array(/*$model, */$profileModel));
             
-            if (isset($_POST['Users'])) {
-                $model->attributes = $_POST['Users'];
+            if (isset($_POST['PharmacistProfile'])) {
+                //$model->attributes = $_POST['Users'];
                 $profileModel->attributes = $_POST['PharmacistProfile'];
                 // validate BOTH models
-                $valid = $model->validate();
-                $valid = $profileModel->validate() && $valid;
+                //$valid = $model->validate();
+                $valid = $profileModel->validate();
                 //echo $valid; exit;
                 if($valid) {
                     
-                    $model->save(false);
+//                    $model->save(false);
 
-                    $profileModel->user_id = $model->ur_id;
+//                    $profileModel->user_id = $model->ur_id;
                     $profileModel->save(false);
                     Yii::app()->user->setFlash('success', Myclass::t('APP456'));
                     $this->redirect(array('index'));

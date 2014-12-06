@@ -3,7 +3,6 @@ $this->breadcrumbs=array(
 	'Pharmacists',
 );
 
-$this->flashMessages = Yii::app()->user->getFlashes();
 ?>
 
 <section class="panel">
@@ -80,12 +79,12 @@ $this->flashMessages = Yii::app()->user->getFlashes();
                                     'filter' => CHtml::activeTextField($model, 'phr_state', array('class' => 'form-control input-sm')),
                                 ),
                     
-                                array(
-                                    'name' => 'phr_country',
-                                    'type' => 'raw',
-                                    'value' => 'CHtml::encode($data->phrCountry->country)',
-                                    'filter' => CHtml::activeTextField($model, 'phr_country', array('class' => 'form-control input-sm')),
-                                ),
+//                                array(
+//                                    'name' => 'phr_country',
+//                                    'type' => 'raw',
+//                                    'value' => 'CHtml::encode($data->phrCountry->country)',
+//                                    'filter' => CHtml::activeTextField($model, 'phr_country', array('class' => 'form-control input-sm')),
+//                                ),
                                             
                     array(
                         'class' => 'CButtonColumn',

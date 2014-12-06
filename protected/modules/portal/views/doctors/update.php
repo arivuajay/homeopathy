@@ -13,6 +13,7 @@ $this->breadcrumbs = array(
             <header class="panel-heading"><?php echo Myclass::t('APP122'); ?></header>
             <div class="panel-body">
                 <?php $this->renderPartial('_form', array('model' => $model, 'profModel' => $profModel)); ?>
+                <?php $this->renderPartial('/users/_edit_user', array('model' => $model)); ?>
             </div>
         </section>
     </div>

@@ -115,18 +115,18 @@ class PatientsController extends Controller
             $user_model = Users::model()->findByAttributes(array('ur_id'=>$model->user_id));
 
             // Uncomment the following line if AJAX validation is needed
-            $this->performAjaxValidation(array($user_model, $model));
+            $this->performAjaxValidation(array(/*$user_model,*/ $model));
 
-            if(isset($_POST['PatientProfile'],$_POST['Users']))
+            if(isset($_POST['PatientProfile']))
             {
-                $model->attributes=$_POST['PatientProfile'];
+//                $model->attributes=$_POST['PatientProfile'];
                 $user_model->attributes=$_POST['Users'];
                 // validate BOTH models
                 $valid = $model->validate();
-                $valid = $user_model->validate() && $valid;
+//                $valid = $user_model->validate() && $valid;
                 if($valid) {
-                    $user_model->save(false);
-                    $model->user_id = $user_model->ur_id;
+//                    $user_model->save(false);
+//                    $model->user_id = $user_model->ur_id;
                     $model->save(false);
                     Yii::app()->user->setFlash('success', Myclass::t('APP459'));
                     $this->redirect(array('index'));

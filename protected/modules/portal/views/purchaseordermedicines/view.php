@@ -24,10 +24,15 @@ $this->menu=array(
                 <?php $this->widget('zii.widgets.CDetailView', array(
                         'data'=>$model,
                         'attributes'=>array(
-                                'itm_id',
                                 'itm_po_id',
-                                'itm_med_id',
-                                'itm_pkg_id',
+                                array(
+                                    'label' => Myclass::t("APP214"),
+                                    'value' => $model->itmMed->med_name
+                                ),
+                                array(
+                                    'label' => Myclass::t("APP77"),
+                                    'value' => $model->itmPkg->pkg_med_unit
+                                ),
                                 'itm_batch_no',
                                 'itm_manf_date',
                                 'itm_exp_date',

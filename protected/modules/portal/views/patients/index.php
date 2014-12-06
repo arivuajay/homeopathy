@@ -3,7 +3,6 @@ $this->breadcrumbs=array(
 	'Patients',
 );
 
-$this->flashMessages = Yii::app()->user->getFlashes();
 ?>
 
 <section class="panel">
@@ -70,12 +69,12 @@ $this->flashMessages = Yii::app()->user->getFlashes();
                             'value' => 'CHtml::encode($data->pt_email)',
                             'filter' => CHtml::activeTextField($model, 'pt_email', array('class' => 'form-control input-sm')),
                         ),
-                                            array(
-                            'name' => 'pt_city',
-                            'type' => 'raw',
-                            'value' => 'CHtml::encode($data->ptCity->city)',
-                            'filter' => CHtml::activeTextField($model, 'pt_city', array('class' => 'form-control input-sm')),
-                        ),
+//                                            array(
+//                            'name' => 'pt_city',
+//                            'type' => 'raw',
+//                            'value' => 'CHtml::encode($data->ptCity->city)',
+//                            'filter' => CHtml::activeTextField($model, 'pt_city', array('class' => 'form-control input-sm')),
+//                        ),
                                             array(
                             'name' => 'pt_mobile',
                             'type' => 'raw',

@@ -31,6 +31,7 @@ class Controller extends CController {
 
     public function init() {
         CHtml::$errorContainerTag = 'label';
+        $this->flashMessages = Yii::app()->user->getFlashes();
 
         parent::init();
     }

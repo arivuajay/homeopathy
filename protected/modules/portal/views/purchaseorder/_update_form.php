@@ -444,7 +444,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     reset_form();
                 },
                 error: function (data) { // if error occured
-                    alert("Error occured.please try again");
+                    alert("<?php echo Myclass::t("APP482"); ?>");
                 },
                 dataType: 'json'
             });

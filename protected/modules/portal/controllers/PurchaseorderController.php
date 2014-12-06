@@ -109,6 +109,7 @@ class PurchaseorderController extends Controller {
                         $p_med->attributes = $data;
                         $p_med->save(false);
                     }
+                    Yii::app()->user->setFlash('success', Myclass::t('APP467'));
                     $this->redirect(array('index'));
             }
         }
@@ -184,6 +185,7 @@ class PurchaseorderController extends Controller {
                     foreach ($delete_med as $id) {
                         PurchaseOrderMedicines::model()->findByPk($id)->delete();
                     }
+                    Yii::app()->user->setFlash('success', Myclass::t('APP468'));
                     $this->redirect(array('index'));
             }
         }
@@ -205,6 +207,7 @@ class PurchaseorderController extends Controller {
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
+            Yii::app()->user->setFlash('success', Myclass::t('APP469'));
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 

@@ -8,9 +8,13 @@
 	'id'=>'pharmacist-profile-form',
         'htmlOptions' => array('role' => 'form','class'=>'form-horizontal'),
 	'enableAjaxValidation'=>true,
+        'clientOptions'=>array(
+            'validateOnSubmit'=>true,
+	), 
 )); ?>
 
 <?php //echo $form->errorSummary($model); ?>
+        <?php  if($model->isNewRecord){ ?>
         <div class="form-group">
             <?php echo $form->labelEx($model, 'ur_username', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
@@ -26,6 +30,21 @@
                 <?php echo $form->error($model, 'ur_password'); ?>
             </div>
         </div>
+        <?php }else{ ?>
+        <div class="form-group">
+            <label class='col-lg-2 col-sm-2 control-label'><?php echo Myclass::t("APP2"); ?></label>
+            <div class="col-lg-10">
+                <span id="span_username"><?php echo $model->ur_username ?>&nbsp;</span>( <?php echo CHtml::link(Myclass::t('APP65'), '#edit_username', array('data-toggle' => "modal")) ?> )
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class='col-lg-2 col-sm-2 control-label'><?php echo Myclass::t("APP3"); ?></label>
+            <div class="col-lg-10">
+                *******&nbsp;( <?php echo CHtml::link(Myclass::t('APP65'), '#edit_password', array('data-toggle' => "modal")) ?> )
+            </div>
+        </div>
+        <?php } ?>
 
         <div class="form-group">
             <?php echo $form->labelEx($profileModel,'phr_first_name',array('class'=>'col-lg-2 col-sm-2 control-label')); ?>

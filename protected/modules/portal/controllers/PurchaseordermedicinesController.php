@@ -107,7 +107,8 @@ class PurchaseordermedicinesController extends Controller
                 
                 if($valid){
                     if($model->save(false))
-                            $this->redirect(array('create'));
+                        Yii::app()->user->setFlash('success', Myclass::t('APP476'));
+                        $this->redirect(array('create'));
                 }else{
                     $model->getErrors();
                 }
@@ -139,6 +140,7 @@ class PurchaseordermedicinesController extends Controller
                         
                         if($valid){
                             if($model->save())
+                                Yii::app()->user->setFlash('success', Myclass::t('APP477'));
                                 $this->redirect(array('index'));
                         }
 		}
@@ -159,7 +161,8 @@ class PurchaseordermedicinesController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                    Yii::app()->user->setFlash('success', Myclass::t('APP478'));
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
     
 	/**

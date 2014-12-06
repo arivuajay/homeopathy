@@ -19,7 +19,9 @@ $this->breadcrumbs=array(
         <section class="panel">
             <header class="panel-heading"> <?php echo Myclass::t('APP408'); ?> </header>
             <div class="panel-body">
-                <?php $this->renderPartial('_form', array('model'=>$model,'user_model' => $user_model)); ?>            </div>
+                <?php $this->renderPartial('_form', array('model'=>$model,'user_model' => $user_model)); ?>
+                <?php $this->renderPartial('/users/_edit_user', array('model' => $user_model)); ?>
+            </div>
         </section>
     </div>
 </div>

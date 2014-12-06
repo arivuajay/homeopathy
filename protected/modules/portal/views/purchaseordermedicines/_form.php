@@ -151,11 +151,13 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <div class="form-group col-lg-6">
     <div class="col-lg-offset-2 col-lg-10">
-<?php echo CHtml::submitButton($model->isNewRecord ?  Myclass::t("APP59"): Myclass::t("APP82"), array('class' => 'btn btn-info')); ?>
+    <?php echo CHtml::submitButton($model->isNewRecord ?  Myclass::t("APP59"): Myclass::t("APP82"), array('class' => 'btn btn-info')); ?>
+    <?php echo CHtml::link(Myclass::t("APP64"),array('/portal/purchaseordermedicines/index'), array('class' => 'btn btn-sm btn-default')) ?>
     </div>
 </div>
 
-<?php $this->endWidget(); ?>
+            
+            <?php $this->endWidget(); ?>
 <!-- form -->
 
 <script type="text/javascript">

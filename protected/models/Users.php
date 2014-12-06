@@ -39,7 +39,10 @@ class Users extends CActiveRecord
     public function scopes() {
        $alias = $this->getTableAlias(false, false);
        return array(
-           'isRole' => array('condition' => $alias . '.ur_role_id  = "9"'),
+           'isPatient' => array('condition' => $alias . '.ur_role_id  = "8"'),
+           'isDoctor' => array('condition' => $alias . '.ur_role_id  = "9"'),
+           'isPharmacist' => array('condition' => $alias . '.ur_role_id  = "10"'),
+           'isActive' => array('condition' => $alias . '.ur_status  = "1"'),
        );
     }
 
@@ -102,19 +105,22 @@ class Users extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-                'tenant' => 'Users amongst which tenant id, refers hme_tenants table PK',
-                'ur_id' => 'Ur',
-                'ur_role_id' => 'User role id, refers hme_user_role table PK',
-                'ur_username' => 'Username',
-                'ur_password' => 'Password',
+                'tenant' => Myclass::t("APP78"),
+                'ur_id' => Myclass::t("APP251"),
+                'ur_role_id' => Myclass::t("APP252"),
+                'ur_username' => Myclass::t("APP2"),
+                'ur_password' => Myclass::t("APP3"),
 
-                'ur_activation_key' => 'Ur Activation Key',
-                'ur_created_at' => 'Ur Created At',
-                'ur_modified_at' => 'Ur Modified At',
-                'ur_last_login' => 'Ur Last Login',
-                'ur_last_ip' => 'Ur Last Ip',
-                'ur_status' => 'Ur Status',
-
+                'ur_activation_key' => Myclass::t("APP253"),
+                'ur_created_at' => Myclass::t("APP99"),
+                'ur_modified_at' => Myclass::t("APP254"),
+                'ur_last_login' => Myclass::t("APP255"),
+                'ur_last_ip' => Myclass::t("APP256"),
+                'ur_status' => Myclass::t("APP55"),
+            
+                'old_password' => Myclass::t("APP257"),
+                'new_password' => Myclass::t("APP258"),
+                'repeat_password' => Myclass::t("APP259"),
         );
     }
 

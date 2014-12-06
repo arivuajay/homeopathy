@@ -28,11 +28,11 @@ class UsersController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array(),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'changepassword'),
+				'actions'=>array('index','view','create','update', 'changepassword', 'edituser'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -139,7 +139,7 @@ class UsersController extends Controller
                 $model->attributes = $_POST['Users'];
                 $model->ur_password = Myclass::encrypt($model->new_password);
                 
-                if($model->save()){
+                if($model->update()){
                     Yii::app()->user->setFlash('success', Myclass::t('APP450'));
                     $this->redirect(array('changepassword'));
                 }
@@ -150,6 +150,18 @@ class UsersController extends Controller
             }
 
             $this->render('changepassword',array('model'=>$model)); 
+        }
+        
+        public function actionEdituser($id) {
+            $user = $this->loadModel($id);
+            $this->performAjaxValidation($user);
+            $user->attributes = $_POST['Users'];
+            $valid = $user->validate();
+            
+            if($valid)
+                $user->save(false);
+                echo json_encode (array('ur_username' => $user->ur_username));
+            Yii::app()->end();
         }
         
 	/**
@@ -188,10 +200,10 @@ class UsersController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='users-form')
+		if(isset($_POST['ajax']) && ($_POST['ajax']==='users-form' || $_POST['ajax']==='users-form2'))
 		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
+                    echo CActiveForm::validate($model);
+                    Yii::app()->end();
 		}
 	}
 }

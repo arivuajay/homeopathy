@@ -394,11 +394,6 @@ $form = $this->beginWidget('CActiveForm', array(
                         $('#medicines_list #med_tr_'+count).html(insert_row);
                     }
                     
-//                    $('#medicines_list #med_tr_'+count).css('background','#a9d86e');
-//                    setTimeout(function() {
-//                        $('#medicines_list #med_tr_'+count).css('background','');
-//                    }, 2000);
-                    
                     //add hidden form fields in main form
                     if(mode == 'add'){
                         var hidden_fields = '';
@@ -419,7 +414,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     reset_form();
                 },
                 error: function (data) { // if error occured
-                    alert("Error occured.please try again");
+                    alert("<?php echo Myclass::t("APP482"); ?>");
                 },
                 dataType: 'json'
             });

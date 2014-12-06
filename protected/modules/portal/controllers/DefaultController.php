@@ -25,7 +25,20 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
-        $this->render('index', array('model' => $model));        
+        $doctors = Users::model()->isDoctor()->findAll();
+        $pharmacists = Users::model()->isPharmacist()->findAll();
+        $patients = Users::model()->isPatient()->findAll();
+        
+        $doctors_count = count($doctors);
+        $pharmacists_count = count($pharmacists);
+        $patients_count = count($patients);
+        
+        $this->render('index', array(
+                                'model' => $model,
+                                'doctors_count' => $doctors_count,
+                                'pharmacists_count' => $pharmacists_count,
+                                'patients_count' => $patients_count
+                                ));        
     }
 
     public function actionLogin() {
