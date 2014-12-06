@@ -79,11 +79,11 @@ CREATE TABLE `hme_doctor_profile` (
   CONSTRAINT `FK_hme_doctor_profile_country` FOREIGN KEY (`doc_country`) REFERENCES `hme_countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_hme_doctor_profile_state` FOREIGN KEY (`doc_state`) REFERENCES `hme_states` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_hme_doctor_profile_user` FOREIGN KEY (`user_id`) REFERENCES `hme_users` (`ur_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_doctor_profile` */
 
-insert  into `hme_doctor_profile`(`docinfo_id`,`user_id`,`doc_firstname`,`doc_lastname`,`doc_dob`,`doc_speciality`,`doc_certificate`,`doc_designated`,`doc_awards`,`doc_about`,`doc_address_1`,`doc_address_2`,`doc_city`,`doc_state`,`doc_country`,`doc_phone`,`doc_mobile_no`) values (45,46,'doctor one','last test','2014-10-12','speciality','','dest','','','','',1,1,1,'',''),(47,48,'doctor two','test','0000-00-00','test','testyyyyy','test','test','test','test','test',1,1,1,'test','test');
+insert  into `hme_doctor_profile`(`docinfo_id`,`user_id`,`doc_firstname`,`doc_lastname`,`doc_dob`,`doc_speciality`,`doc_certificate`,`doc_designated`,`doc_awards`,`doc_about`,`doc_address_1`,`doc_address_2`,`doc_city`,`doc_state`,`doc_country`,`doc_phone`,`doc_mobile_no`) values (45,46,'doctor one','last test','2014-10-12','speciality','','dest','','','test','',1,1,1,'','9566995815'),(48,53,'Prakash','Arul mani','2014-12-05','','','','','','test','',1,1,1,'','123123213'),(49,55,'Rajesh','','2014-12-06','','','','','','test','',1,1,1,'','123123123');
 
 /*Table structure for table `hme_med_categories` */
 
@@ -122,11 +122,11 @@ CREATE TABLE `hme_med_stock` (
   CONSTRAINT `FK_hme_med_stock_medicine` FOREIGN KEY (`stk_med_id`) REFERENCES `hme_medicines` (`med_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_med_stock_medpackage` FOREIGN KEY (`stk_pkg_id`) REFERENCES `hme_medicine_pkg` (`pkg_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_med_stock_tenant` FOREIGN KEY (`tenant`) REFERENCES `hme_tenants` (`tn_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_med_stock` */
 
-insert  into `hme_med_stock`(`tenant`,`stk_id`,`stk_med_id`,`stk_pkg_id`,`stk_batch_no`,`stk_avail_units`,`stk_debit_units`) values (1,16,8,17,'TEST0001',25,0),(1,17,8,17,'TEST0002',95,0),(1,18,8,17,'T6UYT7878',0,0),(1,19,9,18,'TEST0005',6,0),(1,20,8,17,'TEST0005',5,0),(1,21,9,18,'TEST0006',0,0),(1,22,8,17,'TEST0006',0,0);
+insert  into `hme_med_stock`(`tenant`,`stk_id`,`stk_med_id`,`stk_pkg_id`,`stk_batch_no`,`stk_avail_units`,`stk_debit_units`) values (1,16,8,17,'TEST0001',25,0),(1,17,8,17,'TEST0002',95,0),(1,18,8,17,'T6UYT7878',0,0),(1,19,9,18,'TEST0005',6,0),(1,20,8,17,'TEST0005',5,0),(1,21,9,18,'TEST0006',0,0),(1,22,8,17,'TEST0006',0,0),(1,23,10,19,'TEST0008',60,0),(1,24,8,17,'TEST0008',5,0);
 
 /*Table structure for table `hme_medicine_pkg` */
 
@@ -140,11 +140,11 @@ CREATE TABLE `hme_medicine_pkg` (
   PRIMARY KEY (`pkg_id`),
   KEY `FK_hme_medicine_pkg_medicine` (`pkg_med_id`),
   CONSTRAINT `FK_hme_medicine_pkg_medicine` FOREIGN KEY (`pkg_med_id`) REFERENCES `hme_medicines` (`med_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_medicine_pkg` */
 
-insert  into `hme_medicine_pkg`(`pkg_id`,`pkg_med_id`,`pkg_med_unit`,`pkg_med_power`) values (17,8,'m1-unit1','m1-pot1'),(18,9,'med 6 unit 1','pot 1');
+insert  into `hme_medicine_pkg`(`pkg_id`,`pkg_med_id`,`pkg_med_unit`,`pkg_med_power`) values (17,8,'m1-unit1','m1-pot1'),(18,9,'med 6 unit 1','pot 1'),(19,10,'Med 4 unit','');
 
 /*Table structure for table `hme_medicines` */
 
@@ -162,11 +162,11 @@ CREATE TABLE `hme_medicines` (
   KEY `FK_hme_medicines_tenant` (`tenant`),
   CONSTRAINT `FK_hme_medicines_category` FOREIGN KEY (`med_cat_id`) REFERENCES `hme_med_categories` (`med_cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_medicines_tenant` FOREIGN KEY (`tenant`) REFERENCES `hme_tenants` (`tn_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_medicines` */
 
-insert  into `hme_medicines`(`tenant`,`med_id`,`med_cat_id`,`med_name`,`med_desc`,`med_status`) values (1,8,8,'Medicine Name 1','Medicine Name 1','1'),(1,9,8,'New Medicine 6','','1');
+insert  into `hme_medicines`(`tenant`,`med_id`,`med_cat_id`,`med_name`,`med_desc`,`med_status`) values (1,8,8,'Medicine Name 1','Medicine Name 1','1'),(1,9,8,'New Medicine 6','','1'),(1,10,8,'Med 4','Test a','1');
 
 /*Table structure for table `hme_patient_profile` */
 
@@ -260,11 +260,11 @@ CREATE TABLE `hme_purchase_order` (
   CONSTRAINT `FK_hme_purchase_order_created_by` FOREIGN KEY (`po_created_by`) REFERENCES `hme_users` (`ur_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_purchase_order_tenant` FOREIGN KEY (`tenant`) REFERENCES `hme_tenants` (`tn_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_purchase_order_vendor` FOREIGN KEY (`po_vendor`) REFERENCES `hme_vendors` (`ven_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_purchase_order` */
 
-insert  into `hme_purchase_order`(`tenant`,`po_id`,`po_date`,`po_vendor`,`po_invoice`,`po_memo`,`po_total`,`po_paid`,`po_status`,`po_created_by`) values (1,33,'2014-12-02 00:00:00',1,'00001','Memo one','3835.00','500.00','1',1),(1,37,'2014-12-05 00:00:00',2,'Opening Stock',NULL,'0.00',NULL,'1',1);
+insert  into `hme_purchase_order`(`tenant`,`po_id`,`po_date`,`po_vendor`,`po_invoice`,`po_memo`,`po_total`,`po_paid`,`po_status`,`po_created_by`) values (1,33,'2014-12-02 00:00:00',1,'00001','Memo one','3835.00','500.00','1',1),(1,37,'2014-12-05 00:00:00',2,'Opening Stock',NULL,'0.00',NULL,'1',1),(1,38,'2014-12-06 00:00:00',1,'00002','','300.00','0.00','1',1);
 
 /*Table structure for table `hme_purchase_order_medicines` */
 
@@ -291,11 +291,11 @@ CREATE TABLE `hme_purchase_order_medicines` (
   CONSTRAINT `FK_hme_purchase_order_medicines_medicine` FOREIGN KEY (`itm_med_id`) REFERENCES `hme_medicines` (`med_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_purchase_order_medicines_medpackage` FOREIGN KEY (`itm_pkg_id`) REFERENCES `hme_medicine_pkg` (`pkg_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_purchase_order_medicines_porder` FOREIGN KEY (`itm_po_id`) REFERENCES `hme_purchase_order` (`po_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_purchase_order_medicines` */
 
-insert  into `hme_purchase_order_medicines`(`itm_id`,`itm_po_id`,`itm_med_id`,`itm_pkg_id`,`itm_batch_no`,`itm_manf_date`,`itm_exp_date`,`itm_vat_tax`,`itm_mrp_price`,`itm_discount`,`itm_net_rate`,`itm_qty`,`itm_total_price`) values (51,33,8,17,'TEST0001','2014-08-08 00:00:00','2020-08-08 00:00:00','5.00','50.00','5.00','47.50',50,'2375.00'),(52,33,8,17,'TEST0002','2014-01-29 00:00:00','2020-08-12 00:00:00','5.00','20.00','30.00','14.00',100,'1400.00'),(53,33,9,18,'TEST0005','2014-12-05 00:00:00','2014-12-05 00:00:00','5.00','10.00','0.00','10.00',6,'60.00'),(63,37,8,17,'TEST0005','2014-12-05 00:00:00','2014-12-05 00:00:00','0.00','10.00','0.00','10.00',5,'50.00');
+insert  into `hme_purchase_order_medicines`(`itm_id`,`itm_po_id`,`itm_med_id`,`itm_pkg_id`,`itm_batch_no`,`itm_manf_date`,`itm_exp_date`,`itm_vat_tax`,`itm_mrp_price`,`itm_discount`,`itm_net_rate`,`itm_qty`,`itm_total_price`) values (51,33,8,17,'TEST0001','2014-08-08 00:00:00','2020-08-08 00:00:00','5.00','50.00','5.00','47.50',50,'2375.00'),(52,33,8,17,'TEST0002','2014-01-29 00:00:00','2020-08-12 00:00:00','5.00','20.00','30.00','14.00',100,'1400.00'),(53,33,9,18,'TEST0005','2014-12-05 00:00:00','2014-12-05 00:00:00','5.00','10.00','0.00','10.00',6,'60.00'),(63,37,8,17,'TEST0005','2014-12-05 00:00:00','2014-12-05 00:00:00','0.00','10.00','0.00','10.00',5,'50.00'),(64,37,10,19,'TEST0008','2014-12-06 00:00:00','2014-12-06 00:00:00','0.00','5.00','0.00','5.00',60,'300.00'),(65,38,8,17,'TEST0008','2014-12-06 00:00:00','2014-12-06 00:00:00','0.00','60.00','0.00','60.00',5,'300.00');
 
 /*Table structure for table `hme_sales_order` */
 
@@ -319,7 +319,7 @@ CREATE TABLE `hme_sales_order` (
 
 /*Data for the table `hme_sales_order` */
 
-insert  into `hme_sales_order`(`tenant`,`so_id`,`so_type`,`so_date`,`so_user`,`so_doctor`,`so_memo`,`so_total`,`so_paid`,`so_status`) values (1,1,'1','2014-12-03 00:00:00',50,46,'Memo','1000.00','500.00','0'),(1,2,'2','2014-12-03 11:45:17',1,NULL,'','1000.00','1000.00','1');
+insert  into `hme_sales_order`(`tenant`,`so_id`,`so_type`,`so_date`,`so_user`,`so_doctor`,`so_memo`,`so_total`,`so_paid`,`so_status`) values (1,1,'1','2014-12-03 00:00:00',50,46,'Memo','1000.00','500.00','0'),(1,2,'2','2014-12-03 00:00:00',NULL,NULL,'','1000.00','1000.00','1');
 
 /*Table structure for table `hme_sales_order_medicines` */
 
@@ -427,11 +427,11 @@ CREATE TABLE `hme_users` (
   KEY `FK_hme_users_tenant` (`tenant`),
   CONSTRAINT `FK_hme_users_role` FOREIGN KEY (`ur_role_id`) REFERENCES `hme_user_role` (`urole_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hme_users_tenant` FOREIGN KEY (`tenant`) REFERENCES `hme_tenants` (`tn_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_users` */
 
-insert  into `hme_users`(`tenant`,`ur_id`,`ur_role_id`,`ur_username`,`ur_password`,`ur_activation_key`,`ur_created_at`,`ur_modified_at`,`ur_last_login`,`ur_last_ip`,`ur_status`) values (1,1,11,'hadmin','b3122934150f9c276fedf3ade4801c0944fe54ed1b52402f664ac2f2ad6a5b087e7157bbbc30357e6f184534139e941cf8184762965f689ebee8f6e3806a48bc',NULL,'2014-11-17 12:47:34','2014-12-06 11:15:47','2014-12-06 11:15:47','::1','1'),(1,46,9,'stanleyyyyyy','999b291739c86b8b9b88be319717b8cde6843018f7862c7a60c4b36a6a8cc835cdda3f13ba614187dc4320eb8186c68c9331ba4ceea965bd8328e96c9e96058d',NULL,'2014-11-19 11:09:47','2014-12-03 11:00:50','0000-00-00 00:00:00',NULL,'1'),(1,48,9,'test','ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff',NULL,'2014-11-19 17:16:37','2014-12-03 11:01:13','0000-00-00 00:00:00',NULL,'1'),(1,49,10,'nadesh','admin',NULL,'2014-11-25 16:40:41','2014-11-25 16:40:41','0000-00-00 00:00:00',NULL,'1'),(1,50,8,'prakash','admin',NULL,'2014-12-01 18:02:45','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,'1'),(2,51,11,'hadmin','hadmin',NULL,'2014-12-05 13:49:23','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,'0');
+insert  into `hme_users`(`tenant`,`ur_id`,`ur_role_id`,`ur_username`,`ur_password`,`ur_activation_key`,`ur_created_at`,`ur_modified_at`,`ur_last_login`,`ur_last_ip`,`ur_status`) values (1,1,11,'hadmin','b3122934150f9c276fedf3ade4801c0944fe54ed1b52402f664ac2f2ad6a5b087e7157bbbc30357e6f184534139e941cf8184762965f689ebee8f6e3806a48bc',NULL,'2014-11-17 12:47:34','2014-12-06 16:33:56','2014-12-06 16:33:48','::1','1'),(1,46,9,'stan','b3122934150f9c276fedf3ade4801c0944fe54ed1b52402f664ac2f2ad6a5b087e7157bbbc30357e6f184534139e941cf8184762965f689ebee8f6e3806a48bc',NULL,'2014-11-19 11:09:47','2014-12-06 17:38:35','0000-00-00 00:00:00',NULL,'1'),(1,49,10,'nadesh2','263fec58861449aacc1c328a4aff64aff4c62df4a2d50b3f207fa89b6e242c9aa778e7a8baeffef85b6ca6d2e7dc16ff0a760d59c13c238f6bcdc32f8ce9cc62',NULL,'2014-11-25 16:40:41','2014-12-06 17:33:51','0000-00-00 00:00:00',NULL,'1'),(1,50,8,'prakasharulmani','admin',NULL,'2014-12-01 18:02:45','2014-12-06 17:33:35','0000-00-00 00:00:00',NULL,'1'),(1,53,9,'prakash','cef4817824cea8cf2bb83fa3f1e81b3f8aaf4be19ad563264e36102c0c1f87204fb66bc1e5a20698ab3692c985b861dcdbaa58f13dca5af0d55c1ffb9e90f5b2',NULL,'2014-12-06 17:59:26','2014-12-06 17:59:26','0000-00-00 00:00:00',NULL,'1'),(2,54,11,'hadmin','adasdsa',NULL,'2014-12-06 18:01:35','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,'0'),(1,55,9,'rajesh','3f2408466b45ddc6d4f0c6ce4d9f725750a455aac559fcd4dbd641a56c70652b248e6c61dff02829a53996e092cfd7c86555e36dfe765ef4c08ec33f501c686a',NULL,'2014-12-06 18:02:04','2014-12-06 18:02:04','0000-00-00 00:00:00',NULL,'1');
 
 /*Table structure for table `hme_vendors` */
 
@@ -449,11 +449,11 @@ CREATE TABLE `hme_vendors` (
   `ven_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `self_user_id` mediumint(9) DEFAULT NULL COMMENT 'Its belongs to Admin',
   PRIMARY KEY (`ven_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hme_vendors` */
 
-insert  into `hme_vendors`(`tenant`,`ven_id`,`ven_name`,`ven_address`,`ven_phone_no`,`ven_email`,`ven_status`,`ven_created_by`,`ven_created_at`,`self_user_id`) values (1,1,'Supplier 1','1 Ahimshapuram 5th street,\r\nSellur,\r\nMadurai','9566699580','prakash.paramanandam@arkinfotec.com','1',1,'2014-12-05 11:53:36',NULL),(1,2,'hadmin',NULL,NULL,NULL,'1',1,'2014-12-05 13:57:55',1);
+insert  into `hme_vendors`(`tenant`,`ven_id`,`ven_name`,`ven_address`,`ven_phone_no`,`ven_email`,`ven_status`,`ven_created_by`,`ven_created_at`,`self_user_id`) values (1,1,'Supplier 1','1 Ahimshapuram 5th street,\r\nSellur,\r\nMadurai','9566699580','prakash.paramanandam@arkinfotec.com','1',1,'2014-12-06 12:24:42',NULL),(1,2,'hadmin',NULL,NULL,NULL,'1',1,'2014-12-05 13:57:55',1),(2,5,'hadmin',NULL,NULL,NULL,'1',54,'2014-12-06 18:01:35',54);
 
 /* Trigger structure for table `hme_purchase_order` */
 
@@ -722,10 +722,11 @@ DELIMITER $$
 /*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `hme_users_insert` */$$
 
 /*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `hme_users_insert` AFTER INSERT ON `hme_users` FOR EACH ROW BEGIN
-    
-	insert into hme_vendors(tenant, ven_name, ven_created_by, self_user_id)
-	values (new.tenant, new.ur_username, new.ur_id, new.ur_id);
 	
+	if new.ur_role_id = 11 then
+		insert into hme_vendors(tenant, ven_name, ven_created_by, self_user_id)
+		values (new.tenant, new.ur_username, new.ur_id, new.ur_id);
+	end if;
     END */$$
 
 
