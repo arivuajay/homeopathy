@@ -59,7 +59,7 @@ return array(
 //        ),
         'db' => require_once 'db_config.php',
         'errorHandler' => array(
-            'errorAction' => 'site/default/error',
+            'errorAction' => '/portal/default/error',
         ),
         'log' => array(
             'class' => 'CLogRouter',

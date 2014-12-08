@@ -32,7 +32,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-calendar"></i>
             <?php echo $form->textField($model, 'po_date', array('class' => 'form-control form-control-inline input-medium default-date-picker', 'value' => date("Y-m-d"))); ?>
         </div>
-        <?php echo $form->error($model, 'po_date', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_date', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="form-group col-lg-6">
@@ -40,7 +40,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="col-lg-8">
         <?php $vendors = CHtml::listData(Vendors::model()->isActive()->excptSelf()->findAll(), 'ven_id', 'ven_name') ?>        
         <?php echo $form->dropDownList($model, 'po_vendor', $vendors, array('empty' => Myclass::t('APP61'), 'class' => "form-control")) ?>
-        <?php echo $form->error($model, 'po_vendor', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_vendor', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -52,7 +52,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-file-text"></i>
         <?php echo $form->textField($model, 'po_invoice', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'po_invoice', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_invoice', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 
@@ -68,7 +68,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-rupee"></i>
             <?php echo $form->textField($model, 'po_total', array('size' => 10, 'maxlength' => 10, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'po_total', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_total', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -80,7 +80,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-rupee"></i>
             <?php echo $form->textField($model, 'po_paid', array('size' => 10, 'maxlength' => 10, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'po_paid', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_paid', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="form-group col-lg-6">

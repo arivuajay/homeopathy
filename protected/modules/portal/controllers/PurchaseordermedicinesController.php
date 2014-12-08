@@ -106,6 +106,24 @@ class PurchaseordermedicinesController extends Controller
                 $valid = $model->validate();
                 
                 if($valid){
+                    /*
+                    $check_open_stk = PurchaseOrderMedicines::model()->find("itm_po_id = :po_id "
+                                                                            . "And itm_med_id = :med_id "
+                                                                            . "And itm_pkg_id = :pkg_id "
+                                                                            . "And itm_batch_no = :batch "
+                                                                            . "And itm_manf_date = :itm_manf_date "
+                                                                            . "And itm_exp_date = :itm_manf_date",
+                                                                            array(
+                                                                                ':po_id' => $model->itm_po_id,
+                                                                                ':med_id' => $model->itm_med_id,
+                                                                                ':pkg_id' => $model->itm_pkg_id,
+                                                                                ':batch' => $model->itm_batch_no,
+                                                                                ':itm_manf_date' => $model->itm_manf_date,
+                                                                                ':itm_exp_date' => $model->itm_exp_date,
+                                                                            )
+                                                                            );
+                    
+                    */
                     if($model->save(false))
                         Yii::app()->user->setFlash('success', Myclass::t('APP476'));
                         $this->redirect(array('create'));

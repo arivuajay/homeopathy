@@ -32,19 +32,15 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-calendar"></i>
             <?php echo $form->textField($model, 'po_date', array('class' => 'form-control form-control-inline input-medium default-date-picker', 'value' => date("Y-m-d", strtotime($model->po_date)))); ?>
         </div>
-        <?php echo $form->error($model, 'po_date', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_date', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="form-group col-lg-6">
     <?php echo $form->labelEx($model, 'po_vendor', array('class' => 'col-lg-4 col-sm-2 control-label')); ?>
-    <div class="col-lg-6">
+    <div class="col-lg-8">
         <?php $vendors = CHtml::listData(Vendors::model()->isActive()->excptSelf()->findAll(), 'ven_id', 'ven_name') ?>        
         <?php echo $form->dropDownList($model, 'po_vendor', $vendors, array('empty' => Myclass::t('APP61'), 'class' => "form-control")) ?>
-        <?php echo $form->error($model, 'po_vendor', array('class' => 'col-lg-12')); ?>
-    </div>
-    <div class="col-lg-2">
-        <?php echo CHtml::button(Myclass::t('APP80'), array('class' => 'btn btn-default', 'onclick' => 'location.href="' . $this->createUrl('/portal/vendors/create') . '"')) ?>
-        <!--        <button class="btn btn-default" type="button">Default</button>-->
+        <?php echo $form->error($model, 'po_vendor', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -55,7 +51,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-file-text"></i>
             <?php echo $form->textField($model, 'po_invoice', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'po_invoice', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_invoice', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="form-group col-lg-6">
@@ -70,7 +66,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-rupee"></i>
             <?php echo $form->textField($model, 'po_total', array('size' => 10, 'maxlength' => 10, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'po_total', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_total', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -81,7 +77,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <i class="fa fa-rupee"></i>
             <?php echo $form->textField($model, 'po_paid', array('size' => 10, 'maxlength' => 10, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'po_paid', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_paid', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="form-group col-lg-6">
@@ -96,7 +92,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo $form->labelEx($model, 'po_memo', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
     <div class="col-lg-10">
         <?php echo $form->textArea($model, 'po_memo', array('rows' => 6, 'cols' => 50, 'class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'po_memo', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'po_memo', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <?php echo $form->hiddenField($model, 'po_created_by', array('value' => Yii::app()->user->getId())) ?>

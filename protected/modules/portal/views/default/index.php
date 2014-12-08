@@ -8,11 +8,11 @@
         $('#dd_med').on('change', function(){
             var med_id = $(this).val();
             
-            $('#stktable tr').hide();
+            $('#stktable tbody tr').hide();
             if(med_id == '0'){
-                $('#stktable tr').show();
+                $('#stktable tbody tr').show();
             }else{
-                $('#stktable tr[data-id="'+med_id+'"]').show();
+                $('#stktable tbody tr[data-id="'+med_id+'"]').show();
             }
             
             $('#p_med_name').html($('#dd_med option:selected').html());
