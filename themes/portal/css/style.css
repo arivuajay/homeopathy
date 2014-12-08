@@ -1024,7 +1024,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .personal-task > tbody > tr > td:last-child {
-    text-align: right;
+/*    text-align: right;*/
 }
 
 .task-option {
@@ -3161,7 +3161,7 @@ input.spinner[type="text"], input.spinner[type="password"], input.spinner[type="
 
 /*form validation*/
 
-.cmxform .form-group label.error {
+.cmxform .form-group label.error, .form-group label.error {
     display: inline;
     margin: 5px 0;
     color: #B94A48;

@@ -42,7 +42,10 @@ return array(
             'enableCookieValidation' => true,
             'enableCsrfValidation' => true,
         ),
-        'user' => array('allowAutoLogin' => true),
+        'user' => array(
+            'allowAutoLogin' => true,
+            'loginUrl'=>array('/portal/default/login')
+        ),
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,

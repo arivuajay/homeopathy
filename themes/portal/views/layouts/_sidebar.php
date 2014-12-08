@@ -9,7 +9,7 @@ $this->widget('application.components.MyMenu', array(
         array('label' => '<i class="fa fa-users"></i><span>' . Myclass::t('APP219') . '</span>', 'url' => '#', 'itemOptions' => array("class" => "sub-menu"),
             'items' => array(
                 array('label' => '<i class="fa fa-stethoscope"></i><span>' . Myclass::t('APP220') . '</span>', 'url' => array('/portal/doctors/index')),
-                array('label' => '<i class="fa fa-user-md"></i><span>' . Myclass::t('APP221') . '</span> ', 'url' => array('/portal/pharmacist')),
+                array('label' => '<i class="fa fa-user-md"></i><span>' . Myclass::t('APP305') . '</span> ', 'url' => array('/portal/pharmacist/index')),
                 array('label' => '<i class="fa fa-wheelchair"></i><span>' . Myclass::t('APP222') . '</span> ', 'url' => array('/portal/patients/index')),
             ),
         ),

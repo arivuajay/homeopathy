@@ -1,13 +1,13 @@
 <?php 
 $this->breadcrumbs=array(
-	'Pharmacists',
+	Myclass::t('APP305'),
 );
 
 ?>
 
 <section class="panel">
     <header class="panel-heading">
-       <?php echo Myclass::t('APP301'); ?> 
+       <?php echo Myclass::t('APP305'); ?> 
        <?php        
         echo CHtml::link('<i class="fa fa-plus-square"></i> &nbsp;' . Myclass::t('APP59'), array('/portal/pharmacist/create'), array('class' => 'btn btn-sm btn-success pull-right', 'title'=>'Create'));
        ?>

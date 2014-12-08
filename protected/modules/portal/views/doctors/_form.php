@@ -9,6 +9,7 @@
             'id' => 'doctors-form',
             'htmlOptions' => array('role' => 'form', 'class' => 'form-horizontal'),
             'enableAjaxValidation' => true,
+            'errorMessageCssClass' => 'error',
             'clientOptions' => array('validateOnSubmit'=>true)
                 ));
         ?>

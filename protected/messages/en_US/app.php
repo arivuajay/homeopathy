@@ -160,6 +160,9 @@ return array(
     'APP258' => 'New Passowrd',
     'APP259' => 'Repeat Password',
     'APP260' => 'Total Sales',
+    'APP261' => 'In-stock',
+    'APP262' => 'Out of Stock',
+    'APP263' => 'All Medicines',
     
     //Pharmacist
     'APP301' => 'Pharmacist',

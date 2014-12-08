@@ -219,7 +219,7 @@ class SalesorderController extends Controller {
                 'empty' => Myclass::t('APP205'),
             ));
         } else if ($type == '2') {
-            $vendors = CHtml::listData(Vendors::model()->findAll('ven_status = :status', array(':status' => '1')), 'ven_id', 'ven_name');
+            $vendors = CHtml::listData(Vendors::model()->findAll('ven_status = :status AND self_user_id is NULL', array(':status' => '1')), 'ven_id', 'ven_name');
             $model = new SalesOrder;
             echo CHtml::activeDropDownList($model, 'so_user', $vendors, array(
                 'class' => 'form-control',

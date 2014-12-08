@@ -25,19 +25,43 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
-        $doctors = Users::model()->isDoctor()->findAll();
-        $pharmacists = Users::model()->isPharmacist()->findAll();
-        $patients = Users::model()->isPatient()->findAll();
         
-        $doctors_count = count($doctors);
-        $pharmacists_count = count($pharmacists);
-        $patients_count = count($patients);
+        $doctors_count = Users::model()->isDoctor()->count();
+        $pharmacists_count = Users::model()->isPharmacist()->count();
+        $patients_count = Users::model()->isPatient()->count();
+        
+        $t_sales = Yii::app()->db->createCommand()
+            ->select('SUM(so_total) AS total_sales')
+            ->from('hme_sales_order')  
+            ->where('so_status= "1" And tenant = "'.Yii::app()->user->getState('tenant').'"') 
+            ->queryRow();
+        
+        
+        $stk_meds = Yii::app()->db->createCommand()
+            ->select('b.med_id, b.med_name')
+            ->from('hme_med_stock a')  
+            ->join('hme_medicines b','b.med_id = a.stk_med_id')  
+            ->group('a.stk_med_id')  
+            ->where('a.tenant = "'.Yii::app()->user->getState('tenant').'"') 
+            ->queryAll();
+
+        $stocks = Yii::app()->db->createCommand()
+            ->select('a.stk_med_id, a.stk_pkg_id, b.med_name, c.pkg_med_unit, SUM(a.stk_avail_units) as stk_avail_units')
+            ->from('hme_med_stock a')  
+            ->join('hme_medicines b','b.med_id = a.stk_med_id')  
+            ->join('hme_medicine_pkg c','c.pkg_id = a.stk_pkg_id')  
+            ->group('a.stk_med_id, a.stk_pkg_id')  
+            ->where('a.tenant = "'.Yii::app()->user->getState('tenant').'"') 
+            ->queryAll();
         
         $this->render('index', array(
                                 'model' => $model,
                                 'doctors_count' => $doctors_count,
                                 'pharmacists_count' => $pharmacists_count,
-                                'patients_count' => $patients_count
+                                'patients_count' => $patients_count,
+                                'total_sales' => $t_sales['total_sales'] == '' ? 0 : $t_sales['total_sales'],
+                                'stocks' => $stocks,
+                                'stk_meds' => $stk_meds
                                 ));        
     }
 

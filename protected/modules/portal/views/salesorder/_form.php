@@ -31,7 +31,7 @@
             <i class="fa fa-calendar"></i>
             <?php echo $form->textField($model, 'so_date', array('class' => 'form-control form-control-inline input-medium default-date-picker')); ?>
         </div>
-        <?php echo $form->error($model, 'so_date', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'so_date', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="form-group col-lg-6">
@@ -57,7 +57,7 @@
             )
         ));
         ?>
-        <?php echo $form->error($model, 'so_type', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'so_type', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -99,7 +99,7 @@
             <i class="fa fa-rupee"></i>
             <?php echo $form->textField($model, 'so_total', array('size' => 10, 'maxlength' => 10, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'so_total', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'so_total', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="form-group col-lg-6">
@@ -109,7 +109,7 @@
             <i class="fa fa-rupee"></i>
             <?php echo $form->textField($model, 'so_paid', array('size' => 10, 'maxlength' => 10, 'class' => 'form-control')); ?>
         </div>
-        <?php echo $form->error($model, 'so_paid', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'so_paid', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -117,7 +117,7 @@
     <?php echo $form->labelEx($model, 'so_memo', array('class' => 'col-lg-2 col-sm-2 control-label')); ?>
     <div class="col-lg-10">
         <?php echo $form->textArea($model, 'so_memo', array('rows' => 6, 'cols' => 50, 'class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'so_memo', array('class' => 'col-lg-12')); ?>
+        <?php echo $form->error($model, 'so_memo', array('class' => 'col-lg-12 error')); ?>
     </div>
 </div>
 <?php echo $form->hiddenField($model, 'so_created_by', array('value' => Yii::app()->user->getId())) ?>

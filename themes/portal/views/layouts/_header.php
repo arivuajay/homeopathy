@@ -3,13 +3,9 @@
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
-    <!--logo start-->
     <a href="javascript:void(0)" class="logo"><span><?php echo Myclass::t('APP216'); ?></span></a>
-    <!--logo end-->
-    <div class="nav notify-row" id="top_menu">
-        <!--  notification start -->
+<!--    <div class="nav notify-row" id="top_menu">
         <ul class="nav top-menu">
-            <!-- settings start -->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-tasks"></i>
@@ -91,8 +87,6 @@
                     </li>
                 </ul>
             </li>
-            <!-- settings end -->
-            <!-- inbox dropdown start-->
             <li id="header_inbox_bar" class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-envelope-o"></i>
@@ -156,8 +150,6 @@
                     </li>
                 </ul>
             </li>
-            <!-- inbox dropdown end -->
-            <!-- notification dropdown start-->
             <li id="header_notification_bar" class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
@@ -209,20 +201,16 @@
                     </li>
                 </ul>
             </li>
-            <!-- notification dropdown end -->
         </ul>
-        <!--  notification end -->
-    </div>
+    </div>-->
     <div class="top-nav ">
-        <!--search & user info start-->
         <ul class="nav pull-right top-menu">
-            <li>
+<!--            <li>
                 <input type="text" class="form-control search" placeholder="Search">
-            </li>
+            </li>-->
             <li class="dropdown language">
                     <?php $this->widget('LangBox'); ?>
                   </li>
-            <!-- user login dropdown start-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="<?php echo $app->theme->baseUrl; ?>/img/avatar1_small.jpg">
@@ -231,13 +219,11 @@
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
-                    <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+<!--                    <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>-->
                     <li><?php echo CHtml::link('<i class="fa fa-cog"></i> Change Password', array('/portal/users/changepassword')); ?>
                     <li><?php echo CHtml::link('<i class="fa fa-key"></i> Log Out', array('/portal/default/logout')); ?></li>
                 </ul>
             </li>
-            <!-- user login dropdown end -->
         </ul>
-        <!--search & user info end-->
     </div>
 </header>

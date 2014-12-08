@@ -29,7 +29,14 @@ class SalesOrder extends RActiveRecord
 		return '{{sales_order}}';
 	}
 
-	/**
+        public function scopes() {
+           $alias = $this->getTableAlias(false, false);
+           return array(
+               'isActive' => array('condition' => $alias . '.so_status  = "1"'),
+           );
+        }
+
+        /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()

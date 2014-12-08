@@ -1,47 +1,69 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        countUp(<?php echo $doctors_count ?>);
+        countUp2(<?php echo $patients_count ?>);
+        countUp3(<?php echo $pharmacists_count ?>);
+        countUp4(<?php echo $total_sales ?>);
+        
+        $('#dd_med').on('change', function(){
+            var med_id = $(this).val();
+            
+            $('#stktable tr').hide();
+            if(med_id == '0'){
+                $('#stktable tr').show();
+            }else{
+                $('#stktable tr[data-id="'+med_id+'"]').show();
+            }
+            
+            $('#p_med_name').html($('#dd_med option:selected').html());
+        });  
+    })
+</script>
+
 <!--state overview start-->
 <div class="row state-overview">
     <div class="col-lg-3 col-sm-6">
         <section class="panel">
             <div class="symbol terques">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-stethoscope"></i>
             </div>
             <div class="value">
                 <h1 class=" count">
                     0
                 </h1>
-                <span class="count-data hide">2500</span>
                 <p><?php echo Myclass::t("APP220"); ?></p>
             </div>
         </section>
     </div>
-    <div class="col-lg-3 col-sm-6">
-        <section class="panel">
-            <div class="symbol red">
-                <i class="fa fa-tags"></i>
-            </div>
-            <div class="value">
-                <h1 class=" count2">
-                    0
-                </h1>
-                <span class="count-data2 hide">2500</span>
-                <p><?php echo Myclass::t("APP406"); ?></p>
-            </div>
-        </section>
-    </div>
+    
     <div class="col-lg-3 col-sm-6">
         <section class="panel">
             <div class="symbol yellow">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fa fa-user-md"></i>
             </div>
             <div class="value">
                 <h1 class=" count3">
                     0
                 </h1>
-                <span class="count-data3 hide">2500</span>
                 <p><?php echo Myclass::t("APP305"); ?></p>
             </div>
         </section>
     </div>
+    
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel">
+            <div class="symbol red">
+                <i class="fa fa-wheelchair"></i>
+            </div>
+            <div class="value">
+                <h1 class=" count2">
+                    0
+                </h1>
+                <p><?php echo Myclass::t("APP406"); ?></p>
+            </div>
+        </section>
+    </div>
+    
     <div class="col-lg-3 col-sm-6">
         <section class="panel">
             <div class="symbol blue">
@@ -51,7 +73,6 @@
                 <h1 class=" count4">
                     0
                 </h1>
-                <span class="count-data4 hide">2500</span>
                 <p><?php echo Myclass::t("APP260"); ?></p>
             </div>
         </section>
@@ -60,8 +81,7 @@
 <!--state overview end-->
 
 <div class="row">
-    <div class="col-lg-8">
-        <!--custom chart start-->
+<!--    <div class="col-lg-8">
         <div class="border-head">
             <h3>Earning Graph</h3>
         </div>
@@ -123,10 +143,9 @@
                 <div class="value tooltips" data-original-title="90%" data-toggle="tooltip" data-placement="top">90%</div>
             </div>
         </div>
-        <!--custom chart end-->
-    </div>
-    <div class="col-lg-4">
-        <!--new earning start-->
+    </div>-->
+    
+<!--    <div class="col-lg-4">
         <div class="panel terques-chart">
             <div class="panel-body chart-texture">
                 <div class="chart">
@@ -148,9 +167,7 @@
                 </span>
             </div>
         </div>
-        <!--new earning end-->
 
-        <!--total earning start-->
         <div class="panel green-chart">
             <div class="panel-body">
                 <div class="chart">
@@ -166,12 +183,10 @@
                 <span class="value">$, 76,54,678</span>
             </div>
         </div>
-        <!--total earning end-->
-    </div>
+    </div>-->
 </div>
 <div class="row">
-    <div class="col-lg-4">
-        <!--user info table start-->
+<!--    <div class="col-lg-4">
         <section class="panel">
             <div class="panel-body">
                 <a href="#" class="task-thumb">
@@ -215,95 +230,71 @@
                 </tbody>
             </table>
         </section>
-        <!--user info table end-->
-    </div>
-    <div class="col-lg-8">
-        <!--work progress start-->
+    </div>-->
+    
+    <?php if(!empty($stocks)){ ?>
+    <div class="col-lg-12">
         <section class="panel">
             <div class="panel-body progress-panel">
                 <div class="task-progress">
-                    <h1>Work Progress</h1>
-                    <p>Anjelina Joli</p>
+                    <h1><?php echo Myclass::t("APP246"); ?></h1>
+                    <p id="p_med_name"><?php echo Myclass::t("APP263"); ?></p>
                 </div>
                 <div class="task-option">
-                    <select class="styled">
-                        <option>Anjelina Joli</option>
-                        <option>Tom Crouse</option>
-                        <option>Jhon Due</option>
+                    <select class="styled" id="dd_med">
+                        <option value="0"><?php echo Myclass::t("APP263"); ?></option>
+                        <?php foreach ($stk_meds as $stk_med) {
+                            echo "<option value='".$stk_med['med_id']."'>".$stk_med['med_name']."</option>";
+                        } ?>
                     </select>
                 </div>
             </div>
-            <table class="table table-hover personal-task">
+            <table class="table table-hover personal-task" id="stktable">
+                <thead>
+                <th><?php echo Myclass::t("APP214"); ?></th>
+                <th><?php echo Myclass::t("APP77"); ?></th>
+                <th><?php echo Myclass::t("APP245"); ?></th>
+                <th><?php echo Myclass::t("APP55"); ?></th>
+                </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            Target Sell
-                        </td>
-                        <td>
-                            <span class="badge bg-important">75%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress1"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            Product Delivery
-                        </td>
-                        <td>
-                            <span class="badge bg-success">43%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress2"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            Payment Collection
-                        </td>
-                        <td>
-                            <span class="badge bg-info">67%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress3"></div>
+                    <?php foreach ($stocks as $key => $stock) { ?>
+                            <?php
+                            $stk_unit = intval($stock['stk_avail_units']);
+                            
+                            if($stk_unit <= 25){
+                                $stk_bg = 'important';
+                            }
+                            elseif($stk_unit > 25 && $stk_unit <= 50){
+                                $stk_bg = 'warning';
+                            }
+                            elseif($stk_unit > 50 && $stk_unit <= 75){
+                                $stk_bg = 'primary';
+                            }
+                            else{
+                                $stk_bg = 'success';
+                            }
+                            ?>
+                    <tr class="medtr" data-id="<?php echo $stock['stk_med_id']?>">
+                        <td><?php echo $stock['med_name'] ?></td>
+                        <td><?php echo $stock['pkg_med_unit'] ?></td>
+                        <td><span class="badge bg-<?php echo $stk_bg?>"><?php echo $stk_unit ?></span></td>
+                        <td class="text-left">
+                            <?php if($stk_unit <= 0){ ?>
+                            <span class="badge bg-important text-left"><?php echo Myclass::t("APP262"); ?></span>
+                            <?php }else{ ?>
+                            <span class="badge bg-success text-left"><?php echo Myclass::t("APP261"); ?></span>
+                            <?php } ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>
-                            Work Progress
-                        </td>
-                        <td>
-                            <span class="badge bg-warning">30%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress4"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>
-                            Delivery Pending
-                        </td>
-                        <td>
-                            <span class="badge bg-primary">15%</span>
-                        </td>
-                        <td>
-                            <div id="work-progress5"></div>
-                        </td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </section>
-        <!--work progress end-->
     </div>
+    <?php } ?>
 </div>
-<div class="row">
+<!--<div class="row">
     <div class="col-lg-8">
-        <!--timeline start-->
         <section class="panel">
             <div class="panel-body">
                 <div class="text-center mbot30">
@@ -402,10 +393,8 @@
                 <div class="clearfix">&nbsp;</div>
             </div>
         </section>
-        <!--timeline end-->
     </div>
     <div class="col-lg-4">
-        <!--revenue start-->
         <section class="panel">
             <div class="revenue-head">
                 <span>
@@ -458,8 +447,6 @@
                 </ul>
             </div>
         </section>
-        <!--revenue end-->
-        <!--features carousel start-->
         <section class="panel">
             <div class="flat-carousal">
                 <div id="owl-demo" class="owl-carousel owl-theme">
@@ -512,12 +499,10 @@
                 </ul>
             </div>
         </section>
-        <!--features carousel end-->
     </div>
 </div>
 <div class="row">
     <div class="col-lg-8">
-        <!--latest product info start-->
         <section class="panel post-wrap pro-box">
             <aside>
                 <div class="post-info">
@@ -547,8 +532,6 @@
                 </div>
             </aside>
         </section>
-        <!--latest product info end-->
-        <!--twitter feedback start-->
         <section class="panel post-wrap pro-box">
             <aside class="post-highlight terques v-align">
                 <div class="panel-body">
@@ -591,12 +574,11 @@
                 </div>
             </aside>
         </section>
-        <!--twitter feedback end-->
     </div>
     <div class="col-lg-4">
         <div class="row">
             <div class="col-xs-6">
-                <!--pie chart start-->
+                pie chart start
                 <section class="panel">
                     <div class="panel-body">
                         <div class="chart">
@@ -607,10 +589,8 @@
                         Free: 260GB
                     </footer>
                 </section>
-                <!--pie chart start-->
             </div>
             <div class="col-xs-6">
-                <!--follower start-->
                 <section class="panel">
                     <div class="follower">
                         <div class="panel-body">
@@ -634,10 +614,8 @@
                         </ul>
                     </footer>
                 </section>
-                <!--follower end-->
             </div>
         </div>
-        <!--weather statement start-->
         <section class="panel">
             <div class="weather-bg">
                 <div class="panel-body">
@@ -673,15 +651,5 @@
             </footer>
 
         </section>
-        <!--weather statement end-->
     </div>
-</div>
-
-<script type="text/javascript">
-        countUp(<?php echo $doctors_count ?>);
-        countUp2(<?php echo $patients_count ?>);
-        countUp3(<?php echo $pharmacists_count ?>);
-    $(document).ready(function(){
-//        countUp(<?php echo $doctors_count ?>);
-    })
-</script>
+</div>-->
